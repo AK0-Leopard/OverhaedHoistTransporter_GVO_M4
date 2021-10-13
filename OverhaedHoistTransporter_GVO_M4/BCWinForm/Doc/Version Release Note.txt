@@ -1,0 +1,12 @@
+**********************************************
+*  BlockControlSystem_GVO-v1.0.1
+*  Latest modifications record
+*  Date  : 2014/11/20
+*  Author: 
+*  Mail  : 
+*  Tel   : 03-5783280
+**********************************************
+***v1.2.0.2
+   2020/01/20  (Kevin Wei)
+	功能增加
+	--當車子斷線超過30秒或切換成Manual Mode，會上報Alarm"10001 = VH_CAN_NOT_SERVICE"

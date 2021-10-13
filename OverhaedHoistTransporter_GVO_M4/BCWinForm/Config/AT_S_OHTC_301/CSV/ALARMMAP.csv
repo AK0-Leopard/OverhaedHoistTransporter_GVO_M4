@@ -1,0 +1,1367 @@
+OBJECT_ID,ALARM_ID,ALARM_LVL,ALARM_DESC
+OHT_NODE,111001,2,Fail to initial motor command position
+OHT_NODE,111002,2,Fail to determine the direction of the vehicle
+OHT_NODE,111003,2,Fail to determine the original Section of the vehicle
+OHT_NODE,111004,2,Fail to calculate the positon correction
+OHT_NODE,111005,2,Fail to reserve the moving section
+OHT_NODE,111006,2,Fail to calculate the distance of moving
+OHT_NODE,111007,2,Fail to calculate the parameter of moving
+OHT_NODE,111008,2,Fail to control the moving (vehicle)
+OHT_NODE,111009,2,Fail to check the area sensor state
+OHT_NODE,111010,2,Fail to pause the moving (motor)
+OHT_NODE,111011,2,Fail to resume the moving (motor)
+OHT_NODE,111012,2,Fail to correct the positon
+OHT_NODE,111013,2,timeout for communication about the moving section data of the reservation
+OHT_NODE,111014,2,error in moving section data of the reservation
+OHT_NODE,111015,2,fail to set the parameter of section type
+OHT_NODE,111016,2,Vehicle data for moving dose not exist
+OHT_NODE,111017,2,error in moving section data
+OHT_NODE,111018,2,Fail to control the moving motion (motor)
+OHT_NODE,111019,2,There is no address for moving
+OHT_NODE,111020,2,The start section do not match the section now
+OHT_NODE,111021,2,Fail to calculate the positon correction
+OHT_NODE,111022,2,The positon correction is too long
+OHT_NODE,111023,2,Jaws does not ready to be used
+OHT_NODE,111024,2,OHBC reply nothing for event report
+OHT_NODE,111025,2,Fail to get the Sick barcode
+OHT_NODE,111026,2,Fail to get the OHT position
+OHT_NODE,111027,2,Timeout for sending [132] event
+OHT_NODE,111028,2,The positon correction is too long to go to the station
+OHT_NODE,111029,2,Fail to go to the station(No BCR define data found)
+OHT_NODE,111030,2,Fail to go to the station(BCR between Dest and Now is not match)
+OHT_NODE,111031,2,Fail to calculate the positon(No BCR define data found)
+OHT_NODE,111032,2,Fail to calculate the positon(BCR between Dest and Now is not match)
+OHT_NODE,111099,2,Exception in the moving process
+OHT_NODE,121001,2,Area sensor parameter does not exist
+OHT_NODE,121002,2,Fail to set the area sensor parameter
+OHT_NODE,121003,2,Fail in the back area sensor process
+OHT_NODE,121004,2,Fail to check the front area sensor state
+OHT_NODE,121005,2,Fail in the front area sensor process
+OHT_NODE,121006,2,Fail to check the back area sensor state
+OHT_NODE,121007,2,Area sensor actived-Fail to stop (Emergency) 
+OHT_NODE,121008,2,Area sensor actived-Fail to stop (Common)
+OHT_NODE,121009,2,Area sensor actived-Timeout for stop
+OHT_NODE,121010,2,Area sensor actived-Fail to reduce the velocity
+OHT_NODE,121011,2,Area sensor actived-Fail to stop the motor (Emergency) 
+OHT_NODE,121012,2,Area sensor actived-Fail to stop the motor (Common)
+OHT_NODE,121013,2,Area sensor actived-Fail to change the motor velocity
+OHT_NODE,121014,2,Fail to set the area sensor IO parameter
+OHT_NODE,121015,2,High Temputre alarm for moving motor
+OHT_NODE,121016,2,High Temputre alarm for moving regenerative resistor
+OHT_NODE,121017,2,High Temputre alarm for hoisting regenerative resistor
+OHT_NODE,121018,2,Fail to get the Distance sensor parameter
+OHT_NODE,121019,2,Fail to select the deceleration parameter
+OHT_NODE,121020,2,Fail to communication with distance sensor when AreaSensor_Near is ON
+OHT_NODE,121021,2,AreaSensor_Near is ON beyond the Enter distance restriction
+OHT_NODE,121022,2,AreaSensor No Response
+OHT_NODE,121023,2,Timeout warning for AreaSensor Near ON
+OHT_NODE,122023,1,Timeout alarm for AreaSensor Near ON
+OHT_NODE,122001,1,ByPass BOX_BCR Sensor
+OHT_NODE,122015,1,High Temputre memo for moving motor
+OHT_NODE,122016,1,High Temputre memo for moving regenerative resistor
+OHT_NODE,122017,1,High Temputre memo for hoisting regenerative resistor
+OHT_NODE,121099,2,Exception in the area sensor process
+OHT_NODE,131001,2,System emergency stop
+OHT_NODE,131002,2,The motor used for moving was abnormal
+OHT_NODE,131003,2,The motor used for jaws lateral moving were abnormal
+OHT_NODE,131004,2,The motor used for jaws hoist moving were abnormal
+OHT_NODE,131005,2,The motor used for jaws grabbing were abnormal
+OHT_NODE,131006,2,OHT Emergency Stop
+OHT_NODE,131007,2,AreaSensor is active but walk on the wrong tack
+OHT_NODE,131008,2,Fail to Read the Distance Sensor
+OHT_NODE,131099,2,Exception in the command handling process
+OHT_NODE,211001,2,High CPU useage for OHT IPC
+OHT_NODE,211002,2,High memory useage for OHT IPC
+OHT_NODE,211003,2,Low HDD capacity for OHT IPC
+OHT_NODE,211004,2,Timeout for moving in position
+OHT_NODE,212001,1,Timeout for Receiving OHBC Message
+OHT_NODE,311001,2,Error in the vehicle mounted station
+OHT_NODE,311002,2,A foreign object in the anti-dropping detecting process
+OHT_NODE,311003,2,Jaws isn't in the home position
+OHT_NODE,311004,2,Error in the carrier position before hoist moving
+OHT_NODE,311005,2,Timeout for lateraling excursion
+OHT_NODE,311006,2,Timeout for hoisting
+OHT_NODE,311007,2,Error in check box sensors before the jaws going
+OHT_NODE,311008,2,Timeout for jaws closing
+OHT_NODE,311009,2,Timeout for jaws opening
+OHT_NODE,311010,2,Fail to getting hoist in position
+OHT_NODE,311011,2,Error Position while Loading
+OHT_NODE,311012,2,Error Position while Unloading
+OHT_NODE,311013,2,Error in the carrier position before lateral moving
+OHT_NODE,321001,2,There is a belt rewind
+OHT_NODE,321002,2,vehicle mounted station's runout sensors turn ON
+OHT_NODE,321003,2,Error in belt tension
+OHT_NODE,321007,2,Error in checking box sensor turns ON
+OHT_NODE,331001,2,Fail to threw out the back anti-dropping device
+OHT_NODE,331002,2,Fail to threw out the front anti-dropping device
+OHT_NODE,331003,2,Fail to take back the back anti-dropping device
+OHT_NODE,331004,2,Fail to take back the front anti-dropping device
+OHT_NODE,331005,2,Fail to getting lateraling excursion in position
+OHT_NODE,331007,2,Fail to control the Z-axis
+OHT_NODE,331008,2,Fail to going jaws
+OHT_NODE,331012,2,Fail to run the lateral excursion
+OHT_NODE,332001,1,OHT Have Box but anti-dropping device
+OHT_NODE,332007,1,Warning in checking box sensor turns ON
+OHT_NODE,332010,1,Error in OHB box detecter
+OHT_NODE,332011,1,Error in OHB box detecter
+OHT_NODE,411001,2,HPIO setting error for ID/CH
+OHT_NODE,411003,2,Emergency Stop with Passive equipment ES signal
+OHT_NODE,411004,2,CS0/CS1 signal did not turn ON
+OHT_NODE,411012,2,Carrier was not detected/removed within specified time.[TP3 Timeout]
+OHT_NODE,411013,2,BUSY signal did not turn OFF within specified time.[TP4 Timeout]
+OHT_NODE,412001,1,VALID signal did not turn ON within specified time.[TD0 Timeout]
+OHT_NODE,412002,1,L_REQ/U_REQ signal did not turn ON within specified time.[TA1 timeout]
+OHT_NODE,412003,1,TR_REQ signal did not turn ON within specified time.[TP1 Timeout]
+OHT_NODE,412004,1,READY signal did not turn ON within specified time.[TA2 Timeout]
+OHT_NODE,412005,1,BUSY signal did not turn ON within specified time.[TP2 Timeout]
+OHT_NODE,412006,1,READY signal did not turn OFF within specified time.[TA3 Timeout]
+OHT_NODE,412007,1,VALID signal did not turn OFF within specified time.[TP5 Timeout]
+OHT_NODE,412008,1,VALID signal did not turn ON within specified time.[TD1 Timeout]
+OHT_NODE,412009,1,GO signal did not turn ON within specified time.
+OHT_NODE,412010,1,InterLockNG Before BUSY turn ON
+OHT_NODE,412011,1,Port error with Passive equipment HO_AVBL signal
+OHT_NODE,412012,1,L_REQ/U_REQ turn ON before VALID turn ON
+OHT_NODE,412014,1,Fail to change the PIO signals
+OHT_NODE,10000,2,vehicle long time inaction
+OHT_NODE,10121,2,OHTC has trnasfer commmand in queue over time
+OHT_NODE,65534,2,Vehicle has been disconnected.
+OHT_NODE,65535,2,Vehicle switch to manual mode.
+ZONE1_EQ1,1,2,Iefield disconnection exception
+ZONE1_EQ1,2,2,Emo of main control box
+ZONE1_EQ1,3,2,Mu box emo
+ZONE1_EQ1,4,2,The maintenance door detects that 1 is abnormal
+ZONE1_EQ1,5,2,
+ZONE1_EQ1,6,2,Abnormal CCLink disconnection
+ZONE1_EQ1,7,2,Abnormal detection of shutter 1
+ZONE1_EQ1,8,2,Abnormal detection of shutter 2
+ZONE1_EQ1,9,2,Emergency door opening button
+ZONE1_EQ1,10,2,
+ZONE1_EQ1,11,2,
+ZONE1_EQ1,12,2,The maintenance door 2 Error
+ZONE1_EQ1,13,2,The maintenance door 3 Error
+ZONE1_EQ1,14,2,The maintenance door 4 Error
+ZONE1_EQ1,15,2,The maintenance door 5 Error
+ZONE1_EQ1,16,2,CV 1-Servo drive battery is abnormal
+ZONE1_EQ1,17,2,CV 1-Main circuit OFF
+ZONE1_EQ1,18,2,CV 1-EMO
+ZONE1_EQ1,19,2,CV 1-EMO (MU)
+ZONE1_EQ1,20,2,CV 1-The maintenance door detects abnormalities
+ZONE1_EQ1,21,2,CV 1-Fire door 1 is not positioned on the top
+ZONE1_EQ1,22,2,CV 1-Fire door 2 is not positioned on the top
+ZONE1_EQ1,23,2,CV 1-Area Sensor 1 detection of abnormality
+ZONE1_EQ1,24,2,CV 1-Area Sensor 2 detects abnormalities
+ZONE1_EQ1,25,2,CV 1-The automatic door is not in positioning
+ZONE1_EQ1,26,2,CV 1-Automatic door is closed and no movement is allowed
+ZONE1_EQ1,27,2,CV 1-Automatic door opening timeout
+ZONE1_EQ1,28,2,CV 1-Automatic door abnormal
+ZONE1_EQ1,29,2,CV 1-Automatic door has not been learned
+ZONE1_EQ1,30,2,CV 1-The safety relay is not activated
+ZONE1_EQ1,31,2,CV 1-Abnormal air pressure
+ZONE1_EQ1,32,2,CV 2-Servo drive battery is abnormal
+ZONE1_EQ1,33,2,CV 2-Main circuit OFF
+ZONE1_EQ1,34,2,CV 2-EMO
+ZONE1_EQ1,35,2,CV 2-EMO (MU)
+ZONE1_EQ1,36,2,CV 2-Maintenance door detects abnormalities
+ZONE1_EQ1,37,2,
+ZONE1_EQ1,38,2,
+ZONE1_EQ1,39,2,CV 2-Area Sensor 1 detects abnormality
+ZONE1_EQ1,40,2,CV 2-Area Sensor 2 detects abnormality
+ZONE1_EQ1,41,2,
+ZONE1_EQ1,42,2,
+ZONE1_EQ1,43,2,
+ZONE1_EQ1,44,2,
+ZONE1_EQ1,45,2,
+ZONE1_EQ1,46,2,CV 2-Safety relay is not activated
+ZONE1_EQ1,47,2,CV 2-Abnormal air pressure
+ZONE1_EQ1,48,2,CV 3-Servo drive battery is abnormal
+ZONE1_EQ1,49,2,CV 3-Main circuit OFF
+ZONE1_EQ1,50,2,CV 3-EMO
+ZONE1_EQ1,51,2,CV 3-EMO (MU)
+ZONE1_EQ1,52,2,CV 3-Maintenance door detects abnormalities
+ZONE1_EQ1,53,2,
+ZONE1_EQ1,54,2,
+ZONE1_EQ1,55,2,CV 3-Area Sensor 1 Detection Abnormal
+ZONE1_EQ1,56,2,CV 3-Area Sensor 2 Detection Abnormal
+ZONE1_EQ1,57,2,
+ZONE1_EQ1,58,2,
+ZONE1_EQ1,59,2,
+ZONE1_EQ1,60,2,
+ZONE1_EQ1,61,2,
+ZONE1_EQ1,62,2,CV 3-Safety relay is not activated
+ZONE1_EQ1,63,2,CV 3-Air Pressure Abnormal
+ZONE1_EQ1,64,2,CV 4-Replace the battery of the servo drive
+ZONE1_EQ1,65,2,CV 4-Main circuit OFF
+ZONE1_EQ1,66,2,CV 4-EMO
+ZONE1_EQ1,67,2,CV 4-EMO (MU)
+ZONE1_EQ1,68,2,CV 4-Maintenance door detects abnormalities
+ZONE1_EQ1,69,2,
+ZONE1_EQ1,70,2,
+ZONE1_EQ1,71,2,CV 4-Area Sensor 1 detects abnormality
+ZONE1_EQ1,72,2,CV 4-Area Sensor 2 detects abnormality
+ZONE1_EQ1,73,2,
+ZONE1_EQ1,74,2,
+ZONE1_EQ1,75,2,
+ZONE1_EQ1,76,2,
+ZONE1_EQ1,77,2,
+ZONE1_EQ1,78,2,CV 4-Safety relay is not activated
+ZONE1_EQ1,79,2,CV 4-Air pressure abnormal
+ZONE1_EQ1,80,2,MGV1-Replace servo drive battery
+ZONE1_EQ1,81,2,MGV1-MC OFF
+ZONE1_EQ1,82,2,MGV1-EMO
+ZONE1_EQ1,83,2,MGV1-EMO(MU)
+ZONE1_EQ1,84,2,MGV1-Repair door detection abnormal
+ZONE1_EQ1,85,2,                                   
+ZONE1_EQ1,86,2,                                   
+ZONE1_EQ1,87,2,MGV1-Area Sensor 1 detection abnormal
+ZONE1_EQ1,88,2,MGV1-Area Sensor 2 detection abnormal
+ZONE1_EQ1,89,2,                                   
+ZONE1_EQ1,90,2,                                   
+ZONE1_EQ1,91,2,                                   
+ZONE1_EQ1,92,2,                                   
+ZONE1_EQ1,93,2,                                   
+ZONE1_EQ1,94,2,MGV1-Safety relay is not activated
+ZONE1_EQ1,95,2,CV 5-Air Pressure Abnormal
+ZONE1_EQ1,96,2,MGV2-Replace servo drive battery
+ZONE1_EQ1,97,2,MGV2-MCOFF
+ZONE1_EQ1,98,2,MGV2-EMO
+ZONE1_EQ1,99,2,MGV2-EMO(MU)
+ZONE1_EQ1,100,2,MGV2-Maintenance door detects abnormality
+ZONE1_EQ1,101,2,                                   
+ZONE1_EQ1,102,2,                                   
+ZONE1_EQ1,103,2,MGV2-Area Sensor 1 detection abnormal
+ZONE1_EQ1,104,2,MGV2-Area Sensor 2 detection abnormal
+ZONE1_EQ1,105,2,                                   
+ZONE1_EQ1,106,2,                                   
+ZONE1_EQ1,107,2,                                   
+ZONE1_EQ1,108,2,                                   
+ZONE1_EQ1,109,2,                                   
+ZONE1_EQ1,110,2,MGV2-Safety relay is not activated
+ZONE1_EQ1,111,2,CV 6-Air pressure abnormal
+ZONE1_EQ1,128,1,Battery Low
+ZONE1_EQ1,129,1,CC-Link IE(1)ERROR
+ZONE1_EQ1,130,1,CC-Link IE(2)ERROR
+ZONE1_EQ1,131,1,CC-Link IE(3)ERROR
+ZONE1_EQ1,132,2,Ground plate OFFLINE
+ZONE1_EQ1,133,2,Ground plate LOCAL
+ZONE1_EQ1,134,2,
+ZONE1_EQ1,135,2,
+ZONE1_EQ1,256,2,CV 1 HP station-Load sensor error
+ZONE1_EQ1,257,2,CV 1 HP station-Abnormal pick and put error
+ZONE1_EQ1,258,2,CV 1 HP station-The load does not match the ID
+ZONE1_EQ1,259,2,CV 1 HP station-The inbox procedure timeout
+ZONE1_EQ1,260,2,CV 1 HP station-Out of the box program timeout
+ZONE1_EQ1,261,2,CV 1 HP station-Fork detects abnormality
+ZONE1_EQ1,262,2,CV 1 HP station-Area detection abnormal
+ZONE1_EQ1,263,2,CV 1 HP station-CST ID Report Timer
+ZONE1_EQ1,264,2,CV 1 HP station-
+ZONE1_EQ1,265,2,CV 1 HP station-
+ZONE1_EQ1,266,2,CV 1 HP station-
+ZONE1_EQ1,267,2,CV 1 HP station-
+ZONE1_EQ1,268,2,CV 1 HP station-
+ZONE1_EQ1,269,2,CV 1 HP station-
+ZONE1_EQ1,270,2,CV 1 HP station-
+ZONE1_EQ1,271,2,CV 1 HP station-Handshaking signal interrupted
+ZONE1_EQ1,272,2,CV 1 HP station-Inbox T3 timeout
+ZONE1_EQ1,273,2,CV 1 HP station-Inbox T6 timeout
+ZONE1_EQ1,274,2,CV 1 HP station-Outbox of box T3 timeout
+ZONE1_EQ1,275,2,CV 1 HP station-Outbox of box T6 timeout
+ZONE1_EQ1,276,2,CV 1 HP station-Valid OFF (T1)
+ZONE1_EQ1,277,2,CV 1 HP station-
+ZONE1_EQ1,278,2,CV 1 HP station-
+ZONE1_EQ1,279,2,CV 1 HP station-Trolley interference abnormal
+ZONE1_EQ1,280,2,CV 1 HP station-Abnormal positioning of safety door
+ZONE1_EQ1,281,2,CV 1 HP station-
+ZONE1_EQ1,282,2,CV 1 HP station-
+ZONE1_EQ1,283,2,CV 1 HP station-
+ZONE1_EQ1,284,2,CV 1 HP station-Load sensor 1 error
+ZONE1_EQ1,285,2,CV 1 HP station-Load sensor 2 error
+ZONE1_EQ1,286,2,CV 1 HP station-Control sensor abnormalities
+ZONE1_EQ1,287,2,CV 1 HP station-
+ZONE1_EQ1,288,2,CV 1 HP station-
+ZONE1_EQ1,289,2,CV 1 HP station-
+ZONE1_EQ1,290,2,CV 1 HP station-
+ZONE1_EQ1,291,2,CV 1 HP station-
+ZONE1_EQ1,292,2,CV 1 HP station-
+ZONE1_EQ1,293,2,CV 1 HP station-
+ZONE1_EQ1,294,2,CV 1 HP station-
+ZONE1_EQ1,295,2,CV 1 HP station-
+ZONE1_EQ1,296,2,CV 1 HP station-
+ZONE1_EQ1,297,2,CV 1 HP station-
+ZONE1_EQ1,298,2,CV 1 HP station-
+ZONE1_EQ1,299,2,CV 1 HP station-
+ZONE1_EQ1,300,2,CV 1 HP station-
+ZONE1_EQ1,301,2,CV 1 HP station-
+ZONE1_EQ1,302,2,CV 1 HP station-
+ZONE1_EQ1,303,2,CV 1 HP station-
+ZONE1_EQ1,304,2,CV 1 HP station-
+ZONE1_EQ1,305,2,CV 1 HP station-
+ZONE1_EQ1,306,2,CV 1 HP station-
+ZONE1_EQ1,307,2,CV 1 HP station-
+ZONE1_EQ1,308,2,CV 1 HP station-
+ZONE1_EQ1,309,2,CV 1 HP station-
+ZONE1_EQ1,310,2,CV 1 HP station-
+ZONE1_EQ1,311,2,CV 1 HP station-
+ZONE1_EQ1,312,2,CV 1 HP station-
+ZONE1_EQ1,313,2,CV 1 HP station-
+ZONE1_EQ1,314,2,CV 1 HP station-
+ZONE1_EQ1,315,2,CV 1 HP station-
+ZONE1_EQ1,316,2,CV 1 HP station-
+ZONE1_EQ1,317,2,CV 1 HP station-
+ZONE1_EQ1,318,2,CV 1 HP station-
+ZONE1_EQ1,319,2,CV 1 HP station-
+ZONE1_EQ1,320,1,CV 1 HP station-BCR reading error
+ZONE1_EQ1,321,1,CV 1 HP station-
+ZONE1_EQ1,322,1,CV 1 HP station-
+ZONE1_EQ1,323,1,CV 1 HP station-
+ZONE1_EQ1,324,1,CV 1 HP station-
+ZONE1_EQ1,325,1,CV 1 HP station-
+ZONE1_EQ1,326,1,CV 1 HP station-
+ZONE1_EQ1,327,1,CV 1 HP station-
+ZONE1_EQ1,328,1,CV 1 HP station-
+ZONE1_EQ1,329,1,CV 1 HP station-
+ZONE1_EQ1,330,1,CV 1 HP station-
+ZONE1_EQ1,331,1,CV 1 HP station-
+ZONE1_EQ1,332,1,CV 1 HP station-
+ZONE1_EQ1,333,1,CV 1 HP station-
+ZONE1_EQ1,334,1,CV 1 HP station-
+ZONE1_EQ1,335,1,CV 1 HP station-
+ZONE1_EQ1,512,2,CV 1 OP station-Load sensor error
+ZONE1_EQ1,513,2,CV 1 OP station-Abnormal pick and put error
+ZONE1_EQ1,514,2,CV 1 OP station-The load does not match the ID
+ZONE1_EQ1,515,2,CV 1 OP station-The inbox procedure timed out
+ZONE1_EQ1,516,2,CV 1 OP station-Out of the box program timed out
+ZONE1_EQ1,517,2,CV 1 OP station-Fork detects abnormality
+ZONE1_EQ1,518,2,CV 1 OP station-Area detects abnormality
+ZONE1_EQ1,519,2,CV 1 OP station-CST ID Report Timer
+ZONE1_EQ1,520,2,CV 1 OP station-
+ZONE1_EQ1,521,2,CV 1 OP station-
+ZONE1_EQ1,522,2,CV 1 OP station-
+ZONE1_EQ1,523,2,CV 1 OP station-
+ZONE1_EQ1,524,2,CV 1 OP station-
+ZONE1_EQ1,525,2,CV 1 OP station-
+ZONE1_EQ1,526,2,CV 1 OP station-
+ZONE1_EQ1,527,2,CV 1 OP station-Handshaking signal interrupted
+ZONE1_EQ1,528,2,CV 1 OP station-Inbox T3 timeout
+ZONE1_EQ1,529,2,CV 1 OP station-Inbox T6 timeout
+ZONE1_EQ1,530,2,CV 1 OP station-Outbox T3 timeout
+ZONE1_EQ1,531,2,CV 1 OP station-Outbox T6 timeout
+ZONE1_EQ1,532,2,CV 1 OP station-Valid OFF (T1)
+ZONE1_EQ1,533,2,CV 1 OP station-
+ZONE1_EQ1,534,2,CV 1 OP station-
+ZONE1_EQ1,535,2,CV 1 OP station-Trolley interference abnormal
+ZONE1_EQ1,536,2,CV 1 OP station-Safety door positioning abnormal
+ZONE1_EQ1,537,2,CV 1 OP station-
+ZONE1_EQ1,538,2,CV 1 OP station-
+ZONE1_EQ1,539,2,CV 1 OP station-
+ZONE1_EQ1,540,2,CV 1 OP station-Load sensor 1 error
+ZONE1_EQ1,541,2,CV 1 OP station-Load sensor 2 error
+ZONE1_EQ1,542,2,CV 1 OP Station-Abnormality with Contrast sensor
+ZONE1_EQ1,543,2,CV 1 OP station-
+ZONE1_EQ1,544,2,CV 1 OP station-
+ZONE1_EQ1,545,2,CV 1 OP station-
+ZONE1_EQ1,546,2,CV 1 OP station-
+ZONE1_EQ1,547,2,CV 1 OP station-
+ZONE1_EQ1,548,2,CV 1 OP station-
+ZONE1_EQ1,549,2,CV 1 OP station-
+ZONE1_EQ1,550,2,CV 1 OP station-
+ZONE1_EQ1,551,2,CV 1 OP station-
+ZONE1_EQ1,552,2,CV 1 OP station-
+ZONE1_EQ1,553,2,CV 1 OP station-
+ZONE1_EQ1,554,2,CV 1 OP station-
+ZONE1_EQ1,555,2,CV 1 OP station-
+ZONE1_EQ1,556,2,CV 1 OP station-
+ZONE1_EQ1,557,2,CV 1 OP station-
+ZONE1_EQ1,558,2,CV 1 OP station-
+ZONE1_EQ1,559,2,CV 1 OP station-
+ZONE1_EQ1,560,2,CV 1 OP station-
+ZONE1_EQ1,561,2,CV 1 OP station-
+ZONE1_EQ1,562,2,CV 1 OP station-
+ZONE1_EQ1,563,2,CV 1 OP station-
+ZONE1_EQ1,564,2,CV 1 OP station-
+ZONE1_EQ1,565,2,CV 1 OP station-
+ZONE1_EQ1,566,2,CV 1 OP station-
+ZONE1_EQ1,567,2,CV 1 OP station-
+ZONE1_EQ1,568,2,CV 1 OP station-
+ZONE1_EQ1,569,2,CV 1 OP station-
+ZONE1_EQ1,570,2,CV 1 OP station-
+ZONE1_EQ1,571,2,CV 1 OP station-
+ZONE1_EQ1,572,2,CV 1 OP station-
+ZONE1_EQ1,573,2,CV 1 OP station-
+ZONE1_EQ1,574,2,CV 1 OP station-
+ZONE1_EQ1,575,2,CV 1 OP station-
+ZONE1_EQ1,576,1,CV 1 OP station-BCR reading error
+ZONE1_EQ1,577,1,CV 1 OP station-
+ZONE1_EQ1,578,1,CV 1 OP station-
+ZONE1_EQ1,579,1,CV 1 OP station-
+ZONE1_EQ1,580,1,CV 1 OP station-
+ZONE1_EQ1,581,1,CV 1 OP station-
+ZONE1_EQ1,582,1,CV 1 OP station-
+ZONE1_EQ1,583,1,CV 1 OP station-
+ZONE1_EQ1,584,1,CV 1 OP station-
+ZONE1_EQ1,585,1,CV 1 OP station-
+ZONE1_EQ1,586,1,CV 1 OP station-
+ZONE1_EQ1,587,1,CV 1 OP station-
+ZONE1_EQ1,588,1,CV 1 OP station-
+ZONE1_EQ1,589,1,CV 1 OP station-
+ZONE1_EQ1,590,1,CV 1 OP station-
+ZONE1_EQ1,591,1,CV 1 OP station-
+ZONE1_EQ1,768,2,CV 2 HP station-Load sensor error
+ZONE1_EQ1,769,2,CV 2 HP station-Abnormal pick and put error
+ZONE1_EQ1,770,2,CV 2 HP station-The load does not match the ID
+ZONE1_EQ1,771,2,CV 2 HP station-The inbox procedure timeout
+ZONE1_EQ1,772,2,CV 2 HP station-Out of the box program timeout
+ZONE1_EQ1,773,2,CV 2 HP station-Fork detects abnormality
+ZONE1_EQ1,774,2,CV 2 HP station-Area detection abnormal
+ZONE1_EQ1,775,2,CV 2 HP station-CST ID Report Timer
+ZONE1_EQ1,776,2,CV 2 HP station-
+ZONE1_EQ1,777,2,CV 2 HP station-
+ZONE1_EQ1,778,2,CV 2 HP station-
+ZONE1_EQ1,779,2,CV 2 HP station-
+ZONE1_EQ1,780,2,CV 2 HP station-
+ZONE1_EQ1,781,2,CV 2 HP station-
+ZONE1_EQ1,782,2,CV 2 HP station-
+ZONE1_EQ1,783,2,CV 2 HP station-Handshaking signal interrupted
+ZONE1_EQ1,784,2,CV 2 HP station-Inbox T3 timeout
+ZONE1_EQ1,785,2,CV 2 HP station-Inbox T6 timeout
+ZONE1_EQ1,786,2,CV 2 HP station-Outbox of box T3 timeout
+ZONE1_EQ1,787,2,CV 2 HP station-Outbox of box T6 timeout
+ZONE1_EQ1,788,2,CV 2 HP station-Valid OFF (T1)
+ZONE1_EQ1,789,2,CV 2 HP station-
+ZONE1_EQ1,790,2,CV 2 HP station-
+ZONE1_EQ1,791,2,CV 2 HP station-Trolley interference abnormal
+ZONE1_EQ1,792,2,CV 2 HP station-Abnormal positioning of safety door
+ZONE1_EQ1,793,2,CV 2 HP station-
+ZONE1_EQ1,794,2,CV 2 HP station-
+ZONE1_EQ1,795,2,CV 2 HP station-
+ZONE1_EQ1,796,2,CV 2 HP station-Load sensor 1 error
+ZONE1_EQ1,797,2,CV 2 HP station-Load sensor 2 error
+ZONE1_EQ1,798,2,CV 2 HP station-Control sensor abnormalities
+ZONE1_EQ1,799,2,CV 2 HP station-
+ZONE1_EQ1,800,2,CV 2 HP station-
+ZONE1_EQ1,801,2,CV 2 HP station-
+ZONE1_EQ1,802,2,CV 2 HP station-
+ZONE1_EQ1,803,2,CV 2 HP station-
+ZONE1_EQ1,804,2,CV 2 HP station-
+ZONE1_EQ1,805,2,CV 2 HP station-
+ZONE1_EQ1,806,2,CV 2 HP station-
+ZONE1_EQ1,807,2,CV 2 HP station-
+ZONE1_EQ1,808,2,CV 2 HP station-
+ZONE1_EQ1,809,2,CV 2 HP station-
+ZONE1_EQ1,810,2,CV 2 HP station-
+ZONE1_EQ1,811,2,CV 2 HP station-
+ZONE1_EQ1,812,2,CV 2 HP station-
+ZONE1_EQ1,813,2,CV 2 HP station-
+ZONE1_EQ1,814,2,CV 2 HP station-
+ZONE1_EQ1,815,2,CV 2 HP station-
+ZONE1_EQ1,816,2,CV 2 HP station-
+ZONE1_EQ1,817,2,CV 2 HP station-
+ZONE1_EQ1,818,2,CV 2 HP station-
+ZONE1_EQ1,819,2,CV 2 HP station-
+ZONE1_EQ1,820,2,CV 2 HP station-
+ZONE1_EQ1,821,2,CV 2 HP station-
+ZONE1_EQ1,822,2,CV 2 HP station-
+ZONE1_EQ1,823,2,CV 2 HP station-
+ZONE1_EQ1,824,2,CV 2 HP station-
+ZONE1_EQ1,825,2,CV 2 HP station-
+ZONE1_EQ1,826,2,CV 2 HP station-
+ZONE1_EQ1,827,2,CV 2 HP station-
+ZONE1_EQ1,828,2,CV 2 HP station-
+ZONE1_EQ1,829,2,CV 2 HP station-
+ZONE1_EQ1,830,2,CV 2 HP station-
+ZONE1_EQ1,831,2,CV 2 HP station-
+ZONE1_EQ1,832,1,CV 2 HP station-BCR reading error
+ZONE1_EQ1,833,1,CV 2 HP station-
+ZONE1_EQ1,834,1,CV 2 HP station-
+ZONE1_EQ1,835,1,CV 2 HP station-
+ZONE1_EQ1,836,1,CV 2 HP station-
+ZONE1_EQ1,837,1,CV 2 HP station-
+ZONE1_EQ1,838,1,CV 2 HP station-
+ZONE1_EQ1,839,1,CV 2 HP station-
+ZONE1_EQ1,840,1,CV 2 HP station-
+ZONE1_EQ1,841,1,CV 2 HP station-
+ZONE1_EQ1,842,1,CV 2 HP station-
+ZONE1_EQ1,843,1,CV 2 HP station-
+ZONE1_EQ1,844,1,CV 2 HP station-
+ZONE1_EQ1,845,1,CV 2 HP station-
+ZONE1_EQ1,846,1,CV 2 HP station-
+ZONE1_EQ1,847,1,CV 2 HP station-
+ZONE1_EQ1,1024,2,CV 2 OP station-Load sensor error
+ZONE1_EQ1,1025,2,CV 2 OP station-Abnormal pick and put error
+ZONE1_EQ1,1026,2,CV 2 OP station-The load does not match the ID
+ZONE1_EQ1,1027,2,CV 2 OP station-The inbox procedure timed out
+ZONE1_EQ1,1028,2,CV 2 OP station-Out of the box program timed out
+ZONE1_EQ1,1029,2,CV 2 OP station-Fork detects abnormality
+ZONE1_EQ1,1030,2,CV 2 OP station-Area detects abnormality
+ZONE1_EQ1,1031,2,CV 2 OP station-CST ID Report Timer
+ZONE1_EQ1,1032,2,CV 2 OP station-
+ZONE1_EQ1,1033,2,CV 2 OP station-
+ZONE1_EQ1,1034,2,CV 2 OP station-
+ZONE1_EQ1,1035,2,CV 2 OP station-
+ZONE1_EQ1,1036,2,CV 2 OP station-
+ZONE1_EQ1,1037,2,CV 2 OP station-
+ZONE1_EQ1,1038,2,CV 2 OP station-
+ZONE1_EQ1,1039,2,CV 2 OP station-Handshaking signal interrupted
+ZONE1_EQ1,1040,2,CV 2 OP station-Inbox T3 timeout
+ZONE1_EQ1,1041,2,CV 2 OP station-Inbox T6 timeout
+ZONE1_EQ1,1042,2,CV 2 OP station-Outbox T3 timeout
+ZONE1_EQ1,1043,2,CV 2 OP station-Outbox T6 timeout
+ZONE1_EQ1,1044,2,CV 2 OP station-Valid OFF (T1)
+ZONE1_EQ1,1045,2,CV 2 OP station-
+ZONE1_EQ1,1046,2,CV 2 OP station-
+ZONE1_EQ1,1047,2,CV 2 OP station-Trolley interference abnormal
+ZONE1_EQ1,1048,2,CV 2 OP station-Safety door positioning abnormal
+ZONE1_EQ1,1049,2,CV 2 OP station-
+ZONE1_EQ1,1050,2,CV 2 OP station-
+ZONE1_EQ1,1051,2,CV 2 OP station-
+ZONE1_EQ1,1052,2,CV 2 OP station-Load sensor 1 error
+ZONE1_EQ1,1053,2,CV 2 OP station-Load sensor 2 error
+ZONE1_EQ1,1054,2,CV 2 OP Station-Abnormality with Contrast sensor
+ZONE1_EQ1,1055,2,CV 2 OP station-
+ZONE1_EQ1,1056,2,CV 2 OP station-
+ZONE1_EQ1,1057,2,CV 2 OP station-
+ZONE1_EQ1,1058,2,CV 2 OP station-
+ZONE1_EQ1,1059,2,CV 2 OP station-
+ZONE1_EQ1,1060,2,CV 2 OP station-
+ZONE1_EQ1,1061,2,CV 2 OP station-
+ZONE1_EQ1,1062,2,CV 2 OP station-
+ZONE1_EQ1,1063,2,CV 2 OP station-
+ZONE1_EQ1,1064,2,CV 2 OP station-
+ZONE1_EQ1,1065,2,CV 2 OP station-
+ZONE1_EQ1,1066,2,CV 2 OP station-
+ZONE1_EQ1,1067,2,CV 2 OP station-
+ZONE1_EQ1,1068,2,CV 2 OP station-
+ZONE1_EQ1,1069,2,CV 2 OP station-
+ZONE1_EQ1,1070,2,CV 2 OP station-
+ZONE1_EQ1,1071,2,CV 2 OP station-
+ZONE1_EQ1,1072,2,CV 2 OP station-
+ZONE1_EQ1,1073,2,CV 2 OP station-
+ZONE1_EQ1,1074,2,CV 2 OP station-
+ZONE1_EQ1,1075,2,CV 2 OP station-
+ZONE1_EQ1,1076,2,CV 2 OP station-
+ZONE1_EQ1,1077,2,CV 2 OP station-
+ZONE1_EQ1,1078,2,CV 2 OP station-
+ZONE1_EQ1,1079,2,CV 2 OP station-
+ZONE1_EQ1,1080,2,CV 2 OP station-
+ZONE1_EQ1,1081,2,CV 2 OP station-
+ZONE1_EQ1,1082,2,CV 2 OP station-
+ZONE1_EQ1,1083,2,CV 2 OP station-
+ZONE1_EQ1,1084,2,CV 2 OP station-
+ZONE1_EQ1,1085,2,CV 2 OP station-
+ZONE1_EQ1,1086,2,CV 2 OP station-
+ZONE1_EQ1,1087,2,CV 2 OP station-
+ZONE1_EQ1,1088,1,CV 2 OP station-BCR reading error
+ZONE1_EQ1,1089,1,CV 2 OP station-
+ZONE1_EQ1,1090,1,CV 2 OP station-
+ZONE1_EQ1,1091,1,CV 2 OP station-
+ZONE1_EQ1,1092,1,CV 2 OP station-
+ZONE1_EQ1,1093,1,CV 2 OP station-
+ZONE1_EQ1,1094,1,CV 2 OP station-
+ZONE1_EQ1,1095,1,CV 2 OP station-
+ZONE1_EQ1,1096,1,CV 2 OP station-
+ZONE1_EQ1,1097,1,CV 2 OP station-
+ZONE1_EQ1,1098,1,CV 2 OP station-
+ZONE1_EQ1,1099,1,CV 2 OP station-
+ZONE1_EQ1,1100,1,CV 2 OP station-
+ZONE1_EQ1,1101,1,CV 2 OP station-
+ZONE1_EQ1,1102,1,CV 2 OP station-
+ZONE1_EQ1,1103,1,CV 2 OP station-
+ZONE1_EQ1,1280,2,CV 3 HP station-Load sensor error
+ZONE1_EQ1,1281,2,CV 3 HP station-Abnormal pick and put error
+ZONE1_EQ1,1282,2,CV 3 HP station-The load does not match the ID
+ZONE1_EQ1,1283,2,CV 3 HP station-The inbox procedure timeout
+ZONE1_EQ1,1284,2,CV 3 HP station-Out of the box program timeout
+ZONE1_EQ1,1285,2,CV 3 HP station-Fork detects abnormality
+ZONE1_EQ1,1286,2,CV 3 HP station-Area detection abnormal
+ZONE1_EQ1,1287,2,CV 3 HP station-CST ID Report Timer
+ZONE1_EQ1,1288,2,CV 3 HP station-
+ZONE1_EQ1,1289,2,CV 3 HP station-
+ZONE1_EQ1,1290,2,CV 3 HP station-
+ZONE1_EQ1,1291,2,CV 3 HP station-
+ZONE1_EQ1,1292,2,CV 3 HP station-
+ZONE1_EQ1,1293,2,CV 3 HP station-
+ZONE1_EQ1,1294,2,CV 3 HP station-
+ZONE1_EQ1,1295,2,CV 3 HP station-Handshaking signal interrupted
+ZONE1_EQ1,1296,2,CV 3 HP station-Inbox T3 timeout
+ZONE1_EQ1,1297,2,CV 3 HP station-Inbox T6 timeout
+ZONE1_EQ1,1298,2,CV 3 HP station-Outbox of box T3 timeout
+ZONE1_EQ1,1299,2,CV 3 HP station-Outbox of box T6 timeout
+ZONE1_EQ1,1300,2,CV 3 HP station-Valid OFF (T1)
+ZONE1_EQ1,1301,2,CV 3 HP station-
+ZONE1_EQ1,1302,2,CV 3 HP station-
+ZONE1_EQ1,1303,2,CV 3 HP station-Trolley interference abnormal
+ZONE1_EQ1,1304,2,CV 3 HP station-Abnormal positioning of safety door
+ZONE1_EQ1,1305,2,CV 3 HP station-
+ZONE1_EQ1,1306,2,CV 3 HP station-
+ZONE1_EQ1,1307,2,CV 3 HP station-
+ZONE1_EQ1,1308,2,CV 3 HP station-Load sensor 1 error
+ZONE1_EQ1,1309,2,CV 3 HP station-Load sensor 2 error
+ZONE1_EQ1,1310,2,CV 3 HP station-Control sensor abnormalities
+ZONE1_EQ1,1311,2,CV 3 HP station-
+ZONE1_EQ1,1312,2,CV 3 HP station-
+ZONE1_EQ1,1313,2,CV 3 HP station-
+ZONE1_EQ1,1314,2,CV 3 HP station-
+ZONE1_EQ1,1315,2,CV 3 HP station-
+ZONE1_EQ1,1316,2,CV 3 HP station-
+ZONE1_EQ1,1317,2,CV 3 HP station-
+ZONE1_EQ1,1318,2,CV 3 HP station-
+ZONE1_EQ1,1319,2,CV 3 HP station-
+ZONE1_EQ1,1320,2,CV 3 HP station-
+ZONE1_EQ1,1321,2,CV 3 HP station-
+ZONE1_EQ1,1322,2,CV 3 HP station-
+ZONE1_EQ1,1323,2,CV 3 HP station-
+ZONE1_EQ1,1324,2,CV 3 HP station-
+ZONE1_EQ1,1325,2,CV 3 HP station-
+ZONE1_EQ1,1326,2,CV 3 HP station-
+ZONE1_EQ1,1327,2,CV 3 HP station-
+ZONE1_EQ1,1328,2,CV 3 HP station-
+ZONE1_EQ1,1329,2,CV 3 HP station-
+ZONE1_EQ1,1330,2,CV 3 HP station-
+ZONE1_EQ1,1331,2,CV 3 HP station-
+ZONE1_EQ1,1332,2,CV 3 HP station-
+ZONE1_EQ1,1333,2,CV 3 HP station-
+ZONE1_EQ1,1334,2,CV 3 HP station-
+ZONE1_EQ1,1335,2,CV 3 HP station-
+ZONE1_EQ1,1336,2,CV 3 HP station-
+ZONE1_EQ1,1337,2,CV 3 HP station-
+ZONE1_EQ1,1338,2,CV 3 HP station-
+ZONE1_EQ1,1339,2,CV 3 HP station-
+ZONE1_EQ1,1340,2,CV 3 HP station-
+ZONE1_EQ1,1341,2,CV 3 HP station-
+ZONE1_EQ1,1342,2,CV 3 HP station-
+ZONE1_EQ1,1343,2,CV 3 HP station-
+ZONE1_EQ1,1344,1,CV 3 HP station-BCR reading error
+ZONE1_EQ1,1345,1,CV 3 HP station-
+ZONE1_EQ1,1346,1,CV 3 HP station-
+ZONE1_EQ1,1347,1,CV 3 HP station-
+ZONE1_EQ1,1348,1,CV 3 HP station-
+ZONE1_EQ1,1349,1,CV 3 HP station-
+ZONE1_EQ1,1350,1,CV 3 HP station-
+ZONE1_EQ1,1351,1,CV 3 HP station-
+ZONE1_EQ1,1352,1,CV 3 HP station-
+ZONE1_EQ1,1353,1,CV 3 HP station-
+ZONE1_EQ1,1354,1,CV 3 HP station-
+ZONE1_EQ1,1355,1,CV 3 HP station-
+ZONE1_EQ1,1356,1,CV 3 HP station-
+ZONE1_EQ1,1357,1,CV 3 HP station-
+ZONE1_EQ1,1358,1,CV 3 HP station-
+ZONE1_EQ1,1359,1,CV 3 HP station-
+ZONE1_EQ1,1536,2,CV 3 OP station-Load sensor error
+ZONE1_EQ1,1537,2,CV 3 OP station-Abnormal pick and put error
+ZONE1_EQ1,1538,2,CV 3 OP station-The load does not match the ID
+ZONE1_EQ1,1539,2,CV 3 OP station-The inbox procedure timed out
+ZONE1_EQ1,1540,2,CV 3 OP station-Out of the box program timed out
+ZONE1_EQ1,1541,2,CV 3 OP station-Fork detects abnormality
+ZONE1_EQ1,1542,2,CV 3 OP station-Area detects abnormality
+ZONE1_EQ1,1543,2,CV 3 OP station-CST ID Report Timer
+ZONE1_EQ1,1544,2,CV 3 OP station-
+ZONE1_EQ1,1545,2,CV 3 OP station-
+ZONE1_EQ1,1546,2,CV 3 OP station-
+ZONE1_EQ1,1547,2,CV 3 OP station-
+ZONE1_EQ1,1548,2,CV 3 OP station-
+ZONE1_EQ1,1549,2,CV 3 OP station-
+ZONE1_EQ1,1550,2,CV 3 OP station-
+ZONE1_EQ1,1551,2,CV 3 OP station-Handshaking signal interrupted
+ZONE1_EQ1,1552,2,CV 3 OP station-Inbox T3 timeout
+ZONE1_EQ1,1553,2,CV 3 OP station-Inbox T6 timeout
+ZONE1_EQ1,1554,2,CV 3 OP station-Outbox T3 timeout
+ZONE1_EQ1,1555,2,CV 3 OP station-Outbox T6 timeout
+ZONE1_EQ1,1556,2,CV 3 OP station-Valid OFF (T1)
+ZONE1_EQ1,1557,2,CV 3 OP station-
+ZONE1_EQ1,1558,2,CV 3 OP station-
+ZONE1_EQ1,1559,2,CV 3 OP station-Trolley interference abnormal
+ZONE1_EQ1,1560,2,CV 3 OP station-Safety door positioning abnormal
+ZONE1_EQ1,1561,2,CV 3 OP station-
+ZONE1_EQ1,1562,2,CV 3 OP station-
+ZONE1_EQ1,1563,2,CV 3 OP station-
+ZONE1_EQ1,1564,2,CV 3 OP station-Load sensor 1 error
+ZONE1_EQ1,1565,2,CV 3 OP station-Load sensor 2 error
+ZONE1_EQ1,1566,2,CV 3 OP Station-Abnormality with Contrast sensor
+ZONE1_EQ1,1567,2,CV 3 OP station-
+ZONE1_EQ1,1568,2,CV 3 OP station-
+ZONE1_EQ1,1569,2,CV 3 OP station-
+ZONE1_EQ1,1570,2,CV 3 OP station-
+ZONE1_EQ1,1571,2,CV 3 OP station-
+ZONE1_EQ1,1572,2,CV 3 OP station-
+ZONE1_EQ1,1573,2,CV 3 OP station-
+ZONE1_EQ1,1574,2,CV 3 OP station-
+ZONE1_EQ1,1575,2,CV 3 OP station-
+ZONE1_EQ1,1576,2,CV 3 OP station-
+ZONE1_EQ1,1577,2,CV 3 OP station-
+ZONE1_EQ1,1578,2,CV 3 OP station-
+ZONE1_EQ1,1579,2,CV 3 OP station-
+ZONE1_EQ1,1580,2,CV 3 OP station-
+ZONE1_EQ1,1581,2,CV 3 OP station-
+ZONE1_EQ1,1582,2,CV 3 OP station-
+ZONE1_EQ1,1583,2,CV 3 OP station-
+ZONE1_EQ1,1584,2,CV 3 OP station-
+ZONE1_EQ1,1585,2,CV 3 OP station-
+ZONE1_EQ1,1586,2,CV 3 OP station-
+ZONE1_EQ1,1587,2,CV 3 OP station-
+ZONE1_EQ1,1588,2,CV 3 OP station-
+ZONE1_EQ1,1589,2,CV 3 OP station-
+ZONE1_EQ1,1590,2,CV 3 OP station-
+ZONE1_EQ1,1591,2,CV 3 OP station-
+ZONE1_EQ1,1592,2,CV 3 OP station-
+ZONE1_EQ1,1593,2,CV 3 OP station-
+ZONE1_EQ1,1594,2,CV 3 OP station-
+ZONE1_EQ1,1595,2,CV 3 OP station-
+ZONE1_EQ1,1596,2,CV 3 OP station-
+ZONE1_EQ1,1597,2,CV 3 OP station-
+ZONE1_EQ1,1598,2,CV 3 OP station-
+ZONE1_EQ1,1599,2,CV 3 OP station-
+ZONE1_EQ1,1600,1,CV 3 OP station-BCR reading error
+ZONE1_EQ1,1601,1,CV 3 OP station-
+ZONE1_EQ1,1602,1,CV 3 OP station-
+ZONE1_EQ1,1603,1,CV 3 OP station-
+ZONE1_EQ1,1604,1,CV 3 OP station-
+ZONE1_EQ1,1605,1,CV 3 OP station-
+ZONE1_EQ1,1606,1,CV 3 OP station-
+ZONE1_EQ1,1607,1,CV 3 OP station-
+ZONE1_EQ1,1608,1,CV 3 OP station-
+ZONE1_EQ1,1609,1,CV 3 OP station-
+ZONE1_EQ1,1610,1,CV 3 OP station-
+ZONE1_EQ1,1611,1,CV 3 OP station-
+ZONE1_EQ1,1612,1,CV 3 OP station-
+ZONE1_EQ1,1613,1,CV 3 OP station-
+ZONE1_EQ1,1614,1,CV 3 OP station-
+ZONE1_EQ1,1615,1,CV 3 OP station-
+ZONE1_EQ1,1792,2,CV 4 HP station-Load sensor error
+ZONE1_EQ1,1793,2,CV 4 HP station-Abnormal pick and put error
+ZONE1_EQ1,1794,2,CV 4 HP station-The load does not match the ID
+ZONE1_EQ1,1795,2,CV 4 HP station-The inbox procedure timeout
+ZONE1_EQ1,1796,2,CV 4 HP station-Out of the box program timeout
+ZONE1_EQ1,1797,2,CV 4 HP station-Fork detects abnormality
+ZONE1_EQ1,1798,2,CV 4 HP station-Area detection abnormal
+ZONE1_EQ1,1799,2,CV 4 HP station-CST ID Report Timer
+ZONE1_EQ1,1800,2,CV 4 HP station-
+ZONE1_EQ1,1801,2,CV 4 HP station-
+ZONE1_EQ1,1802,2,CV 4 HP station-
+ZONE1_EQ1,1803,2,CV 4 HP station-
+ZONE1_EQ1,1804,2,CV 4 HP station-
+ZONE1_EQ1,1805,2,CV 4 HP station-
+ZONE1_EQ1,1806,2,CV 4 HP station-
+ZONE1_EQ1,1807,2,CV 4 HP station-Handshaking signal interrupted
+ZONE1_EQ1,1808,2,CV 4 HP station-Inbox T3 timeout
+ZONE1_EQ1,1809,2,CV 4 HP station-Inbox T6 timeout
+ZONE1_EQ1,1810,2,CV 4 HP station-Outbox of box T3 timeout
+ZONE1_EQ1,1811,2,CV 4 HP station-Outbox of box T6 timeout
+ZONE1_EQ1,1812,2,CV 4 HP station-Valid OFF (T1)
+ZONE1_EQ1,1813,2,CV 4 HP station-
+ZONE1_EQ1,1814,2,CV 4 HP station-
+ZONE1_EQ1,1815,2,CV 4 HP station-Trolley interference abnormal
+ZONE1_EQ1,1816,2,CV 4 HP station-Abnormal positioning of safety door
+ZONE1_EQ1,1817,2,CV 4 HP station-
+ZONE1_EQ1,1818,2,CV 4 HP station-
+ZONE1_EQ1,1819,2,CV 4 HP station-
+ZONE1_EQ1,1820,2,CV 4 HP station-Load sensor 1 error
+ZONE1_EQ1,1821,2,CV 4 HP station-Load sensor 2 error
+ZONE1_EQ1,1822,2,CV 4 HP station-Control sensor abnormalities
+ZONE1_EQ1,1823,2,CV 4 HP station-
+ZONE1_EQ1,1824,2,CV 4 HP station-
+ZONE1_EQ1,1825,2,CV 4 HP station-
+ZONE1_EQ1,1826,2,CV 4 HP station-
+ZONE1_EQ1,1827,2,CV 4 HP station-
+ZONE1_EQ1,1828,2,CV 4 HP station-
+ZONE1_EQ1,1829,2,CV 4 HP station-
+ZONE1_EQ1,1830,2,CV 4 HP station-
+ZONE1_EQ1,1831,2,CV 4 HP station-
+ZONE1_EQ1,1832,2,CV 4 HP station-
+ZONE1_EQ1,1833,2,CV 4 HP station-
+ZONE1_EQ1,1834,2,CV 4 HP station-
+ZONE1_EQ1,1835,2,CV 4 HP station-
+ZONE1_EQ1,1836,2,CV 4 HP station-
+ZONE1_EQ1,1837,2,CV 4 HP station-
+ZONE1_EQ1,1838,2,CV 4 HP station-
+ZONE1_EQ1,1839,2,CV 4 HP station-
+ZONE1_EQ1,1840,2,CV 4 HP station-
+ZONE1_EQ1,1841,2,CV 4 HP station-
+ZONE1_EQ1,1842,2,CV 4 HP station-
+ZONE1_EQ1,1843,2,CV 4 HP station-
+ZONE1_EQ1,1844,2,CV 4 HP station-
+ZONE1_EQ1,1845,2,CV 4 HP station-
+ZONE1_EQ1,1846,2,CV 4 HP station-
+ZONE1_EQ1,1847,2,CV 4 HP station-
+ZONE1_EQ1,1848,2,CV 4 HP station-
+ZONE1_EQ1,1849,2,CV 4 HP station-
+ZONE1_EQ1,1850,2,CV 4 HP station-
+ZONE1_EQ1,1851,2,CV 4 HP station-
+ZONE1_EQ1,1852,2,CV 4 HP station-
+ZONE1_EQ1,1853,2,CV 4 HP station-
+ZONE1_EQ1,1854,2,CV 4 HP station-
+ZONE1_EQ1,1855,2,CV 4 HP station-
+ZONE1_EQ1,1856,1,CV 4 HP station-BCR reading error
+ZONE1_EQ1,1857,1,CV 4 HP station-
+ZONE1_EQ1,1858,1,CV 4 HP station-
+ZONE1_EQ1,1859,1,CV 4 HP station-
+ZONE1_EQ1,1860,1,CV 4 HP station-
+ZONE1_EQ1,1861,1,CV 4 HP station-
+ZONE1_EQ1,1862,1,CV 4 HP station-
+ZONE1_EQ1,1863,1,CV 4 HP station-
+ZONE1_EQ1,1864,1,CV 4 HP station-
+ZONE1_EQ1,1865,1,CV 4 HP station-
+ZONE1_EQ1,1866,1,CV 4 HP station-
+ZONE1_EQ1,1867,1,CV 4 HP station-
+ZONE1_EQ1,1868,1,CV 4 HP station-
+ZONE1_EQ1,1869,1,CV 4 HP station-
+ZONE1_EQ1,1870,1,CV 4 HP station-
+ZONE1_EQ1,1871,1,CV 4 HP station-
+ZONE1_EQ1,2048,2,CV 4 OP station-Load sensor error
+ZONE1_EQ1,2049,2,CV 4 OP station-Abnormal pick and put error
+ZONE1_EQ1,2050,2,CV 4 OP station-The load does not match the ID
+ZONE1_EQ1,2051,2,CV 4 OP station-The inbox procedure timed out
+ZONE1_EQ1,2052,2,CV 4 OP station-Out of the box program timed out
+ZONE1_EQ1,2053,2,CV 4 OP station-Fork detects abnormality
+ZONE1_EQ1,2054,2,CV 4 OP station-Area detects abnormality
+ZONE1_EQ1,2055,2,CV 4 OP station-CST ID Report Timer
+ZONE1_EQ1,2056,2,CV 4 OP station-
+ZONE1_EQ1,2057,2,CV 4 OP station-
+ZONE1_EQ1,2058,2,CV 4 OP station-
+ZONE1_EQ1,2059,2,CV 4 OP station-
+ZONE1_EQ1,2060,2,CV 4 OP station-
+ZONE1_EQ1,2061,2,CV 4 OP station-
+ZONE1_EQ1,2062,2,CV 4 OP station-
+ZONE1_EQ1,2063,2,CV 4 OP station-Handshaking signal interrupted
+ZONE1_EQ1,2064,2,CV 4 OP station-Inbox T3 timeout
+ZONE1_EQ1,2065,2,CV 4 OP station-Inbox T6 timeout
+ZONE1_EQ1,2066,2,CV 4 OP station-Outbox T3 timeout
+ZONE1_EQ1,2067,2,CV 4 OP station-Outbox T6 timeout
+ZONE1_EQ1,2068,2,CV 4 OP station-Valid OFF (T1)
+ZONE1_EQ1,2069,2,CV 4 OP station-
+ZONE1_EQ1,2070,2,CV 4 OP station-
+ZONE1_EQ1,2071,2,CV 4 OP station-Trolley interference abnormal
+ZONE1_EQ1,2072,2,CV 4 OP station-Safety door positioning abnormal
+ZONE1_EQ1,2073,2,CV 4 OP station-
+ZONE1_EQ1,2074,2,CV 4 OP station-
+ZONE1_EQ1,2075,2,CV 4 OP station-
+ZONE1_EQ1,2076,2,CV 4 OP station-Load sensor 1 error
+ZONE1_EQ1,2077,2,CV 4 OP station-Load sensor 2 error
+ZONE1_EQ1,2078,2,CV 4 OP Station-Abnormality with Contrast sensor
+ZONE1_EQ1,2079,2,CV 4 OP station-
+ZONE1_EQ1,2080,2,CV 4 OP station-
+ZONE1_EQ1,2081,2,CV 4 OP station-
+ZONE1_EQ1,2082,2,CV 4 OP station-
+ZONE1_EQ1,2083,2,CV 4 OP station-
+ZONE1_EQ1,2084,2,CV 4 OP station-
+ZONE1_EQ1,2085,2,CV 4 OP station-
+ZONE1_EQ1,2086,2,CV 4 OP station-
+ZONE1_EQ1,2087,2,CV 4 OP station-
+ZONE1_EQ1,2088,2,CV 4 OP station-
+ZONE1_EQ1,2089,2,CV 4 OP station-
+ZONE1_EQ1,2090,2,CV 4 OP station-
+ZONE1_EQ1,2091,2,CV 4 OP station-
+ZONE1_EQ1,2092,2,CV 4 OP station-
+ZONE1_EQ1,2093,2,CV 4 OP station-
+ZONE1_EQ1,2094,2,CV 4 OP station-
+ZONE1_EQ1,2095,2,CV 4 OP station-
+ZONE1_EQ1,2096,2,CV 4 OP station-
+ZONE1_EQ1,2097,2,CV 4 OP station-
+ZONE1_EQ1,2098,2,CV 4 OP station-
+ZONE1_EQ1,2099,2,CV 4 OP station-
+ZONE1_EQ1,2100,2,CV 4 OP station-
+ZONE1_EQ1,2101,2,CV 4 OP station-
+ZONE1_EQ1,2102,2,CV 4 OP station-
+ZONE1_EQ1,2103,2,CV 4 OP station-
+ZONE1_EQ1,2104,2,CV 4 OP station-
+ZONE1_EQ1,2105,2,CV 4 OP station-
+ZONE1_EQ1,2106,2,CV 4 OP station-
+ZONE1_EQ1,2107,2,CV 4 OP station-
+ZONE1_EQ1,2108,2,CV 4 OP station-
+ZONE1_EQ1,2109,2,CV 4 OP station-
+ZONE1_EQ1,2110,2,CV 4 OP station-
+ZONE1_EQ1,2111,2,CV 4 OP station-
+ZONE1_EQ1,2112,1,CV 4 OP station-BCR reading error
+ZONE1_EQ1,2113,1,CV 4 OP station-
+ZONE1_EQ1,2114,1,CV 4 OP station-
+ZONE1_EQ1,2115,1,CV 4 OP station-
+ZONE1_EQ1,2116,1,CV 4 OP station-
+ZONE1_EQ1,2117,1,CV 4 OP station-
+ZONE1_EQ1,2118,1,CV 4 OP station-
+ZONE1_EQ1,2119,1,CV 4 OP station-
+ZONE1_EQ1,2120,1,CV 4 OP station-
+ZONE1_EQ1,2121,1,CV 4 OP station-
+ZONE1_EQ1,2122,1,CV 4 OP station-
+ZONE1_EQ1,2123,1,CV 4 OP station-
+ZONE1_EQ1,2124,1,CV 4 OP station-
+ZONE1_EQ1,2125,1,CV 4 OP station-
+ZONE1_EQ1,2126,1,CV 4 OP station-
+ZONE1_EQ1,2127,1,CV 4 OP station-
+ZONE1_EQ1,2304,2,MGV 01-Load sensor error
+ZONE1_EQ1,2305,2,MGV 01-Abnormal pick and put error
+ZONE1_EQ1,2306,2,MGV 01-The charge does not match the ID
+ZONE1_EQ1,2307,2,MGV 01-Loading procedure timed out
+ZONE1_EQ1,2308,2,MGV 01-Outing of the box program timed out
+ZONE1_EQ1,2309,2,MGV 01-Fork detects abnormality
+ZONE1_EQ1,2310,2,MGV 01-Area detects abnormality
+ZONE1_EQ1,2311,2,MGV 01-CST ID Report Timer
+ZONE1_EQ1,2312,2,MGV 01-
+ZONE1_EQ1,2313,2,MGV 01-
+ZONE1_EQ1,2314,2,MGV 01-
+ZONE1_EQ1,2315,2,MGV 01-
+ZONE1_EQ1,2316,2,MGV 01-
+ZONE1_EQ1,2317,2,MGV 01-
+ZONE1_EQ1,2318,2,MGV 01-
+ZONE1_EQ1,2319,2,MGV 01-Handshake signal interrupted
+ZONE1_EQ1,2320,2,MGV 01-Inbox T3 timeout
+ZONE1_EQ1,2321,2,MGV 01-Inbox T6 timeout
+ZONE1_EQ1,2322,2,MGV 01-Outbox T3 timeout
+ZONE1_EQ1,2323,2,MGV 01-Outbox T6 timeout
+ZONE1_EQ1,2324,2,MGV 01-Valid OFF(T1)
+ZONE1_EQ1,2325,2,MGV 01-
+ZONE1_EQ1,2326,2,MGV 01-
+ZONE1_EQ1,2327,2,MGV 01-Trolley interference is abnormal
+ZONE1_EQ1,2328,2,MGV 01-Safety door positioning error
+ZONE1_EQ1,2329,2,MGV 01-
+ZONE1_EQ1,2330,2,MGV 01-
+ZONE1_EQ1,2331,2,MGV 01-
+ZONE1_EQ1,2332,2,MGV 01-Load sensor 1 error
+ZONE1_EQ1,2333,2,MGV 01-Load sensor 2 error
+ZONE1_EQ1,2334,2,MGV 01-Bearing control sensor abnormality
+ZONE1_EQ1,2335,2,MGV 01-
+ZONE1_EQ1,2336,2,MGV 01-
+ZONE1_EQ1,2337,2,MGV 01-
+ZONE1_EQ1,2338,2,MGV 01-
+ZONE1_EQ1,2339,2,MGV 01-
+ZONE1_EQ1,2340,2,MGV 01-
+ZONE1_EQ1,2341,2,MGV 01-
+ZONE1_EQ1,2342,2,MGV 01-
+ZONE1_EQ1,2343,2,MGV 01-
+ZONE1_EQ1,2344,2,MGV 01-
+ZONE1_EQ1,2345,2,MGV 01-
+ZONE1_EQ1,2346,2,MGV 01-
+ZONE1_EQ1,2347,2,MGV 01-
+ZONE1_EQ1,2348,2,MGV 01-
+ZONE1_EQ1,2349,2,MGV 01-
+ZONE1_EQ1,2350,2,MGV 01-
+ZONE1_EQ1,2351,2,MGV 01-
+ZONE1_EQ1,2352,2,MGV 01-
+ZONE1_EQ1,2353,2,MGV 01-
+ZONE1_EQ1,2354,2,MGV 01-
+ZONE1_EQ1,2355,2,MGV 01-
+ZONE1_EQ1,2356,2,MGV 01-
+ZONE1_EQ1,2357,2,MGV 01-
+ZONE1_EQ1,2358,2,MGV 01-
+ZONE1_EQ1,2359,2,MGV 01-
+ZONE1_EQ1,2360,2,MGV 01-
+ZONE1_EQ1,2361,2,MGV 01-
+ZONE1_EQ1,2362,2,MGV 01-
+ZONE1_EQ1,2363,2,MGV 01-
+ZONE1_EQ1,2364,2,MGV 01-
+ZONE1_EQ1,2365,2,MGV 01-
+ZONE1_EQ1,2366,2,MGV 01-
+ZONE1_EQ1,2367,2,MGV 01-
+ZONE1_EQ1,2368,1,MGV 01-BCR read error
+ZONE1_EQ1,2369,1,MGV 01-
+ZONE1_EQ1,2370,1,MGV 01-
+ZONE1_EQ1,2371,1,MGV 01-
+ZONE1_EQ1,2372,1,MGV 01-
+ZONE1_EQ1,2373,1,MGV 01-
+ZONE1_EQ1,2374,1,MGV 01-
+ZONE1_EQ1,2375,1,MGV 01-
+ZONE1_EQ1,2376,1,MGV 01-
+ZONE1_EQ1,2377,1,MGV 01-
+ZONE1_EQ1,2378,1,MGV 01-
+ZONE1_EQ1,2379,1,MGV 01-
+ZONE1_EQ1,2380,1,MGV 01-
+ZONE1_EQ1,2381,1,MGV 01-
+ZONE1_EQ1,2382,1,MGV 01-
+ZONE1_EQ1,2383,1,MGV 01-
+ZONE1_EQ1,2560,2,MGV 02-Load sensor error
+ZONE1_EQ1,2561,2,MGV 02-Abnormal pick and put error
+ZONE1_EQ1,2562,2,MGV 02-The charge does not match the ID
+ZONE1_EQ1,2563,2,MGV 02-Loading procedure timed out
+ZONE1_EQ1,2564,2,MGV 02-Outing of the box program timed out
+ZONE1_EQ1,2565,2,MGV 02-Fork detects abnormality
+ZONE1_EQ1,2566,2,MGV 02-Area detects abnormality
+ZONE1_EQ1,2567,2,MGV 02-CST ID Report Timer
+ZONE1_EQ1,2568,2,MGV 02-
+ZONE1_EQ1,2569,2,MGV 02-
+ZONE1_EQ1,2570,2,MGV 02-
+ZONE1_EQ1,2571,2,MGV 02-
+ZONE1_EQ1,2572,2,MGV 02-
+ZONE1_EQ1,2573,2,MGV 02-
+ZONE1_EQ1,2574,2,MGV 02-
+ZONE1_EQ1,2575,2,MGV 02-Handshake signal interrupted
+ZONE1_EQ1,2576,2,MGV 02-Inbox T3 timeout
+ZONE1_EQ1,2577,2,MGV 02-Inbox T6 timeout
+ZONE1_EQ1,2578,2,MGV 02-Outbox T3 timeout
+ZONE1_EQ1,2579,2,MGV 02-Outbox T6 timeout
+ZONE1_EQ1,2580,2,MGV 02-Valid OFF(T1)
+ZONE1_EQ1,2581,2,MGV 02-
+ZONE1_EQ1,2582,2,MGV 02-
+ZONE1_EQ1,2583,2,MGV 02-Trolley interference is abnormal
+ZONE1_EQ1,2584,2,MGV 02-Safety door positioning error
+ZONE1_EQ1,2585,2,MGV 02-
+ZONE1_EQ1,2586,2,MGV 02-
+ZONE1_EQ1,2587,2,MGV 02-
+ZONE1_EQ1,2588,2,MGV 02-Load sensor 1 error
+ZONE1_EQ1,2589,2,MGV 02-Load sensor 2 error
+ZONE1_EQ1,2590,2,MGV 02-Bearing control sensor abnormality
+ZONE1_EQ1,2591,2,MGV 02-
+ZONE1_EQ1,2592,2,MGV 02-
+ZONE1_EQ1,2593,2,MGV 02-
+ZONE1_EQ1,2594,2,MGV 02-
+ZONE1_EQ1,2595,2,MGV 02-
+ZONE1_EQ1,2596,2,MGV 02-
+ZONE1_EQ1,2597,2,MGV 02-
+ZONE1_EQ1,2598,2,MGV 02-
+ZONE1_EQ1,2599,2,MGV 02-
+ZONE1_EQ1,2600,2,MGV 02-
+ZONE1_EQ1,2601,2,MGV 02-
+ZONE1_EQ1,2602,2,MGV 02-
+ZONE1_EQ1,2603,2,MGV 02-
+ZONE1_EQ1,2604,2,MGV 02-
+ZONE1_EQ1,2605,2,MGV 02-
+ZONE1_EQ1,2606,2,MGV 02-
+ZONE1_EQ1,2607,2,MGV 02-
+ZONE1_EQ1,2608,2,MGV 02-
+ZONE1_EQ1,2609,2,MGV 02-
+ZONE1_EQ1,2610,2,MGV 02-
+ZONE1_EQ1,2611,2,MGV 02-
+ZONE1_EQ1,2612,2,MGV 02-
+ZONE1_EQ1,2613,2,MGV 02-
+ZONE1_EQ1,2614,2,MGV 02-
+ZONE1_EQ1,2615,2,MGV 02-
+ZONE1_EQ1,2616,2,MGV 02-
+ZONE1_EQ1,2617,2,MGV 02-
+ZONE1_EQ1,2618,2,MGV 02-
+ZONE1_EQ1,2619,2,MGV 02-
+ZONE1_EQ1,2620,2,MGV 02-
+ZONE1_EQ1,2621,2,MGV 02-
+ZONE1_EQ1,2622,2,MGV 02-
+ZONE1_EQ1,2623,2,MGV 02-
+ZONE1_EQ1,2624,1,MGV 02-BCR read error
+ZONE1_EQ1,2625,1,MGV 02-
+ZONE1_EQ1,2626,1,MGV 02-
+ZONE1_EQ1,2627,1,MGV 02-
+ZONE1_EQ1,2628,1,MGV 02-
+ZONE1_EQ1,2629,1,MGV 02-
+ZONE1_EQ1,2630,1,MGV 02-
+ZONE1_EQ1,2631,1,MGV 02-
+ZONE1_EQ1,2632,1,MGV 02-
+ZONE1_EQ1,2633,1,MGV 02-
+ZONE1_EQ1,2634,1,MGV 02-
+ZONE1_EQ1,2635,1,MGV 02-
+ZONE1_EQ1,2636,1,MGV 02-
+ZONE1_EQ1,2637,1,MGV 02-
+ZONE1_EQ1,2638,1,MGV 02-
+ZONE1_EQ1,2639,1,MGV 02-
+ZONE1_EQ1,2816,2,CV 1 stage-Load sensor error
+ZONE1_EQ1,2817,2,CV 1 stage-Abnormal pick and put error
+ZONE1_EQ1,2818,2,CV 1 stage-The load does not match the ID
+ZONE1_EQ1,2819,2,CV 1 stage-Loading procedure timed out
+ZONE1_EQ1,2820,2,CV 1 stage-Ejection procedure timed out
+ZONE1_EQ1,2821,2,CV 1 stage-Lift axis is not in position
+ZONE1_EQ1,2822,2,CV 1 stage-The rotation axis is not in position
+ZONE1_EQ1,2823,2,CV 1 stage-The traveling axis has not reached the positioning
+ZONE1_EQ1,2824,2,CV 1 stage-Loading T2 timeout
+ZONE1_EQ1,2825,2,CV 1 stage-Loading T4 timeout
+ZONE1_EQ1,2826,2,CV 1 stage-Loading T5 timeout
+ZONE1_EQ1,2827,2,CV 1 stage-Outing T2 timeout
+ZONE1_EQ1,2828,2,CV 1 stage-Outing T4 timeout
+ZONE1_EQ1,2829,2,CV 1 stage-Outing T5 timeout
+ZONE1_EQ1,2830,2,CV 1 stage-Loading T8 timeout
+ZONE1_EQ1,2831,2,CV 1 stage-Outing T8 timeout
+ZONE1_EQ1,2832,2,CV 1 stage-The servo axis is not fully restored
+ZONE1_EQ1,2833,2,CV 1 stage-Travel position reset timeout
+ZONE1_EQ1,2834,2,CV 1 stage-
+ZONE1_EQ1,2835,2,CV 1 stage-
+ZONE1_EQ1,2836,2,CV 1 stage-BF1 load sensor error
+ZONE1_EQ1,2837,2,CV 1 stage-BF1 abnormal pick and put error
+ZONE1_EQ1,2838,2,CV 1 stage-BF2 load sensor error
+ZONE1_EQ1,2839,2,CV 1 stage-BF2 abnormal pick and put error
+ZONE1_EQ1,2840,2,CV 1 stage-Waiting BF sensor error
+ZONE1_EQ1,2841,2,CV 1 stage-Waiting BF abnormal pick and put error
+ZONE1_EQ1,2842,2,CV 1 stage-Handshak Station abnormality occurred
+ZONE1_EQ1,2843,2,CV 1 stage-
+ZONE1_EQ1,2844,2,CV 1 stage-Servo of the traveling axis is error
+ZONE1_EQ1,2845,2,CV 1 stage-Servo of lift axis is error
+ZONE1_EQ1,2846,2,CV 1 stage-Servo of rotation axis error
+ZONE1_EQ1,2847,2,CV 1 stage-Tilt detection error
+ZONE1_EQ1,2848,2,CV 1 stage-Limit in front of the traveling axis error
+ZONE1_EQ1,2849,2,CV 1 stage-Limit after traveling axis error
+ZONE1_EQ1,2850,2,CV 1 stage-Up limit on the lifting axis is error
+ZONE1_EQ1,2851,2,CV 1 stage-Down limit of the lifting axis is error
+ZONE1_EQ1,2852,2,CV 1 stage-Limit in front of the rotating axis error
+ZONE1_EQ1,2853,2,CV 1 stage-Limit after rotating axis error
+ZONE1_EQ1,2854,2,CV 1 stage-
+ZONE1_EQ1,2855,2,CV 1 stage-Return to the origin of the lifting axis error
+ZONE1_EQ1,2856,2,CV 1 stage-All axis return to origin error
+ZONE1_EQ1,2857,2,CV 1 stage-
+ZONE1_EQ1,2858,2,CV 1 stage-
+ZONE1_EQ1,2859,2,CV 1 stage-
+ZONE1_EQ1,2860,2,CV 1 stage-
+ZONE1_EQ1,2861,2,CV 1 stage-
+ZONE1_EQ1,2862,2,CV 1 stage-Safety door 1 positioning error
+ZONE1_EQ1,2863,2,CV 1 stage-Safety door 2 positioning error
+ZONE1_EQ1,2864,2,CV 1 stage-
+ZONE1_EQ1,2865,2,CV 1 stage-
+ZONE1_EQ1,2866,2,CV 1 stage-
+ZONE1_EQ1,2867,2,CV 1 stage-
+ZONE1_EQ1,2868,2,CV 1 stage-
+ZONE1_EQ1,2869,2,CV 1 stage-
+ZONE1_EQ1,2870,2,CV 1 stage-
+ZONE1_EQ1,2871,2,CV 1 stage-
+ZONE1_EQ1,2872,2,CV 1 stage-
+ZONE1_EQ1,2873,2,CV 1 stage-
+ZONE1_EQ1,2874,2,CV 1 stage-
+ZONE1_EQ1,2875,2,CV 1 stage-
+ZONE1_EQ1,2876,2,CV 1 stage-
+ZONE1_EQ1,2877,2,CV 1 stage-
+ZONE1_EQ1,2878,2,CV 1 stage-
+ZONE1_EQ1,2879,2,CV 1 stage-
+ZONE1_EQ1,2880,1,CV 1 stage-
+ZONE1_EQ1,2881,1,CV 1 stage-
+ZONE1_EQ1,2882,1,CV 1 stage-
+ZONE1_EQ1,2883,1,CV 1 stage-
+ZONE1_EQ1,2884,1,CV 1 stage-
+ZONE1_EQ1,2885,1,CV 1 stage-
+ZONE1_EQ1,2886,1,CV 1 stage-
+ZONE1_EQ1,2887,1,CV 1 stage-
+ZONE1_EQ1,2888,1,CV 1 stage-
+ZONE1_EQ1,2889,1,CV 1 stage-
+ZONE1_EQ1,2890,1,CV 1 stage-
+ZONE1_EQ1,2891,1,CV 1 stage-
+ZONE1_EQ1,2892,1,CV 1 stage-
+ZONE1_EQ1,2893,1,CV 1 stage-
+ZONE1_EQ1,2894,1,CV 1 stage-
+ZONE1_EQ1,2895,1,CV 1 stage-
+ZONE1_EQ1,3072,2,CV 2 stage-Load sensor error
+ZONE1_EQ1,3073,2,CV 2 stage-Abnormal pick and put error
+ZONE1_EQ1,3074,2,CV 2 stage-The load does not match the ID
+ZONE1_EQ1,3075,2,CV 2 stage-Loading procedure timed out
+ZONE1_EQ1,3076,2,CV 2 stage-Ejection procedure timed out
+ZONE1_EQ1,3077,2,CV 2 stage-Lift axis is not in position
+ZONE1_EQ1,3078,2,CV 2 stage-The rotation axis is not in position
+ZONE1_EQ1,3079,2,CV 2 stage-The traveling axis has not reached the positioning
+ZONE1_EQ1,3080,2,CV 2 stage-Loading T2 timeout
+ZONE1_EQ1,3081,2,CV 2 stage-Loading T4 timeout
+ZONE1_EQ1,3082,2,CV 2 stage-Loading T5 timeout
+ZONE1_EQ1,3083,2,CV 2 stage-Outing T2 timeout
+ZONE1_EQ1,3084,2,CV 2 stage-Outing T4 timeout
+ZONE1_EQ1,3085,2,CV 2 stage-Outing T5 timeout
+ZONE1_EQ1,3086,2,CV 2 stage-Loading T8 timeout
+ZONE1_EQ1,3087,2,CV 2 stage-Outing T8 timeout
+ZONE1_EQ1,3088,2,CV 2 stage-The servo axis is not fully restored
+ZONE1_EQ1,3089,2,CV 2 stage-Travel position reset timeout
+ZONE1_EQ1,3090,2,CV 2 stage-
+ZONE1_EQ1,3091,2,CV 2 stage-
+ZONE1_EQ1,3092,2,CV 2 stage-BF1 load sensor error
+ZONE1_EQ1,3093,2,CV 2 stage-BF1 abnormal pick and put error
+ZONE1_EQ1,3094,2,CV 2 stage-BF2 load sensor error
+ZONE1_EQ1,3095,2,CV 2 stage-BF2 abnormal pick and put error
+ZONE1_EQ1,3096,2,CV 2 stage-Waiting BF sensor error
+ZONE1_EQ1,3097,2,CV 2 stage-Waiting BF abnormal pick and put error
+ZONE1_EQ1,3098,2,CV 2 stage-Handshak Station abnormality occurred
+ZONE1_EQ1,3099,2,CV 2 stage-
+ZONE1_EQ1,3100,2,CV 2 stage-Servo of the traveling axis is error
+ZONE1_EQ1,3101,2,CV 2 stage-Servo of lift axis is error
+ZONE1_EQ1,3102,2,CV 2 stage-Servo of rotation axis error
+ZONE1_EQ1,3103,2,CV 2 stage-Tilt detection error
+ZONE1_EQ1,3104,2,CV 2 stage-Limit in front of the traveling axis error
+ZONE1_EQ1,3105,2,CV 2 stage-Limit after traveling axis error
+ZONE1_EQ1,3106,2,CV 2 stage-Up limit on the lifting axis is error
+ZONE1_EQ1,3107,2,CV 2 stage-Down limit of the lifting axis is error
+ZONE1_EQ1,3108,2,CV 2 stage-Limit in front of the rotating axis error
+ZONE1_EQ1,3109,2,CV 2 stage-Limit after rotating axis error
+ZONE1_EQ1,3110,2,CV 2 stage-
+ZONE1_EQ1,3111,2,CV 2 stage-Return to the origin of the lifting axis error
+ZONE1_EQ1,3112,2,CV 2 stage-All axis return to origin error
+ZONE1_EQ1,3113,2,CV 2 stage-
+ZONE1_EQ1,3114,2,CV 2 stage-
+ZONE1_EQ1,3115,2,CV 2 stage-
+ZONE1_EQ1,3116,2,CV 2 stage-
+ZONE1_EQ1,3117,2,CV 2 stage-
+ZONE1_EQ1,3118,2,CV 2 stage-Safety door 1 positioning error
+ZONE1_EQ1,3119,2,CV 2 stage-Safety door 2 positioning error
+ZONE1_EQ1,3120,2,CV 2 stage-
+ZONE1_EQ1,3121,2,CV 2 stage-
+ZONE1_EQ1,3122,2,CV 2 stage-
+ZONE1_EQ1,3123,2,CV 2 stage-
+ZONE1_EQ1,3124,2,CV 2 stage-
+ZONE1_EQ1,3125,2,CV 2 stage-
+ZONE1_EQ1,3126,2,CV 2 stage-
+ZONE1_EQ1,3127,2,CV 2 stage-
+ZONE1_EQ1,3128,2,CV 2 stage-
+ZONE1_EQ1,3129,2,CV 2 stage-
+ZONE1_EQ1,3130,2,CV 2 stage-
+ZONE1_EQ1,3131,2,CV 2 stage-
+ZONE1_EQ1,3132,2,CV 2 stage-
+ZONE1_EQ1,3133,2,CV 2 stage-
+ZONE1_EQ1,3134,2,CV 2 stage-
+ZONE1_EQ1,3135,2,CV 2 stage-
+ZONE1_EQ1,3136,1,CV 2 stage-
+ZONE1_EQ1,3137,1,CV 2 stage-
+ZONE1_EQ1,3138,1,CV 2 stage-
+ZONE1_EQ1,3139,1,CV 2 stage-
+ZONE1_EQ1,3140,1,CV 2 stage-
+ZONE1_EQ1,3141,1,CV 2 stage-
+ZONE1_EQ1,3142,1,CV 2 stage-
+ZONE1_EQ1,3143,1,CV 2 stage-
+ZONE1_EQ1,3144,1,CV 2 stage-
+ZONE1_EQ1,3145,1,CV 2 stage-
+ZONE1_EQ1,3146,1,CV 2 stage-
+ZONE1_EQ1,3147,1,CV 2 stage-
+ZONE1_EQ1,3148,1,CV 2 stage-
+ZONE1_EQ1,3149,1,CV 2 stage-
+ZONE1_EQ1,3150,1,CV 2 stage-
+ZONE1_EQ1,3151,1,CV 2 stage-
+ZONE1_EQ1,3328,2,CV 3 stage-Load sensor error
+ZONE1_EQ1,3329,2,CV 3 stage-Abnormal pick and put error
+ZONE1_EQ1,3330,2,CV 3 stage-The load does not match the ID
+ZONE1_EQ1,3331,2,CV 3 stage-Loading procedure timed out
+ZONE1_EQ1,3332,2,CV 3 stage-Ejection procedure timed out
+ZONE1_EQ1,3333,2,CV 3 stage-Lift axis is not in position
+ZONE1_EQ1,3334,2,CV 3 stage-The rotation axis is not in position
+ZONE1_EQ1,3335,2,CV 3 stage-The traveling axis has not reached the positioning
+ZONE1_EQ1,3336,2,CV 3 stage-Loading T2 timeout
+ZONE1_EQ1,3337,2,CV 3 stage-Loading T4 timeout
+ZONE1_EQ1,3338,2,CV 3 stage-Loading T5 timeout
+ZONE1_EQ1,3339,2,CV 3 stage-Outing T2 timeout
+ZONE1_EQ1,3340,2,CV 3 stage-Outing T4 timeout
+ZONE1_EQ1,3341,2,CV 3 stage-Outing T5 timeout
+ZONE1_EQ1,3342,2,CV 3 stage-Loading T8 timeout
+ZONE1_EQ1,3343,2,CV 3 stage-Outing T8 timeout
+ZONE1_EQ1,3344,2,CV 3 stage-The servo axis is not fully restored
+ZONE1_EQ1,3345,2,CV 3 stage-Travel position reset timeout
+ZONE1_EQ1,3346,2,CV 3 stage-
+ZONE1_EQ1,3347,2,CV 3 stage-
+ZONE1_EQ1,3348,2,CV 3 stage-BF1 load sensor error
+ZONE1_EQ1,3349,2,CV 3 stage-BF1 abnormal pick and put error
+ZONE1_EQ1,3350,2,CV 3 stage-BF2 load sensor error
+ZONE1_EQ1,3351,2,CV 3 stage-BF2 abnormal pick and put error
+ZONE1_EQ1,3352,2,CV 3 stage-Waiting BF sensor error
+ZONE1_EQ1,3353,2,CV 3 stage-Waiting BF abnormal pick and put error
+ZONE1_EQ1,3354,2,CV 3 stage-Handshak Station abnormality occurred
+ZONE1_EQ1,3355,2,CV 3 stage-
+ZONE1_EQ1,3356,2,CV 3 stage-Servo of the traveling axis is error
+ZONE1_EQ1,3357,2,CV 3 stage-Servo of lift axis is error
+ZONE1_EQ1,3358,2,CV 3 stage-Servo of rotation axis error
+ZONE1_EQ1,3359,2,CV 3 stage-Tilt detection error
+ZONE1_EQ1,3360,2,CV 3 stage-Limit in front of the traveling axis error
+ZONE1_EQ1,3361,2,CV 3 stage-Limit after traveling axis error
+ZONE1_EQ1,3362,2,CV 3 stage-Up limit on the lifting axis is error
+ZONE1_EQ1,3363,2,CV 3 stage-Down limit of the lifting axis is error
+ZONE1_EQ1,3364,2,CV 3 stage-Limit in front of the rotating axis error
+ZONE1_EQ1,3365,2,CV 3 stage-Limit after rotating axis error
+ZONE1_EQ1,3366,2,CV 3 stage-
+ZONE1_EQ1,3367,2,CV 3 stage-Return to the origin of the lifting axis error
+ZONE1_EQ1,3368,2,CV 3 stage-All axis return to origin error
+ZONE1_EQ1,3369,2,CV 3 stage-
+ZONE1_EQ1,3370,2,CV 3 stage-
+ZONE1_EQ1,3371,2,CV 3 stage-
+ZONE1_EQ1,3372,2,CV 3 stage-
+ZONE1_EQ1,3373,2,CV 3 stage-
+ZONE1_EQ1,3374,2,CV 3 stage-Safety door 1 positioning error
+ZONE1_EQ1,3375,2,CV 3 stage-Safety door 2 positioning error
+ZONE1_EQ1,3376,2,CV 3 stage-
+ZONE1_EQ1,3377,2,CV 3 stage-
+ZONE1_EQ1,3378,2,CV 3 stage-
+ZONE1_EQ1,3379,2,CV 3 stage-
+ZONE1_EQ1,3380,2,CV 3 stage-
+ZONE1_EQ1,3381,2,CV 3 stage-
+ZONE1_EQ1,3382,2,CV 3 stage-
+ZONE1_EQ1,3383,2,CV 3 stage-
+ZONE1_EQ1,3384,2,CV 3 stage-
+ZONE1_EQ1,3385,2,CV 3 stage-
+ZONE1_EQ1,3386,2,CV 3 stage-
+ZONE1_EQ1,3387,2,CV 3 stage-
+ZONE1_EQ1,3388,2,CV 3 stage-
+ZONE1_EQ1,3389,2,CV 3 stage-
+ZONE1_EQ1,3390,2,CV 3 stage-
+ZONE1_EQ1,3391,2,CV 3 stage-
+ZONE1_EQ1,3392,1,CV 3 stage-
+ZONE1_EQ1,3393,1,CV 3 stage-
+ZONE1_EQ1,3394,1,CV 3 stage-
+ZONE1_EQ1,3395,1,CV 3 stage-
+ZONE1_EQ1,3396,1,CV 3 stage-
+ZONE1_EQ1,3397,1,CV 3 stage-
+ZONE1_EQ1,3398,1,CV 3 stage-
+ZONE1_EQ1,3399,1,CV 3 stage-
+ZONE1_EQ1,3400,1,CV 3 stage-
+ZONE1_EQ1,3401,1,CV 3 stage-
+ZONE1_EQ1,3402,1,CV 3 stage-
+ZONE1_EQ1,3403,1,CV 3 stage-
+ZONE1_EQ1,3404,1,CV 3 stage-
+ZONE1_EQ1,3405,1,CV 3 stage-
+ZONE1_EQ1,3406,1,CV 3 stage-
+ZONE1_EQ1,3407,1,CV 3 stage-
+ZONE1_EQ1,3584,2,CV 4 stage-Load sensor error
+ZONE1_EQ1,3585,2,CV 4 stage-Abnormal pick and put error
+ZONE1_EQ1,3586,2,CV 4 stage-The load does not match the ID
+ZONE1_EQ1,3587,2,CV 4 stage-Loading procedure timed out
+ZONE1_EQ1,3588,2,CV 4 stage-Ejection procedure timed out
+ZONE1_EQ1,3589,2,CV 4 stage-Lift axis is not in position
+ZONE1_EQ1,3590,2,CV 4 stage-The rotation axis is not in position
+ZONE1_EQ1,3591,2,CV 4 stage-The traveling axis has not reached the positioning
+ZONE1_EQ1,3592,2,CV 4 stage-Loading T2 timeout
+ZONE1_EQ1,3593,2,CV 4 stage-Loading T4 timeout
+ZONE1_EQ1,3594,2,CV 4 stage-Loading T5 timeout
+ZONE1_EQ1,3595,2,CV 4 stage-Outing T2 timeout
+ZONE1_EQ1,3596,2,CV 4 stage-Outing T4 timeout
+ZONE1_EQ1,3597,2,CV 4 stage-Outing T5 timeout
+ZONE1_EQ1,3598,2,CV 4 stage-Loading T8 timeout
+ZONE1_EQ1,3599,2,CV 4 stage-Outing T8 timeout
+ZONE1_EQ1,3600,2,CV 4 stage-The servo axis is not fully restored
+ZONE1_EQ1,3601,2,CV 4 stage-Travel position reset timeout
+ZONE1_EQ1,3602,2,CV 4 stage-
+ZONE1_EQ1,3603,2,CV 4 stage-
+ZONE1_EQ1,3604,2,CV 4 stage-BF1 load sensor error
+ZONE1_EQ1,3605,2,CV 4 stage-BF1 abnormal pick and put error
+ZONE1_EQ1,3606,2,CV 4 stage-BF2 load sensor error
+ZONE1_EQ1,3607,2,CV 4 stage-BF2 abnormal pick and put error
+ZONE1_EQ1,3608,2,CV 4 stage-Waiting BF sensor error
+ZONE1_EQ1,3609,2,CV 4 stage-Waiting BF abnormal pick and put error
+ZONE1_EQ1,3610,2,CV 4 stage-Handshak Station abnormality occurred
+ZONE1_EQ1,3611,2,CV 4 stage-
+ZONE1_EQ1,3612,2,CV 4 stage-Servo of the traveling axis is error
+ZONE1_EQ1,3613,2,CV 4 stage-Servo of lift axis is error
+ZONE1_EQ1,3614,2,CV 4 stage-Servo of rotation axis error
+ZONE1_EQ1,3615,2,CV 4 stage-Tilt detection error
+ZONE1_EQ1,3616,2,CV 4 stage-Limit in front of the traveling axis error
+ZONE1_EQ1,3617,2,CV 4 stage-Limit after traveling axis error
+ZONE1_EQ1,3618,2,CV 4 stage-Up limit on the lifting axis is error
+ZONE1_EQ1,3619,2,CV 4 stage-Down limit of the lifting axis is error
+ZONE1_EQ1,3620,2,CV 4 stage-Limit in front of the rotating axis error
+ZONE1_EQ1,3621,2,CV 4 stage-Limit after rotating axis error
+ZONE1_EQ1,3622,2,CV 4 stage-
+ZONE1_EQ1,3623,2,CV 4 stage-Return to the origin of the lifting axis error
+ZONE1_EQ1,3624,2,CV 4 stage-All axis return to origin error
+ZONE1_EQ1,3625,2,CV 4 stage-
+ZONE1_EQ1,3626,2,CV 4 stage-
+ZONE1_EQ1,3627,2,CV 4 stage-
+ZONE1_EQ1,3628,2,CV 4 stage-
+ZONE1_EQ1,3629,2,CV 4 stage-
+ZONE1_EQ1,3630,2,CV 4 stage-Safety door 1 positioning error
+ZONE1_EQ1,3631,2,CV 4 stage-Safety door 2 positioning error
+ZONE1_EQ1,3632,2,CV 4 stage-
+ZONE1_EQ1,3633,2,CV 4 stage-
+ZONE1_EQ1,3634,2,CV 4 stage-
+ZONE1_EQ1,3635,2,CV 4 stage-
+ZONE1_EQ1,3636,2,CV 4 stage-
+ZONE1_EQ1,3637,2,CV 4 stage-
+ZONE1_EQ1,3638,2,CV 4 stage-
+ZONE1_EQ1,3639,2,CV 4 stage-
+ZONE1_EQ1,3640,2,CV 4 stage-
+ZONE1_EQ1,3641,2,CV 4 stage-
+ZONE1_EQ1,3642,2,CV 4 stage-
+ZONE1_EQ1,3643,2,CV 4 stage-
+ZONE1_EQ1,3644,2,CV 4 stage-
+ZONE1_EQ1,3645,2,CV 4 stage-
+ZONE1_EQ1,3646,2,CV 4 stage-
+ZONE1_EQ1,3647,2,CV 4 stage-
+ZONE1_EQ1,3648,1,CV 4 stage-
+ZONE1_EQ1,3649,1,CV 4 stage-
+ZONE1_EQ1,3650,1,CV 4 stage-
+ZONE1_EQ1,3651,1,CV 4 stage-
+ZONE1_EQ1,3652,1,CV 4 stage-
+ZONE1_EQ1,3653,1,CV 4 stage-
+ZONE1_EQ1,3654,1,CV 4 stage-
+ZONE1_EQ1,3655,1,CV 4 stage-
+ZONE1_EQ1,3656,1,CV 4 stage-
+ZONE1_EQ1,3657,1,CV 4 stage-
+ZONE1_EQ1,3658,1,CV 4 stage-
+ZONE1_EQ1,3659,1,CV 4 stage-
+ZONE1_EQ1,3660,1,CV 4 stage-
+ZONE1_EQ1,3661,1,CV 4 stage-
+ZONE1_EQ1,3662,1,CV 4 stage-
+ZONE1_EQ1,3663,1,CV 4 stage-

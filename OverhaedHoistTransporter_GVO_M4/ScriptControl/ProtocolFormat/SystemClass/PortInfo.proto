@@ -1,0 +1,79 @@
+﻿// See README.txt for information and build instructions.
+//
+// Note: START and END tags are used in comments to define sections used in
+// tutorials.  They are not part of the syntax for Protocol Buffers.
+//
+// To get an in-depth walkthrough of this file and the related examples, see:
+// https://developers.google.com/protocol-buffers/docs/tutorials
+
+// [START declaration]
+syntax = "proto3";
+
+option cc_enable_arenas = true;
+option go_package = "github.com/golang/protobuf/ptypes/timestamp";
+option java_multiple_files = true;
+option objc_class_prefix = "GPB";
+package tutorial;
+// [END declaration]
+
+// [START java_declaration]
+option java_package = "com.example.tutorial";
+option java_outer_classname = "AddressBookProtos";
+// [END java_declaration]
+
+// [START csharp_declaration]
+option csharp_namespace = "com.mirle.ibg3k0.sc.ProtocolFormat.SystemClass.PortInfo";
+// [END csharp_declaration]
+
+// [START messages]
+   message Timestamp {
+
+      // Represents seconds of UTC time since Unix epoch
+      // 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+      // 9999-12-31T23:59:59Z inclusive.
+      int64 seconds = 1;
+
+      // Non-negative fractions of a second at nanosecond resolution. Negative
+      // second values with fractions must still have non-negative nanos values
+      // that count forward in time. Must be from 0 to 999,999,999
+      // inclusive.
+      int32 nanos = 2;
+  }
+
+  message PORT_INFO{
+  	   string Timestamp = 1;
+       bool OpAutoMode = 2;         //D6401.0
+       bool OpManualMode = 3;       //D6401.1 
+       bool OpError = 4;
+       bool IsInputMode = 5;        //D6401.3
+       bool IsOutputMode = 6;       //D6401.4
+       bool IsModeChangable = 7;    //D6401.5
+       bool IsAGVMode = 8;
+       bool IsMGVMode = 9;
+       bool PortWaitIn = 10;         //D6401.8
+       bool PortWaitOut = 11;        //D6401.9
+       bool IsAutoMode = 12;
+       bool IsReadyToLoad = 13;      //D6401.12
+       bool IsReadyToUnload = 14;    //D6401.13
+       bool LoadPosition1 = 15;      //D6402.0
+       bool LoadPosition2 = 16;      //D6402.1
+       bool LoadPosition3 = 17;      //D6402.2
+       bool LoadPosition4 = 18;      //D6402.3
+       bool LoadPosition5 = 19;      //D6402.4
+       bool LoadPosition7 = 20;      //D6402.B
+       bool LoadPosition6 = 21;      //D6402.C
+       bool IsCSTPresence = 22;      //D6402.5
+       bool AGVPortReady = 23;       //D6402.6
+       bool CanOpenBox = 24;        
+       bool IsBoxOpen = 25;
+       bool BCRReadDone = 26;
+       bool CSTPresenceMismatch = 27;    //D6402.A
+       bool IsTransferComplete = 28;
+       bool CstRemoveCheck = 29;
+       int32 ErrorCode = 30;
+       string BoxID = 31;
+       string CassetteID = 32;
+       string PortID = 33;
+
+  }
+// [END messages]

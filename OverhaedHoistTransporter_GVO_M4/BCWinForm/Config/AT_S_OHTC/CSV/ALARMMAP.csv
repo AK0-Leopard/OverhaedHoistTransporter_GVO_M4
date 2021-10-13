@@ -1,0 +1,429 @@
+OBJECT_ID,ALARM_ID,ALARM_LVL,ALARM_DESC
+AGV_NODE,100000,2,EMO on
+AGV_NODE,100002,2,Robot error.
+AGV_NODE,100003,2,AGV recieved charge command when charge position sensor return false .
+AGV_NODE,100005,2,Error occured while handshaking with charge station.
+AGV_NODE,100006,2,Fail to turn on charger.
+AGV_NODE,100007,2,Fail to turn off charger.
+AGV_NODE,100008,2,Docking NG.
+AGV_NODE,100009,2,Fail to complete load/unload command.
+AGV_NODE,100019,2,MoveFail
+AGV_NODE,100021,2,PositionError
+AGV_NODE,100029,2,AutoWhenRobotNotInit
+AGV_NODE,100030,2,AutoWhenNotStandby
+AGV_NODE,200010,2,GripperInitialError
+AGV_NODE,200011,2,GripperInitialFail
+AGV_NODE,200012,2,GripLoss
+AGV_NODE,200013,2,GripError
+AGV_NODE,200014,2,GripFail
+AGV_NODE,200015,2,GripFailAfterRetry
+AGV_NODE,200016,2,ReleaseFail
+AGV_NODE,200017,2,GripFailAfterRetry
+AGV_NODE,200018,2,GripperOverPressure
+AGV_NODE,200019,2,ReleaseSensorAbnormal
+AGV_NODE,200030,2,VisionFixedFail
+AGV_NODE,200031,2,VisionServoingFail
+AGV_NODE,200032,2,TMVarNG
+AGV_NODE,200033,2,TMVar2NG
+AGV_NODE,200040,2,J6PoseAbnormal
+AGV_NODE,200080,2,NoRunningID
+AGV_NODE,200081,2,RobotNotAtInitPose
+AGV_NODE,200082,2,GripperNotRelease
+AGV_NODE,200083,2,PSPLSensorAbnormal
+AGV_NODE,200084,2,NotTeachYet
+AGV_NODE,200090,2,WrongRunningID
+AGV_NODE,14,2,Charging is ON after send stop charge command to plc.
+AGV_NODE,18,2,AgvcMoveCommand is not match the map to move.
+AGV_NODE,27,2,Fork not home reject transfer command.
+AGV_NODE,37,2,Get EMS from AGVC.
+AGV_NODE,38,2,Agvc maybe disconnected.
+AGV_NODE,43,2,Please check agvl try auto fail reason in agvm.
+AGV_NODE,44,2,Agvm can not find section in manual.
+AGV_NODE,45,2,Agvm can not find address in manual.
+AGV_NODE,46,2,MoveState is not idle or block can not switch to auto.
+AGV_NODE,47,2,RobotState is not idle can not switch to auto.
+AGV_NODE,48,2,Robot is not home can not switch to auto.
+AGV_NODE,49,2,InterlockError.
+AGV_NODE,50,2,Visit Step Precheck Exception.
+AGV_NODE,51,2,Agvl report cst position error.
+AGV_NODE,52,2,Agvl report robot command end but not in robot step.
+AGV_NODE,53,2,Agvl report robot state not ready to load or unlaod.
+AGV_NODE,100040,2,AgvlError
+AGV_NODE,109001,2,InterLockError
+AGV_NODE,109007,2,AGV remote controller press pause.
+AGV_NODE,109008,1, AGVL get load/unload command during load unload procedure.
+AGV_NODE,100001,1,Receive move command when robot not home.
+AGV_NODE,100004,1,Error occured while handshaking with charge station.
+AGV_NODE,100010,1,Receive move command when coupler not home.
+AGV_NODE,100012,1,Battery full.
+AGV_NODE,100013,1,Battery temperature over normal level.
+AGV_NODE,100014,1,Battery voltage over normal level.
+AGV_NODE,100015,1,Battery current over normal level.
+AGV_NODE,100016,1,Macro error.
+AGV_NODE,100017,1,Interlock error during load/unload command.
+AGV_NODE,100018,1,IncorrectCoordinate
+AGV_NODE,100020,1,RFIDReaderAbnormal
+AGV_NODE,100024,1,AGVMConnectionAbnormal
+AGV_NODE,100025,1,RobotCmdWrongStation
+AGV_NODE,100026,1,RobotCmdWhenMoving
+AGV_NODE,100027,1,FromPortIsEmpty
+AGV_NODE,100028,1,ToPortIsFull
+AGV_NODE,1,1,Agv already have a transfer command on middler get new transfer command.
+AGV_NODE,2,1,Battery capacity enter low power threshold.
+AGV_NODE,3,1,Loading is off after load finished.
+AGV_NODE,4,1,Carrier ID is EMPTY after load finished.
+AGV_NODE,5,1,Carrier ID is ERROR after load finished.
+AGV_NODE,6,1,Move finish fail.
+AGV_NODE,7,1,Loading is ON after unload finished.
+AGV_NODE,8,1,Fork command is exist before unload.
+AGV_NODE,9,1,Vehicle is not in unload position and cannot unload.
+AGV_NODE,10,1,Fork command is exist before load.
+AGV_NODE,11,1,Vehicle is not in guide sections.
+AGV_NODE,12,1,This address is a couple but no charge direction.
+AGV_NODE,13,1,Charging is OFF after send start charge command to plc.
+AGV_NODE,15,1,Vehicle is not in load position and cannot load.
+AGV_NODE,16,1,Vehicle already have cassette cannot load.
+AGV_NODE,17,1,Vehicle has no cassette to unload.
+AGV_NODE,19,1,Vehicle is not in transfer reject override.
+AGV_NODE,20,1,Vehicle is not in moving-step reject override.
+AGV_NODE,21,1,Vehicle is not pause by reserve reject override.
+AGV_NODE,22,1,Unload address unmatch current command unload address.
+AGV_NODE,23,1,Load address unmatch current command load address.
+AGV_NODE,24,1,ToUnloadSections is empty.
+AGV_NODE,25,1,ToLoadSections is empty.
+AGV_NODE,26,1,Exception happened in override-check.
+AGV_NODE,28,1,Carrier ID is mismatch after load finished.
+AGV_NODE,29,1,Carrier ID read reply is timeout
+AGV_NODE,30,1,Vehicle has alarm cannot do transfer command.
+AGV_NODE,31,1,MoveControl status is not idle cannot switch to auto mode.
+AGV_NODE,32,1,Real position is null cannot switch to auto mode.
+AGV_NODE,33,1,Vehicle is not in transfer reject avoid.
+AGV_NODE,34,1,Vehicle is not in moving-step reject avoid.
+AGV_NODE,35,1,Vehicle is not pause by reserve reject avoid.
+AGV_NODE,36,1,Exception happened in avoid-check.
+AGV_NODE,40,1,AgvlError
+AGV_NODE,42,1,Nearly address in no section.
+AGV_NODE,54,1,Agvl initial position is too far to address.
+AGV_NODE,55,1,Vehicle in move step but position unchange too long.
+AGV_NODE,56,1,Agvc disconnect when sending command.
+AGV_NODE,57,1,Local disconnect when sending command.
+Charger1,32,2,Charging pile. no abnormalities in receiving and sending out
+Charger1,33,2,Charging pile motor forward inspection abnormal
+Charger1,34,2,Charging pile motor back check abnormal
+Charger1,35,2,Charging pile motor abnormal
+Charger1,36,2,Charging pile charging control abnormal
+Charger1,37,2,Charging pile distance perception abnormal
+Charger1,38,2,Charging pile temperature perception abnormal
+Charger1,39,2,Charging pile measuring voltage at the front end
+Charger1,40,2,Charging pile The charging head is not positioned
+Charger1,41,2,Charger execution command timeout
+Charger1,42,2,
+Charger1,43,2,
+Charger1,44,2,
+Charger1,45,2,
+Charger1,46,2,
+Charger1,47,2,
+Charger1,48,2,Charger abnormal
+Charger1,49,2,Charger communication is abnormal
+Charger1,50,2,Abnormal power supply of the charger
+Charger1,51,2,Charger output current
+Charger1,52,2,Charger Non-power transmission process No load power transmission abnormal
+Charger1,53,2,
+Charger1,54,2,
+Charger1,55,2,
+Charger1,56,2,
+Charger1,57,2,
+Charger1,58,2,
+Charger1,59,2,
+Charger1,60,2,
+Charger1,61,2,
+Charger1,62,2,
+Charger1,63,2,
+Charger2,64,2,Charging pile. no abnormalities in receiving and sending out
+Charger2,65,2,Charging pile motor forward inspection abnormal
+Charger2,66,2,Charging pile motor back check abnormal
+Charger2,67,2,Charging pile motor abnormal
+Charger2,68,2,Charging pile charging control abnormal
+Charger2,69,2,Charging pile distance perception abnormal
+Charger2,70,2,Charging pile temperature perception abnormal
+Charger2,71,2,Charging pile measuring voltage at the front end
+Charger2,72,2,Charging pile The charging head is not positioned
+Charger2,73,2,Charger execution command timeout
+Charger2,74,2,
+Charger2,75,2,
+Charger2,76,2,
+Charger2,77,2,
+Charger2,78,2,
+Charger2,79,2,
+Charger2,80,2,Charger abnormal
+Charger2,81,2,Charger communication is abnormal
+Charger2,82,2,Abnormal power supply of the charger
+Charger2,83,2,Charger output current
+Charger2,84,2,Charger Non-power transmission process No load power transmission abnormal
+Charger2,85,2,
+Charger2,86,2,
+Charger2,87,2,
+Charger2,88,2,
+Charger2,89,2,
+Charger2,90,2,
+Charger2,91,2,
+Charger2,92,2,
+Charger2,93,2,
+Charger2,94,2,
+Charger2,95,2,
+Charger3,96,2,Charging pile. no abnormalities in receiving and sending out
+Charger3,97,2,Charging pile motor forward inspection abnormal
+Charger3,98,2,Charging pile motor back check abnormal
+Charger3,99,2,Charging pile motor abnormal
+Charger3,100,2,Charging pile charging control abnormal
+Charger3,101,2,Charging pile distance perception abnormal
+Charger3,102,2,Charging pile temperature perception abnormal
+Charger3,103,2,Charging pile measuring voltage at the front end
+Charger3,104,2,Charging pile The charging head is not positioned
+Charger3,105,2,Charger execution command timeout
+Charger3,106,2,
+Charger3,107,2,
+Charger3,108,2,
+Charger3,109,2,
+Charger3,110,2,
+Charger3,111,2,
+Charger3,112,2,Charger abnormal
+Charger3,113,2,Charger communication is abnormal
+Charger3,114,2,Abnormal power supply of the charger
+Charger3,115,2,Charger output current
+Charger3,116,2,Charger Non-power transmission process No load power transmission abnormal
+Charger3,117,2,
+Charger3,118,2,
+Charger3,119,2,
+Charger3,120,2,
+Charger3,121,2,
+Charger3,122,2,
+Charger3,123,2,
+Charger3,124,2,
+Charger3,125,2,
+Charger3,126,2,
+Charger3,127,2,
+Charger4,128,2,Charging pile. no abnormalities in receiving and sending out
+Charger4,129,2,Charging pile motor forward inspection abnormal
+Charger4,130,2,Charging pile motor back check abnormal
+Charger4,131,2,Charging pile motor abnormal
+Charger4,132,2,Charging pile charging control abnormal
+Charger4,133,2,Charging pile distance perception abnormal
+Charger4,134,2,Charging pile temperature perception abnormal
+Charger4,135,2,Charging pile measuring voltage at the front end
+Charger4,136,2,Charging pile The charging head is not positioned
+Charger4,137,2,Charger execution command timeout
+Charger4,138,2,
+Charger4,139,2,
+Charger4,140,2,
+Charger4,141,2,
+Charger4,142,2,
+Charger4,143,2,
+Charger4,144,2,Charger abnormal
+Charger4,145,2,Charger communication is abnormal
+Charger4,146,2,Abnormal power supply of the charger
+Charger4,147,2,Charger output current
+Charger4,148,2,Charger Non-power transmission process No load power transmission abnormal
+Charger4,149,2,
+Charger4,150,2,
+Charger4,151,2,
+Charger4,152,2,
+Charger4,153,2,
+Charger4,154,2,
+Charger4,155,2,
+Charger4,156,2,
+Charger4,157,2,
+Charger4,158,2,
+Charger4,159,2,
+Charger5,160,2,Charging pile. no abnormalities in receiving and sending out
+Charger5,161,2,Charging pile motor forward inspection abnormal
+Charger5,162,2,Charging pile motor back check abnormal
+Charger5,163,2,Charging pile motor abnormal
+Charger5,164,2,Charging pile charging control abnormal
+Charger5,165,2,Charging pile distance perception abnormal
+Charger5,166,2,Charging pile temperature perception abnormal
+Charger5,167,2,Charging pile measuring voltage at the front end
+Charger5,168,2,Charging pile The charging head is not positioned
+Charger5,169,2,Charger execution command timeout
+Charger5,170,2,
+Charger5,171,2,
+Charger5,172,2,
+Charger5,173,2,
+Charger5,174,2,
+Charger5,175,2,
+Charger5,176,2,Charger abnormal
+Charger5,177,2,Charger communication is abnormal
+Charger5,178,2,Abnormal power supply of the charger
+Charger5,179,2,Charger output current
+Charger5,180,2,Charger Non-power transmission process No load power transmission abnormal
+Charger5,181,2,
+Charger5,182,2,
+Charger5,183,2,
+Charger5,184,2,
+Charger5,185,2,
+Charger5,186,2,
+Charger5,187,2,
+Charger5,188,2,
+Charger5,189,2,
+Charger5,190,2,
+Charger5,191,2,
+Charger6,192,2,Charging pile. no abnormalities in receiving and sending out
+Charger6,193,2,Charging pile motor forward inspection abnormal
+Charger6,194,2,Charging pile motor back check abnormal
+Charger6,195,2,Charging pile motor abnormal
+Charger6,196,2,Charging pile charging control abnormal
+Charger6,197,2,Charging pile distance perception abnormal
+Charger6,198,2,Charging pile temperature perception abnormal
+Charger6,199,2,Charging pile measuring voltage at the front end
+Charger6,200,2,Charging pile The charging head is not positioned
+Charger6,201,2,Charger execution command timeout
+Charger6,202,2,
+Charger6,203,2,
+Charger6,204,2,
+Charger6,205,2,
+Charger6,206,2,
+Charger6,207,2,
+Charger6,208,2,Charger abnormal
+Charger6,209,2,Charger communication is abnormal
+Charger6,210,2,Abnormal power supply of the charger
+Charger6,211,2,Charger output current
+Charger6,212,2,Charger Non-power transmission process No load power transmission abnormal
+Charger6,213,2,
+Charger6,214,2,
+Charger6,215,2,
+Charger6,216,2,
+Charger6,217,2,
+Charger6,218,2,
+Charger6,219,2,
+Charger6,220,2,
+Charger6,221,2,
+Charger6,222,2,
+Charger6,223,2,
+Charger7,224,2,Charging pile. no abnormalities in receiving and sending out
+Charger7,225,2,Charging pile motor forward inspection abnormal
+Charger7,226,2,Charging pile motor back check abnormal
+Charger7,227,2,Charging pile motor abnormal
+Charger7,228,2,Charging pile charging control abnormal
+Charger7,229,2,Charging pile distance perception abnormal
+Charger7,230,2,Charging pile temperature perception abnormal
+Charger7,231,2,Charging pile measuring voltage at the front end
+Charger7,232,2,Charging pile The charging head is not positioned
+Charger7,233,2,Charger execution command timeout
+Charger7,234,2,
+Charger7,235,2,
+Charger7,236,2,
+Charger7,237,2,
+Charger7,238,2,
+Charger7,239,2,
+Charger7,240,2,Charger abnormal
+Charger7,241,2,Charger communication is abnormal
+Charger7,242,2,Abnormal power supply of the charger
+Charger7,243,2,Charger output current
+Charger7,244,2,Charger Non-power transmission process No load power transmission abnormal
+Charger7,245,2,
+Charger7,246,2,
+Charger7,247,2,
+Charger7,248,2,
+Charger7,249,2,
+Charger7,250,2,
+Charger7,251,2,
+Charger7,252,2,
+Charger7,253,2,
+Charger7,254,2,
+Charger7,255,2,
+Charger8,256,2,Charging pile. no abnormalities in receiving and sending out
+Charger8,257,2,Charging pile motor forward inspection abnormal
+Charger8,258,2,Charging pile motor back check abnormal
+Charger8,259,2,Charging pile motor abnormal
+Charger8,260,2,Charging pile charging control abnormal
+Charger8,261,2,Charging pile distance perception abnormal
+Charger8,262,2,Charging pile temperature perception abnormal
+Charger8,263,2,Charging pile measuring voltage at the front end
+Charger8,264,2,Charging pile The charging head is not positioned
+Charger8,265,2,Charger execution command timeout
+Charger8,266,2,
+Charger8,267,2,
+Charger8,268,2,
+Charger8,269,2,
+Charger8,270,2,
+Charger8,271,2,
+Charger8,272,2,Charger abnormal
+Charger8,273,2,Charger communication is abnormal
+Charger8,274,2,Abnormal power supply of the charger
+Charger8,275,2,Charger output current
+Charger8,276,2,Charger Non-power transmission process No load power transmission abnormal
+Charger8,277,2,
+Charger8,278,2,
+Charger8,279,2,
+Charger8,280,2,
+Charger8,281,2,
+Charger8,282,2,
+Charger8,283,2,
+Charger8,284,2,
+Charger8,285,2,
+Charger8,286,2,
+Charger8,287,2,
+Charger9,288,2,Charging pile. no abnormalities in receiving and sending out
+Charger9,289,2,Charging pile motor forward inspection abnormal
+Charger9,290,2,Charging pile motor back check abnormal
+Charger9,291,2,Charging pile motor abnormal
+Charger9,292,2,Charging pile charging control abnormal
+Charger9,293,2,Charging pile distance perception abnormal
+Charger9,294,2,Charging pile temperature perception abnormal
+Charger9,295,2,Charging pile measuring voltage at the front end
+Charger9,296,2,Charging pile The charging head is not positioned
+Charger9,297,2,Charger execution command timeout
+Charger9,298,2,
+Charger9,299,2,
+Charger9,300,2,
+Charger9,301,2,
+Charger9,302,2,
+Charger9,303,2,
+Charger9,304,2,Charger abnormal
+Charger9,305,2,Charger communication is abnormal
+Charger9,306,2,Abnormal power supply of the charger
+Charger9,307,2,Charger output current
+Charger9,308,2,Charger Non-power transmission process No load power transmission abnormal
+Charger9,309,2,
+Charger9,310,2,
+Charger9,311,2,
+Charger9,312,2,
+Charger9,313,2,
+Charger9,314,2,
+Charger9,315,2,
+Charger9,316,2,
+Charger9,317,2,
+Charger9,318,2,
+Charger9,319,2,
+Charger10,320,2,Charging pile. no abnormalities in receiving and sending out
+Charger10,321,2,Charging pile motor forward inspection abnormal
+Charger10,322,2,Charging pile motor back check abnormal
+Charger10,323,2,Charging pile motor abnormal
+Charger10,324,2,Charging pile charging control abnormal
+Charger10,325,2,Charging pile distance perception abnormal
+Charger10,326,2,Charging pile temperature perception abnormal
+Charger10,327,2,Charging pile measuring voltage at the front end
+Charger10,328,2,Charging pile The charging head is not positioned
+Charger10,329,2,Charger execution command timeout
+Charger10,330,2,
+Charger10,331,2,
+Charger10,332,2,
+Charger10,333,2,
+Charger10,334,2,
+Charger10,335,2,
+Charger10,336,2,Charger abnormal
+Charger10,337,2,Charger communication is abnormal
+Charger10,338,2,Abnormal power supply of the charger
+Charger10,339,2,Charger output current
+Charger10,340,2,Charger Non-power transmission process No load power transmission abnormal
+Charger10,341,2,
+Charger10,342,2,
+Charger10,343,2,
+Charger10,344,2,
+Charger10,345,2,
+Charger10,346,2,
+Charger10,347,2,
+Charger10,348,2,
+Charger10,349,2,
+Charger10,350,2,
+Charger10,351,2,
