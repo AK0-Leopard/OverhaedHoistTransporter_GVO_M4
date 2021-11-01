@@ -110,7 +110,7 @@ namespace com.mirle.ibg3k0.sc.Service
                 return sendMessage_ID_31_TRANS_REQUEST(vhID, cmdID, ActiveType.Home, "",
                                                 fromAdr: "", destAdr: "",
                                                 loadPort: "", unloadPort: "",
-                                                null,null,null,null);
+                                                null, null, null, null);
             }
             private bool ProcSendTransferCommandToVh(AVEHICLE assignVH, ACMD cmd)
             {
@@ -280,14 +280,6 @@ namespace com.mirle.ibg3k0.sc.Service
                     //    LoadAdr = fromAdr,
                     //    ToAdr = toAdr
                     //};
-                    if (minRouteSec_Vh2From != null)
-                        send_gpp.GuideSectionsStartToLoad.AddRange(minRouteSec_Vh2From);
-                    if (minRouteSec_From2To != null)
-                        send_gpp.GuideSectionsToDestination.AddRange(minRouteSec_From2To);
-                    if (minRouteAdr_Vh2From != null)
-                        send_gpp.GuideAddressStartToLoad.AddRange(minRouteAdr_Vh2From);
-                    if (minRouteAdr_From2To != null)
-                        send_gpp.GuideAddressToDestination.AddRange(minRouteAdr_From2To);
                     SCUtility.RecodeReportInfo(vh.VEHICLE_ID, 0, send_gpp);
                     isSuccess = vh.send_Str31(send_gpp, out receive_gpp, out reason);
                     SCUtility.RecodeReportInfo(vh.VEHICLE_ID, 0, receive_gpp, isSuccess.ToString());
@@ -436,7 +428,7 @@ namespace com.mirle.ibg3k0.sc.Service
                                     vh.OBS_PAUSE != obstacleStat ||
                                     vh.BLOCK_PAUSE != blockingStat ||
                                     vh.CMD_PAUSE != pauseStat ||
-                                    vh.SAFETY_PAUSE != safetyPauseStat||
+                                    vh.SAFETY_PAUSE != safetyPauseStat ||
                                     vh.ERROR != errorStat ||
                                     vh.HAS_CST != has_cst
                                     ;
@@ -714,7 +706,7 @@ namespace com.mirle.ibg3k0.sc.Service
                             completeStatus == CompleteStatus.CmpStatusSystemIn)//20210727 命令正常完成，則直接把車輛移至目的地
                         {
                             string set_address = string.Empty;
-                            if(!string.IsNullOrWhiteSpace(cmd.DESTINATION))
+                            if (!string.IsNullOrWhiteSpace(cmd.DESTINATION))
                             {
                                 set_address = cmd.DESTINATION.Trim();
                             }
@@ -727,7 +719,7 @@ namespace com.mirle.ibg3k0.sc.Service
                     }
 
                     //scApp.VehicleBLL.setAndPublishPositionReportInfo2Redis(vh.VEHICLE_ID, cur_sec_id, cur_adr_id, 0); //20210609 於命令結束時更新OHT位置
-                    
+
                     //scApp.VehicleBLL.setAndPublishPositionReportInfo2Redis(vh.VEHICLE_ID, recive_str);//20210709因為車子結束命令時上報的Current Address不一定式目的地(可能會報在前一個點)所以取消在132更新位置
                     //using (TransactionScope tx = SCUtility.getTransactionScope())
                     //{
@@ -824,7 +816,7 @@ namespace com.mirle.ibg3k0.sc.Service
                         case CompleteStatus.CmpStatusMtlhome:
                             maintainLift = scApp.EqptBLL.OperateCatch.GetMaintainLift();
                             //maintainLift = scApp.EqptBLL.OperateCatch.GetMaintainLiftByMTLHomeAdr(cur_adr_id);
-                            if (maintainLift != null&& maintainLift.MTLCarInSafetyCheck)
+                            if (maintainLift != null && maintainLift.MTLCarInSafetyCheck)
                             {
                                 vh.ACT_STATUS = VHActionStatus.NoCommand;
                                 scApp.VehicleService.doAskVhToSystemInAddress(vh.VEHICLE_ID, maintainLift.MTL_SYSTEM_IN_ADDRESS);
@@ -849,7 +841,7 @@ namespace com.mirle.ibg3k0.sc.Service
                             //maintainLift = scApp.EqptBLL.OperateCatch.GetMaintainLiftByMTLHomeAdr(cur_adr_id);
                             if (maintainLift != null)
                             {
-                                if(SCUtility.isMatche( maintainLift.PreCarOutVhID, vh.VEHICLE_ID))
+                                if (SCUtility.isMatche(maintainLift.PreCarOutVhID, vh.VEHICLE_ID))
                                 {
                                     scApp.MTLService.carOutCancelComplete(maintainLift);
 
@@ -2096,221 +2088,202 @@ namespace com.mirle.ibg3k0.sc.Service
                 return resp_cmp;
             }
             #endregion ID_136 TransferEventReport
-            //#region ID_138 GuideInfoRequest
-            //[ClassAOPAspect]
-            //public void GuideInfoRequest(BCFApplication bcfApp, AVEHICLE vh, ID_138_GUIDE_INFO_REQUEST recive_str, int seq_num)
-            //{
-            //    if (scApp.getEQObjCacheManager().getLine().ServerPreStop)
-            //        return;
+            #region ID_138 GuideInfoRequest
+            [ClassAOPAspect]
+            public void GuideInfoRequest(BCFApplication bcfApp, AVEHICLE vh, ID_138_GUIDE_INFO_REQUEST recive_str, int seq_num)
+            {
+                if (scApp.getEQObjCacheManager().getLine().ServerPreStop)
+                    return;
 
-            //    LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
-            //       seq_num: seq_num,
-            //       Data: recive_str,
-            //       VehicleID: vh.VEHICLE_ID,
-            //       CST_ID_L: vh.CST_ID_L,
-            //       CST_ID_R: vh.CST_ID_R);
-            //    SCUtility.RecodeReportInfo(vh.VEHICLE_ID, seq_num, recive_str);
-            //    var request_from_to_list = recive_str.FromToAdrList;
+                LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
+                   seq_num: seq_num,
+                   Data: recive_str,
+                   VehicleID: vh.VEHICLE_ID,
+                   CarrierID: vh.CST_ID);
+                SCUtility.RecodeReportInfo(vh.VEHICLE_ID, seq_num, recive_str);
+                var request_from_to_list = recive_str.FromToAdrList;
 
-            //    List<GuideInfo> guide_infos = new List<GuideInfo>();
-            //    foreach (FromToAdr from_to_adr in request_from_to_list)
-            //    {
-            //        //var guide_info = scApp.GuideBLL.getGuideInfo(from_to_adr.From, from_to_adr.To);
-            //        var guide_info = CalculationPath(vh, from_to_adr.From, from_to_adr.To);
+                List<GuideInfo> guide_infos = new List<GuideInfo>();
+                foreach (FromToAdr from_to_adr in request_from_to_list)
+                {
+                    //var guide_info = scApp.GuideBLL.getGuideInfo(from_to_adr.From, from_to_adr.To);
+                    var guide_info = CalculationPath(vh, from_to_adr.From, from_to_adr.To);
 
-            //        GuideInfo guide = new GuideInfo();
-            //        guide.FromTo = from_to_adr;
-            //        if (guide_info.isSuccess)
-            //        {
-            //            guide.GuideAddresses.AddRange(guide_info.guideAddressIds);
-            //            guide.GuideSections.AddRange(guide_info.guideSectionIds);
-            //            guide.Distance = (uint)guide_info.totalCost;
-            //        }
-            //        guide_infos.Add(guide);
-            //    }
+                    GuideInfo guide = new GuideInfo();
+                    guide.FromTo = from_to_adr;
+                    if (guide_info.isSuccess)
+                    {
+                        guide.GuideAddresses.AddRange(guide_info.guideAddressIds);
+                        guide.GuideSections.AddRange(guide_info.guideSectionIds);
+                        guide.Distance = (uint)guide_info.totalCost;
+                    }
+                    guide_infos.Add(guide);
+                }
 
-            //    bool is_success = reply_ID_38_TRANS_COMPLETE_RESPONSE(vh, seq_num, guide_infos);
-            //    if (is_success && guide_infos.Count > 0)
-            //    {
-            //        vh.VhAvoidInfo = null;
-            //        var shortest_path = guide_infos.OrderBy(info => info.Distance).First();
-            //        scApp.VehicleBLL.cache.setWillPassSectionInfo(vh.VEHICLE_ID, shortest_path.GuideSections.ToList(), shortest_path.GuideAddresses.ToList());
-            //    }
-            //}
-            //private (bool isSuccess, List<string> guideSegmentIds, List<string> guideSectionIds, List<string> guideAddressIds, int totalCost)
-            //    CalculationPath(AVEHICLE vh, string fromAdr, string toAdr)
-            //{
-            //    bool is_success = false;
-            //    List<string> guide_segment_isd = null;
-            //    List<string> guide_section_isd = null;
-            //    List<string> guide_address_isd = null;
-            //    int total_cost = 0;
+                bool is_success = reply_ID_38_TRANS_COMPLETE_RESPONSE(vh, seq_num, guide_infos);
+                if (is_success && guide_infos.Count > 0)
+                {
+                    vh.VhAvoidInfo = null;
+                    var shortest_path = guide_infos.OrderBy(info => info.Distance).First();
+                    scApp.VehicleBLL.cache.setWillPassSectionInfo(vh.VEHICLE_ID, shortest_path.GuideSections.ToList(), shortest_path.GuideAddresses.ToList());
+                }
+            }
+            private (bool isSuccess, List<string> guideSegmentIds, List<string> guideSectionIds, List<string> guideAddressIds, int totalCost)
+                CalculationPath(AVEHICLE vh, string fromAdr, string toAdr)
+            {
+                bool is_success = false;
+                List<string> guide_segment_isd = null;
+                List<string> guide_section_isd = null;
+                List<string> guide_address_isd = null;
+                int total_cost = 0;
 
-            //    //bool is_after_avoid_complete = vh.VhAvoidInfo != null;
-            //    List<string> by_pass_sections = new List<string>();
-            //    var reserved_section_ids = scApp.ReserveBLL.GetCurrentReserveSectionList(vh.VEHICLE_ID);
-            //    if (reserved_section_ids.Count > 0)
-            //        by_pass_sections.AddRange(reserved_section_ids);
-            //    var vehicle_section_ids = scApp.VehicleBLL.cache.LoadVehicleCurrentSection(vh.VEHICLE_ID);
-            //    if (vehicle_section_ids.Count > 0)
-            //        by_pass_sections.AddRange(vehicle_section_ids);
-            //    (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost) =
-            //        CalculationPathAfterAvoid(vh, fromAdr, toAdr, by_pass_sections);
-            //    //if (is_after_avoid_complete)
-            //    //{
-            //    //    (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost) =
-            //    //        CalculationPathAfterAvoid(vh, fromAdr, toAdr);
-            //    //}
-            //    //else
-            //    //{
-            //    //    (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost) =
-            //    //        scApp.GuideBLL.getGuideInfo(fromAdr, toAdr);
-            //    //}
-            //    return (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost);
-            //}
+                (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost) =
+                    scApp.GuideBLL.getGuideInfo(fromAdr, toAdr);
+                return (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost);
+            }
 
-            //private (bool isSuccess, List<string> guideSegmentIds, List<string> guideSectionIds, List<string> guideAddressIds, int totalCost)
-            //    CalculationPathAfterAvoid(AVEHICLE vh, string fromAdr, string toAdr, List<string> needByPassSecIDs = null)
-            //{
-            //    int current_find_count = 0;
-            //    int max_find_count = 10;
+            private (bool isSuccess, List<string> guideSegmentIds, List<string> guideSectionIds, List<string> guideAddressIds, int totalCost)
+                CalculationPathAfterAvoid(AVEHICLE vh, string fromAdr, string toAdr, List<string> needByPassSecIDs = null)
+            {
+                int current_find_count = 0;
+                int max_find_count = 10;
 
-            //    bool is_success = true;
-            //    List<string> guide_segment_isd = null;
-            //    List<string> guide_section_isd = null;
-            //    List<string> guide_address_isd = null;
-            //    int total_cost = 0;
-            //    bool is_need_check_reserve_status = true;
-            //    List<string> need_by_pass_sec_ids = new List<string>();
-            //    //if (needByPassSecIDs != null)
-            //    //{
-            //    //    need_by_pass_sec_ids.AddRange(needByPassSecIDs);
-            //    //}
-            //    do
-            //    {
-            //        //如果有找到路徑則確認一下段是否可以預約的到
-            //        if (current_find_count != max_find_count) //如果是最後一次的話，就不要在確認預約狀態了。
-            //        {
-            //            (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost)
-            //                = scApp.GuideBLL.getGuideInfo(fromAdr, toAdr, need_by_pass_sec_ids);
-            //            if (is_success)
-            //            {
-            //                //確認下一段Section，是否可以預約成功
-            //                string next_walk_section = "";
-            //                string next_walk_address = "";
-            //                if (guide_section_isd != null && guide_section_isd.Count > 0)
-            //                {
-            //                    next_walk_section = guide_section_isd[0];
-            //                    next_walk_address = guide_address_isd[0];
-            //                }
+                bool is_success = true;
+                List<string> guide_segment_isd = null;
+                List<string> guide_section_isd = null;
+                List<string> guide_address_isd = null;
+                int total_cost = 0;
+                bool is_need_check_reserve_status = true;
+                List<string> need_by_pass_sec_ids = new List<string>();
+                //if (needByPassSecIDs != null)
+                //{
+                //    need_by_pass_sec_ids.AddRange(needByPassSecIDs);
+                //}
+                do
+                {
+                    //如果有找到路徑則確認一下段是否可以預約的到
+                    if (current_find_count != max_find_count) //如果是最後一次的話，就不要在確認預約狀態了。
+                    {
+                        (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost)
+                            = scApp.GuideBLL.getGuideInfo(fromAdr, toAdr, need_by_pass_sec_ids);
+                        if (is_success)
+                        {
+                            //確認下一段Section，是否可以預約成功
+                            string next_walk_section = "";
+                            string next_walk_address = "";
+                            if (guide_section_isd != null && guide_section_isd.Count > 0)
+                            {
+                                next_walk_section = guide_section_isd[0];
+                                next_walk_address = guide_address_isd[0];
+                            }
 
-            //                if (!SCUtility.isEmpty(next_walk_section)) //由於有可能找出來後，是剛好在原地
-            //                {
-            //                    if (is_success)
-            //                    {
-            //                        var reserve_result = scApp.ReserveBLL.askReserveSuccess
-            //                            (scApp.SectionBLL, vh.VEHICLE_ID, next_walk_section, next_walk_address);
-            //                        if (reserve_result.isSuccess)
-            //                        {
-            //                            is_success = true;
-            //                        }
-            //                        else
-            //                        {
-            //                            is_success = false;
-            //                            need_by_pass_sec_ids.Add(next_walk_section);
-            //                            LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
-            //                               Data: $"find the override path ,but section:{next_walk_section} is reserved for vh:{reserve_result.reservedVhID}" +
-            //                                     $"add to need by pass sec ids",
-            //                               VehicleID: vh.VEHICLE_ID);
-            //                        }
+                            if (!SCUtility.isEmpty(next_walk_section)) //由於有可能找出來後，是剛好在原地
+                            {
+                                if (is_success)
+                                {
+                                    var reserve_result = scApp.ReserveBLL.askReserveSuccess
+                                        (scApp.SectionBLL, vh.VEHICLE_ID, next_walk_section, next_walk_address);
+                                    if (reserve_result.isSuccess)
+                                    {
+                                        is_success = true;
+                                    }
+                                    else
+                                    {
+                                        is_success = false;
+                                        need_by_pass_sec_ids.Add(next_walk_section);
+                                        LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
+                                           Data: $"find the override path ,but section:{next_walk_section} is reserved for vh:{reserve_result.reservedVhID}" +
+                                                 $"add to need by pass sec ids",
+                                           VehicleID: vh.VEHICLE_ID);
+                                    }
 
-            //                        //4.在準備送出前，如果是因Avoid完成所下的Over ride，要判斷原本block section是否已經可以預約到了，是才可以下給車子
-            //                        if (is_success && vh.VhAvoidInfo != null && is_need_check_reserve_status)
-            //                        {
-            //                            bool is_pass_before_blocked_section = true;
-            //                            if (guide_section_isd != null)
-            //                            {
-            //                                is_pass_before_blocked_section &= guide_section_isd.Contains(vh.VhAvoidInfo.BlockedSectionID);
-            //                            }
-            //                            if (is_pass_before_blocked_section)
-            //                            {
-            //                                //is_success = false;
-            //                                //string before_block_section_id = vh.VhAvoidInfo.BlockedSectionID;
-            //                                //need_by_pass_sec_ids.Add(before_block_section_id);
+                                    //4.在準備送出前，如果是因Avoid完成所下的Over ride，要判斷原本block section是否已經可以預約到了，是才可以下給車子
+                                    if (is_success && vh.VhAvoidInfo != null && is_need_check_reserve_status)
+                                    {
+                                        bool is_pass_before_blocked_section = true;
+                                        if (guide_section_isd != null)
+                                        {
+                                            is_pass_before_blocked_section &= guide_section_isd.Contains(vh.VhAvoidInfo.BlockedSectionID);
+                                        }
+                                        if (is_pass_before_blocked_section)
+                                        {
+                                            //is_success = false;
+                                            //string before_block_section_id = vh.VhAvoidInfo.BlockedSectionID;
+                                            //need_by_pass_sec_ids.Add(before_block_section_id);
 
-            //                                //如果有則要嘗試去預約，如果等了20秒還是沒有釋放出來則嘗試別條路徑
-            //                                string before_block_section_id = vh.VhAvoidInfo.BlockedSectionID;
-            //                                if (!SpinWait.SpinUntil(() => scApp.ReserveBLL.TryAddReservedSection
-            //                                (vh.VEHICLE_ID, before_block_section_id, isAsk: true).OK, 15000))
-            //                                {
-            //                                    is_success = false;
-            //                                    need_by_pass_sec_ids.Add(before_block_section_id);
-            //                                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
-            //                                       Data: $"wait more than 5 seconds,before block section id:{before_block_section_id} not release, by pass section:{before_block_section_id} find next path.current by pass section:{string.Join(",", need_by_pass_sec_ids)}",
-            //                                       VehicleID: vh.VEHICLE_ID);
-            //                                }
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //            else
-            //            {
-            //                ////如果在找不到路的時候，就把原本By pass的路徑給打開，然後再找一次
-            //                ////該次就不檢查原本預約不到的路是否已經可以過了，即使不能過也再下一次走看看
-            //                if (need_by_pass_sec_ids != null && need_by_pass_sec_ids.Count > 0)
-            //                {
-            //                    is_success = false;
-            //                    need_by_pass_sec_ids.Clear();
-            //                    is_need_check_reserve_status = false;
-            //                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
-            //                       Data: $"find path fail vh:{vh.VEHICLE_ID}, current address:{vh.CUR_ADR_ID} ," +
-            //                       $" by pass section:{string.Join(",", need_by_pass_sec_ids)},clear all by pass section and then continue find override path.",
-            //                       VehicleID: vh.VEHICLE_ID);
+                                            //如果有則要嘗試去預約，如果等了20秒還是沒有釋放出來則嘗試別條路徑
+                                            string before_block_section_id = vh.VhAvoidInfo.BlockedSectionID;
+                                            if (!SpinWait.SpinUntil(() => scApp.ReserveBLL.TryAddReservedSection
+                                            (vh.VEHICLE_ID, before_block_section_id, isAsk: true).OK, 15000))
+                                            {
+                                                is_success = false;
+                                                need_by_pass_sec_ids.Add(before_block_section_id);
+                                                LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
+                                                   Data: $"wait more than 5 seconds,before block section id:{before_block_section_id} not release, by pass section:{before_block_section_id} find next path.current by pass section:{string.Join(",", need_by_pass_sec_ids)}",
+                                                   VehicleID: vh.VEHICLE_ID);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ////如果在找不到路的時候，就把原本By pass的路徑給打開，然後再找一次
+                            ////該次就不檢查原本預約不到的路是否已經可以過了，即使不能過也再下一次走看看
+                            if (need_by_pass_sec_ids != null && need_by_pass_sec_ids.Count > 0)
+                            {
+                                is_success = false;
+                                need_by_pass_sec_ids.Clear();
+                                is_need_check_reserve_status = false;
+                                LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
+                                   Data: $"find path fail vh:{vh.VEHICLE_ID}, current address:{vh.CUR_ADR_ID} ," +
+                                   $" by pass section:{string.Join(",", need_by_pass_sec_ids)},clear all by pass section and then continue find override path.",
+                                   VehicleID: vh.VEHICLE_ID);
 
-            //                }
-            //                else
-            //                {
-            //                    //如果找不到路徑，則就直接跳出搜尋的Loop
-            //                    is_success = false;
-            //                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
-            //                       Data: $"find path fail vh:{vh.VEHICLE_ID}, current address:{vh.CUR_ADR_ID} ," +
-            //                       $" by pass section{string.Join(",", need_by_pass_sec_ids)}",
-            //                       VehicleID: vh.VEHICLE_ID);
-            //                    break;
-            //                }
-            //            }
-            //        }
-            //        else
-            //        {
-            //            (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost)
-            //                = scApp.GuideBLL.getGuideInfo(fromAdr, toAdr);
-            //        }
-            //        LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
-            //           Data: $"find the override path result:{is_success} vh:{vh.VEHICLE_ID} vh current address:{vh.CUR_ADR_ID} ," +
-            //           $". by pass section:{string.Join(",", need_by_pass_sec_ids)}",
-            //           VehicleID: vh.VEHICLE_ID);
+                            }
+                            else
+                            {
+                                //如果找不到路徑，則就直接跳出搜尋的Loop
+                                is_success = false;
+                                LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
+                                   Data: $"find path fail vh:{vh.VEHICLE_ID}, current address:{vh.CUR_ADR_ID} ," +
+                                   $" by pass section{string.Join(",", need_by_pass_sec_ids)}",
+                                   VehicleID: vh.VEHICLE_ID);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost)
+                            = scApp.GuideBLL.getGuideInfo(fromAdr, toAdr);
+                    }
+                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(VehicleService), Device: DEVICE_NAME_OHx,
+                       Data: $"find the override path result:{is_success} vh:{vh.VEHICLE_ID} vh current address:{vh.CUR_ADR_ID} ," +
+                       $". by pass section:{string.Join(",", need_by_pass_sec_ids)}",
+                       VehicleID: vh.VEHICLE_ID);
 
-            //    }
-            //    while (!is_success && current_find_count++ <= max_find_count);
-            //    return (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost);
-            //}
+                }
+                while (!is_success && current_find_count++ <= max_find_count);
+                return (is_success, guide_segment_isd, guide_section_isd, guide_address_isd, total_cost);
+            }
 
-            //private bool reply_ID_38_TRANS_COMPLETE_RESPONSE(AVEHICLE vh, int seq_num, List<GuideInfo> guideInfos)
-            //{
-            //    ID_38_GUIDE_INFO_RESPONSE send_str = new ID_38_GUIDE_INFO_RESPONSE();
-            //    send_str.GuideInfoList.Add(guideInfos);
-            //    WrapperMessage wrapper = new WrapperMessage
-            //    {
-            //        SeqNum = seq_num,
-            //        GuideInfoResp = send_str
-            //    };
-            //    Boolean resp_cmp = vh.sendMessage(wrapper, true);
-            //    SCUtility.RecodeReportInfo(vh.VEHICLE_ID, seq_num, send_str, resp_cmp.ToString());
-            //    return resp_cmp;
-            //}
+            private bool reply_ID_38_TRANS_COMPLETE_RESPONSE(AVEHICLE vh, int seq_num, List<GuideInfo> guideInfos)
+            {
+                ID_38_GUIDE_INFO_RESPONSE send_str = new ID_38_GUIDE_INFO_RESPONSE();
+                send_str.GuideInfoList.Add(guideInfos);
+                WrapperMessage wrapper = new WrapperMessage
+                {
+                    SeqNum = seq_num,
+                    GuideInfoResp = send_str
+                };
+                Boolean resp_cmp = vh.sendMessage(wrapper, true);
+                SCUtility.RecodeReportInfo(vh.VEHICLE_ID, seq_num, send_str, resp_cmp.ToString());
+                return resp_cmp;
+            }
 
-            //#endregion ID_138 GuideInfoRequest
+            #endregion ID_138 GuideInfoRequest
             #region ID_144 StatusReport
             public void ReserveStopTest(string vhID, bool is_reserve_stop)
             {
@@ -4998,136 +4971,136 @@ namespace com.mirle.ibg3k0.sc.Service
         private long vhsyncPoint = 0;
         public void checkThenSetVehiclePauseByVehicleStatus(string caller) //20210706 AT&S客戶要求，當已Install的OHT斷線，需要暫停餘下的OHT
         {
-            VehiclePauserHandlerInfoLogger.Info($"Entry checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], before into lock. Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-            if (System.Threading.Interlocked.Exchange(ref vhsyncPoint, 1) == 0)
-            {
-                lock (pauseCheckLock)
-                {
-                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], Just In lock. Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                    try
-                    {
-                        List<AVEHICLE> vhs = scApp.getEQObjCacheManager().getAllVehicle();
-                        StringBuilder sb = new StringBuilder();
-                        sb.AppendLine("");
-                        bool need_pause = false;
-                        foreach (AVEHICLE vh in vhs)
-                        {
-                            VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], Before Check." +
-                             $" Vehicle ID:[{vh.VEHICLE_ID}] TCP Connection:[{vh.isTcpIpConnect}] Installed:[{vh.IS_INSTALLED}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                            if (vh.isTcpIpConnect == false && vh.IS_INSTALLED)
-                            {
-                                sb.AppendLine($"Installed Vehicle:[{vh.VEHICLE_ID}] is disconneted.");
-                                need_pause = true;
-                            }
+    //        VehiclePauserHandlerInfoLogger.Info($"Entry checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], before into lock. Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //        if (System.Threading.Interlocked.Exchange(ref vhsyncPoint, 1) == 0)
+    //        {
+    //            lock (pauseCheckLock)
+    //            {
+    //                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], Just In lock. Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                try
+    //                {
+    //                    List<AVEHICLE> vhs = scApp.getEQObjCacheManager().getAllVehicle();
+    //                    StringBuilder sb = new StringBuilder();
+    //                    sb.AppendLine("");
+    //                    bool need_pause = false;
+    //                    foreach (AVEHICLE vh in vhs)
+    //                    {
+    //                        VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], Before Check." +
+    //                         $" Vehicle ID:[{vh.VEHICLE_ID}] TCP Connection:[{vh.isTcpIpConnect}] Installed:[{vh.IS_INSTALLED}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                        if (vh.isTcpIpConnect == false && vh.IS_INSTALLED)
+    //                        {
+    //                            sb.AppendLine($"Installed Vehicle:[{vh.VEHICLE_ID}] is disconneted.");
+    //                            need_pause = true;
+    //                        }
 
-                            VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], after Check." +
-                            $" Vehicle ID:[{vh.VEHICLE_ID}] TCP Connection:[{vh.isTcpIpConnect}] Installed:[{vh.IS_INSTALLED}] needPause:[{need_pause}] " +
-                            $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                        }
-
-
-
-                        if (DebugParameter.isForceBypassVehclePauseCheck)
-                        {
-                            if (vhpauseSet)
-                            {
-                                vhpauseSet = false;
-                                bcf.App.BCFApplication.onInfoMsg("Vehicle Connection Status is OK now, resume all vehicle.");
-                                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Force Pass before resume OHT." +
-                                $" needPause:[{need_pause}] " +
-                                $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                //Task.Run(() => scApp.VehicleService.ResumeAllVehicleBySafetyPause());
-
-                                //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
-                                if (vhpauseSet == false && pauseSet == false)
-                                {
-                                    ResumeAllVehicleBySafetyPause();
-                                }
-
-                                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Force Pass after resume OHT." +
-                                $" needPause:[{need_pause}] " +
-                                $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                            }
-                            VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Force Pass ready to leave." +
-                            $" needPause:[{need_pause}] " +
-                            $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                        }
-                        else
-                        {
-                            if (vhpauseSet)
-                            {
-                                if (need_pause)
-                                {
-                                    PauseAllVehicleBySafetyPause();
-                                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process do pause." +
-                                    $" needPause:[{need_pause}] " +
-                                    $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                }
-                                else
-                                {
-                                    vhpauseSet = false;
-                                    bcf.App.BCFApplication.onInfoMsg("Vehicle Connection Status is OK now, resume all vehicle.");
-                                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process before resume OHT." +
-                                    $" needPause:[{need_pause}] " +
-                                    $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                    //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
-                                    if (vhpauseSet == false && pauseSet == false)
-                                    {
-                                        ResumeAllVehicleBySafetyPause();
-                                    }
-                                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process after resume OHT." +
-        $" needPause:[{need_pause}] " +
-        $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                }
-                            }
-                            else
-                            {
-                                if (need_pause)
-                                {
-                                    vhpauseSet = true;
-                                    bcf.App.BCFApplication.onErrorMsg("Vehicle Connection Status is wrong, pause all vehicle!!!" + sb);
-                                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process before Stop OHT." +
-        $" needPause:[{need_pause}] " +
-    $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                    //Task.Run(() => scApp.VehicleService.PauseAllVehicleBySafetyPause());
-                                    PauseAllVehicleBySafetyPause();
-                                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process after Stop OHT." +
-           $" needPause:[{need_pause}] " +
-        $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                }
-                                else
-                                {
-                                    //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
-                                    if (vhpauseSet == false && pauseSet == false)
-                                    {
-                                        ResumeAllVehicleBySafetyPause();
-                                    }
-                                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process do continue." +
-           $" needPause:[{need_pause}] " +
-        $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                    //pauseSet = false;
-                                    //scApp.VehicleService.ResumeAllVehicleBySafetyPause();
-                                }
-                            }
-                        }
+    //                        VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], after Check." +
+    //                        $" Vehicle ID:[{vh.VEHICLE_ID}] TCP Connection:[{vh.isTcpIpConnect}] Installed:[{vh.IS_INSTALLED}] needPause:[{need_pause}] " +
+    //                        $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                    }
 
 
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.Error(ex, "Exception");
-                        VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}],Exception happan. Exception:[{ex.Message}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                    }
-                    finally
-                    {
-                        VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], before leave lock." +
-        $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                        System.Threading.Interlocked.Exchange(ref vhsyncPoint, 0);
-                    }
 
-                    //}
-                }
-            }
+    //                    if (DebugParameter.isForceBypassVehclePauseCheck)
+    //                    {
+    //                        if (vhpauseSet)
+    //                        {
+    //                            vhpauseSet = false;
+    //                            bcf.App.BCFApplication.onInfoMsg("Vehicle Connection Status is OK now, resume all vehicle.");
+    //                            VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Force Pass before resume OHT." +
+    //                            $" needPause:[{need_pause}] " +
+    //                            $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                            //Task.Run(() => scApp.VehicleService.ResumeAllVehicleBySafetyPause());
+
+    //                            //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
+    //                            if (vhpauseSet == false && pauseSet == false)
+    //                            {
+    //                                ResumeAllVehicleBySafetyPause();
+    //                            }
+
+    //                            VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Force Pass after resume OHT." +
+    //                            $" needPause:[{need_pause}] " +
+    //                            $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                        }
+    //                        VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Force Pass ready to leave." +
+    //                        $" needPause:[{need_pause}] " +
+    //                        $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                    }
+    //                    else
+    //                    {
+    //                        if (vhpauseSet)
+    //                        {
+    //                            if (need_pause)
+    //                            {
+    //                                PauseAllVehicleBySafetyPause();
+    //                                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process do pause." +
+    //                                $" needPause:[{need_pause}] " +
+    //                                $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                            }
+    //                            else
+    //                            {
+    //                                vhpauseSet = false;
+    //                                bcf.App.BCFApplication.onInfoMsg("Vehicle Connection Status is OK now, resume all vehicle.");
+    //                                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process before resume OHT." +
+    //                                $" needPause:[{need_pause}] " +
+    //                                $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                                //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
+    //                                if (vhpauseSet == false && pauseSet == false)
+    //                                {
+    //                                    ResumeAllVehicleBySafetyPause();
+    //                                }
+    //                                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process after resume OHT." +
+    //    $" needPause:[{need_pause}] " +
+    //    $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                            }
+    //                        }
+    //                        else
+    //                        {
+    //                            if (need_pause)
+    //                            {
+    //                                vhpauseSet = true;
+    //                                bcf.App.BCFApplication.onErrorMsg("Vehicle Connection Status is wrong, pause all vehicle!!!" + sb);
+    //                                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process before Stop OHT." +
+    //    $" needPause:[{need_pause}] " +
+    //$"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                                //Task.Run(() => scApp.VehicleService.PauseAllVehicleBySafetyPause());
+    //                                PauseAllVehicleBySafetyPause();
+    //                                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process after Stop OHT." +
+    //       $" needPause:[{need_pause}] " +
+    //    $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                            }
+    //                            else
+    //                            {
+    //                                //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
+    //                                if (vhpauseSet == false && pauseSet == false)
+    //                                {
+    //                                    ResumeAllVehicleBySafetyPause();
+    //                                }
+    //                                VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], In Normal process do continue." +
+    //       $" needPause:[{need_pause}] " +
+    //    $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                                //pauseSet = false;
+    //                                //scApp.VehicleService.ResumeAllVehicleBySafetyPause();
+    //                            }
+    //                        }
+    //                    }
+
+
+    //                }
+    //                catch (Exception ex)
+    //                {
+    //                    logger.Error(ex, "Exception");
+    //                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}],Exception happan. Exception:[{ex.Message}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                }
+    //                finally
+    //                {
+    //                    VehiclePauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByVehicleStatus method, caller:[{caller}], before leave lock." +
+    //    $"ForcePass:[{DebugParameter.isForceBypassVehclePauseCheck}] pauseSet:[{vhpauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                    System.Threading.Interlocked.Exchange(ref vhsyncPoint, 0);
+    //                }
+
+    //                //}
+    //            }
+    //        }
         }
 
         #endregion VehiclePauseByVehicleStatus
@@ -5137,165 +5110,165 @@ namespace com.mirle.ibg3k0.sc.Service
         private long syncPoint = 0;
         public void checkThenSetVehiclePauseByMTLStatus(string caller)
         {
-            MTLPauserHandlerInfoLogger.Info($"Entry checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], before into lock. Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-            if (System.Threading.Interlocked.Exchange(ref syncPoint, 1) == 0)
-            {
-                lock (pauseCheckLock)
-                {
+    //        MTLPauserHandlerInfoLogger.Info($"Entry checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], before into lock. Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //        if (System.Threading.Interlocked.Exchange(ref syncPoint, 1) == 0)
+    //        {
+    //            lock (pauseCheckLock)
+    //            {
 
 
-                    //lock (pauseByMTLStatusObj)
-                    //{
-                    MaintainLift MTL = scApp.EqptBLL.OperateCatch.GetMaintainLift();
-                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], Just In lock. Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                    try
-                    {
-                        MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], Before Check." +
-                            $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] Error:[{MTL.StopSignal}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                        StringBuilder sb = new StringBuilder();
-                        bool need_pause = false;
-                        sb.AppendLine("");
-                        if (MTL.Is_Eq_Alive == false)
-                        {
-                            sb.AppendLine($"MTL Alive Index did not change for 10 seconds more. Last Change Time:[{MTL.Eq_Alive_Last_Change_time}]");
-                            need_pause = true;
-                        }
-                        if (MTL.MTLLocation != ProtocolFormat.OHTMessage.MTLLocation.Bottorm)
-                        {
-                            sb.AppendLine($"MTL Location is not Bottom.Current Location:[{MTL.MTLLocation}]");
-                            need_pause = true;
-                        }
+    //                //lock (pauseByMTLStatusObj)
+    //                //{
+    //                MaintainLift MTL = scApp.EqptBLL.OperateCatch.GetMaintainLift();
+    //                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], Just In lock. Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                try
+    //                {
+    //                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], Before Check." +
+    //                        $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] Error:[{MTL.StopSignal}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                    StringBuilder sb = new StringBuilder();
+    //                    bool need_pause = false;
+    //                    sb.AppendLine("");
+    //                    if (MTL.Is_Eq_Alive == false)
+    //                    {
+    //                        sb.AppendLine($"MTL Alive Index did not change for 10 seconds more. Last Change Time:[{MTL.Eq_Alive_Last_Change_time}]");
+    //                        need_pause = true;
+    //                    }
+    //                    if (MTL.MTLLocation != ProtocolFormat.OHTMessage.MTLLocation.Bottorm)
+    //                    {
+    //                        sb.AppendLine($"MTL Location is not Bottom.Current Location:[{MTL.MTLLocation}]");
+    //                        need_pause = true;
+    //                    }
 
-                        if (MTL.MTLRailStatus != ProtocolFormat.OHTMessage.MTLRailStatus.Closed)//20210610
-                        {
-                            sb.AppendLine($"MTL RailStatus is not Closed.Current RailStatus:[{MTL.MTLRailStatus}]");
-                            need_pause = true;
-                        }
-                        //if (MTL.MTxMode != ProtocolFormat.OHTMessage.MTxMode.Auto)// 20210602 客戶要求不要看Manual訊號決定是否暫停全線
-                        //{
-                        //    sb.AppendLine($"MTL Mode is not Auto.Current Mode:[{MTL.MTxMode}]");
-                        //    need_pause = true;
-                        //}
-                        if (MTL.StopSignal)
-                        {
-                            sb.AppendLine($"MTL Error ocurred.");
-                            need_pause = true;
-                        }
-                        //2021.9.7: Hsinyu Chang Add Safety Signal here
-                        if (!MTL.SafetySignal)
-                        {
-                            sb.AppendLine($"MTL safety signal is not ready.");
-                            need_pause = true;
-                        }
-                        MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], after Check." +
-        $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-        $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                    if (MTL.MTLRailStatus != ProtocolFormat.OHTMessage.MTLRailStatus.Closed)//20210610
+    //                    {
+    //                        sb.AppendLine($"MTL RailStatus is not Closed.Current RailStatus:[{MTL.MTLRailStatus}]");
+    //                        need_pause = true;
+    //                    }
+    //                    //if (MTL.MTxMode != ProtocolFormat.OHTMessage.MTxMode.Auto)// 20210602 客戶要求不要看Manual訊號決定是否暫停全線
+    //                    //{
+    //                    //    sb.AppendLine($"MTL Mode is not Auto.Current Mode:[{MTL.MTxMode}]");
+    //                    //    need_pause = true;
+    //                    //}
+    //                    if (MTL.StopSignal)
+    //                    {
+    //                        sb.AppendLine($"MTL Error ocurred.");
+    //                        need_pause = true;
+    //                    }
+    //                    //2021.9.7: Hsinyu Chang Add Safety Signal here
+    //                    if (!MTL.SafetySignal)
+    //                    {
+    //                        sb.AppendLine($"MTL safety signal is not ready.");
+    //                        need_pause = true;
+    //                    }
+    //                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], after Check." +
+    //    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
 
-                        if (DebugParameter.isForceBypassMTLPauseCheck)
-                        {
-                            if (pauseSet)
-                            {
-                                pauseSet = false;
-                                bcf.App.BCFApplication.onInfoMsg("MTL Status is OK now, resume all vehicle.");
-                                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Force Pass before resume OHT." +
-    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
-                                if (vhpauseSet == false && pauseSet == false)
-                                {
-                                    ResumeAllVehicleBySafetyPause();
-                                }
+    //                    if (DebugParameter.isForceBypassMTLPauseCheck)
+    //                    {
+    //                        if (pauseSet)
+    //                        {
+    //                            pauseSet = false;
+    //                            bcf.App.BCFApplication.onInfoMsg("MTL Status is OK now, resume all vehicle.");
+    //                            MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Force Pass before resume OHT." +
+    //$" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //$"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                            //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
+    //                            if (vhpauseSet == false && pauseSet == false)
+    //                            {
+    //                                ResumeAllVehicleBySafetyPause();
+    //                            }
 
-                                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Force Pass after resume OHT." +
-    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                            }
-                            MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Force Pass ready to leave." +
-    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                        }
-                        else
-                        {
-                            if (pauseSet)
-                            {
-                                if (need_pause)
-                                {
-                                    //pauseSet = true;
-                                    //bcf.App.BCFApplication.onErrorMsg("MTL Status is wrong, pause all vehicle!!!" + sb);
-                                    PauseAllVehicleBySafetyPause();
-                                    //Task.Run(() => scApp.VehicleService.PauseAllVehicleBySafetyPause());
-                                    //scApp.VehicleService.PauseAllVehicleBySafetyPause();
-                                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process do pause." +
-    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                }
-                                else
-                                {
-                                    pauseSet = false;
-                                    bcf.App.BCFApplication.onInfoMsg("MTL Status is OK now, resume all vehicle.");
-                                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process before resume OHT." +
-    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                    //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
-                                    if (vhpauseSet == false && pauseSet == false)
-                                    {
-                                        ResumeAllVehicleBySafetyPause();
-                                    }
-                                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process after resume OHT." +
-        $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-        $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                }
-                            }
-                            else
-                            {
-                                if (need_pause)
-                                {
-                                    pauseSet = true;
-                                    bcf.App.BCFApplication.onErrorMsg("MTL Status is wrong, pause all vehicle!!!" + sb);
-                                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process before Stop OHT." +
-    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                    //Task.Run(() => scApp.VehicleService.PauseAllVehicleBySafetyPause());
-                                    PauseAllVehicleBySafetyPause();
-                                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process after Stop OHT." +
-        $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-        $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                }
-                                else
-                                {
-                                    //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
-                                    if (vhpauseSet == false && pauseSet == false)
-                                    {
-                                        ResumeAllVehicleBySafetyPause();
-                                    }
-                                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process do continue." +
-        $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
-        $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                                    //pauseSet = false;
-                                    //scApp.VehicleService.ResumeAllVehicleBySafetyPause();
-                                }
-                            }
-                        }
+    //                            MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Force Pass after resume OHT." +
+    //$" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //$"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                        }
+    //                        MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Force Pass ready to leave." +
+    //$" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //$"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                    }
+    //                    else
+    //                    {
+    //                        if (pauseSet)
+    //                        {
+    //                            if (need_pause)
+    //                            {
+    //                                //pauseSet = true;
+    //                                //bcf.App.BCFApplication.onErrorMsg("MTL Status is wrong, pause all vehicle!!!" + sb);
+    //                                PauseAllVehicleBySafetyPause();
+    //                                //Task.Run(() => scApp.VehicleService.PauseAllVehicleBySafetyPause());
+    //                                //scApp.VehicleService.PauseAllVehicleBySafetyPause();
+    //                                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process do pause." +
+    //$" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //$"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                            }
+    //                            else
+    //                            {
+    //                                pauseSet = false;
+    //                                bcf.App.BCFApplication.onInfoMsg("MTL Status is OK now, resume all vehicle.");
+    //                                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process before resume OHT." +
+    //$" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //$"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                                //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
+    //                                if (vhpauseSet == false && pauseSet == false)
+    //                                {
+    //                                    ResumeAllVehicleBySafetyPause();
+    //                                }
+    //                                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process after resume OHT." +
+    //    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                            }
+    //                        }
+    //                        else
+    //                        {
+    //                            if (need_pause)
+    //                            {
+    //                                pauseSet = true;
+    //                                bcf.App.BCFApplication.onErrorMsg("MTL Status is wrong, pause all vehicle!!!" + sb);
+    //                                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process before Stop OHT." +
+    //$" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //$"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                                //Task.Run(() => scApp.VehicleService.PauseAllVehicleBySafetyPause());
+    //                                PauseAllVehicleBySafetyPause();
+    //                                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process after Stop OHT." +
+    //    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                            }
+    //                            else
+    //                            {
+    //                                //因為Vehicle Connection Status跟MTL Status都會Resume，必須兩邊都沒有要Pause才能Resume。
+    //                                if (vhpauseSet == false && pauseSet == false)
+    //                                {
+    //                                    ResumeAllVehicleBySafetyPause();
+    //                                }
+    //                                MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], In Normal process do continue." +
+    //    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}] needPause:[{need_pause}] " +
+    //    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                                //pauseSet = false;
+    //                                //scApp.VehicleService.ResumeAllVehicleBySafetyPause();
+    //                            }
+    //                        }
+    //                    }
 
 
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.Error(ex, "Exception");
-                        MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}],Exception happan. Exception:[{ex.Message}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                    }
-                    finally
-                    {
-                        MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], before leave lock." +
-        $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}]  " +
-        $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
-                        System.Threading.Interlocked.Exchange(ref syncPoint, 0);
-                    }
+    //                }
+    //                catch (Exception ex)
+    //                {
+    //                    logger.Error(ex, "Exception");
+    //                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}],Exception happan. Exception:[{ex.Message}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                }
+    //                finally
+    //                {
+    //                    MTLPauserHandlerInfoLogger.Info($"In checkThenSetVehiclePauseByMTLStatus method, caller:[{caller}], before leave lock." +
+    //    $" Alive:[{MTL.Is_Eq_Alive}] Mode:[{MTL.MTxMode}] Location:[{MTL.MTLLocation}] RailStatus:[{MTL.MTLRailStatus}] Error:[{MTL.StopSignal}]  " +
+    //    $"ForcePass:[{DebugParameter.isForceBypassMTLPauseCheck}] pauseSet:[{pauseSet}] Current Thread:[{System.Threading.Thread.CurrentThread.ManagedThreadId}]");
+    //                    System.Threading.Interlocked.Exchange(ref syncPoint, 0);
+    //                }
 
-                    //}
-                }
+    //                //}
+    //            }
 
-            }
+    //        }
         }
         #endregion VehiclePauseByMTLStatus
 

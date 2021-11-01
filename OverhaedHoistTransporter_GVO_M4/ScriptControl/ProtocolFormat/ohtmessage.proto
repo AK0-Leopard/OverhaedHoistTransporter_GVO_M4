@@ -77,6 +77,7 @@ message Timestamp {
 	BlockRelease = 21;
 	HIDRelease = 22;
 	BlockHIDRelease = 23;
+	Initial = 31;
   }
 	enum CompleteStatus {
 	CmpStatusMove = 0;
@@ -98,6 +99,9 @@ message Timestamp {
 	CmpStatusIDMisMatch = 23;
 	CmpStatusIDReadFailed = 24;
 	CmpStatusIDReadDuplicate = 25;
+	CmpStatusIDDoubleStorage = 26;
+	CmpStatusIDEmptyRetrival = 27;
+	CmpStatusIDCSTTypeMismatch = 28;
 	CmpStatusInterlockError = 64;
 	CompleteStatus_CommandInitailFail = 96;
 	CompleteStatus_LongTimeInaction = 97;
@@ -344,10 +348,7 @@ message Timestamp {
 	string BOX_ID = 8;
 	string CST_ID = 9;
 	string LOT_ID = 10;
-	repeated string Guide_Sections_StartToLoad = 11;
-	repeated string Guide_Address_StartToLoad = 12;
-	repeated string Guide_Sections_ToDestination = 13;
-	repeated string Guide_Address_ToDestination = 14;
+	uint32 CST_TYPE = 11;
   }
   message ID_131_TRANS_RESPONSE {
   	string Cmd_ID = 1;
@@ -371,6 +372,7 @@ message Timestamp {
 	string CarBoxID = 11;
 	VhLoadCarrierStatus HasCst = 12;
 	string CarCstID = 13;
+	uint32 CST_TYPE = 14;
   }
 
   message ID_32_TRANS_COMPLETE_RESPONSE {
@@ -445,6 +447,17 @@ message Timestamp {
 	BCR_MisMatch = 2;
   }
 
+  message ReserveRange{
+	int32 StartDistance = 1;
+	int32 EndDistance = 2;
+  }
+
+enum TrackDir{
+    TrackDir_None = 0;
+    TrackDir_Straight = 1;
+    TrackDir_Curve = 2;
+  }
+
    message ID_136_TRANS_EVENT_REP {
     EventType EventType = 1;
 	repeated ReserveInfo ReserveInfos = 2;
@@ -461,6 +474,9 @@ message Timestamp {
 	string CurrentSecID = 13;
 	uint32 Sec_Distance = 14;
 	BCRReadResult BCRReadResult =15;
+	uint32 CST_TYPE = 16;
+	uint32 PositionCheckTimes = 17;
+	ReserveRange ReserveSectionDistance = 18;
   }
 
   message ID_36_TRANS_EVENT_RESPONSE {
@@ -473,6 +489,8 @@ message Timestamp {
 	string RenameLOTID = 7;
 	CMDCancelType ReplyActiveType = 8;
 	int32 ReplyCode = 9;				  
+	TrackDir TrackStatus = 10;
+	bool IsAskGuideAgain = 11;
   }
 
   message ID_37_TRANS_CANCEL_REQUEST {
@@ -485,12 +503,26 @@ message Timestamp {
 	int32 ReplyCode = 3;
   }
 
-  message ID_138_TRANS_CANCEL_FAIL_REQUEST {
-  	string Cmd_ID = 1;
-    CMDCancelType ActType = 2;
+
+   message FromToAdr
+   {
+	string From = 1;
+	string To = 2;
+   }
+   message GuideInfo
+   {
+	FromToAdr FromTo = 1;
+	repeated string GuideSections = 2;
+	repeated string GuideAddresses = 3;
+	uint32 Distance = 4;
+   }
+
+   message ID_138_GUIDE_INFO_REQUEST {
+    repeated FromToAdr FromToAdrList = 1;
   }
-  message ID_38_TRANS_CANCEL_FAIL_RESPONSE {
-	int32 ReplyCode = 1;
+
+  message ID_38_GUIDE_INFO_RESPONSE {
+    repeated GuideInfo GuideInfoList = 1;
   }
 
 
@@ -578,6 +610,7 @@ message Timestamp {
 	string CarBoxID = 30;
 	VhLoadCarrierStatus HasCst = 31;
 	string CarCstID = 32;
+	uint32 CST_TYPE = 33;
   }
 
   message ID_144_STATUS_CHANGE_REP {
@@ -615,6 +648,7 @@ message Timestamp {
 	string CarBoxID = 30;
 	VhLoadCarrierStatus HasCst = 31;
 	string CarCstID = 32;
+	uint32 CST_TYPE = 33;
   }
 
   message ID_44_STATUS_CHANGE_RESPONSE {
@@ -692,7 +726,6 @@ message Timestamp {
   message ID_94_ALARM_RESPONSE {
 	int32 ReplyCode = 1;
   }
-
   enum VehicleType 
   {
        VhType_None = 0;
@@ -1175,8 +1208,8 @@ message Timestamp {
         ID_37_TRANS_CANCEL_REQUEST Trans_Cancel_Req = 37;
         ID_137_TRANS_CANCEL_RESPONSE Trans_Cancel_Resp = 137;
 
-        ID_138_TRANS_CANCEL_FAIL_REQUEST Trans_Cancel_Fail_Req = 138;
-        ID_38_TRANS_CANCEL_FAIL_RESPONSE Trans_Cancel_Fail_Resp = 38;
+		ID_138_GUIDE_INFO_REQUEST Guide_Info_Req = 138;
+        ID_38_GUIDE_INFO_RESPONSE Guide_Info_Resp = 38;
 
         ID_39_PAUSE_REQUEST Pause_Req = 39;
         ID_139_PAUSE_RESPONSE Pause_Resp = 139;

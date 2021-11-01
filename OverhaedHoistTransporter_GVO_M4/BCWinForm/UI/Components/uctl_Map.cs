@@ -228,6 +228,14 @@ namespace com.mirle.ibg3k0.bc.winform.UI.Components
                 zoon_Factor = 70;
                 defaultMaxScale = 13;
             }
+            else if(BCFUtility.isMatche(mainForm.BCApp.SCApplication.BC_ID, SCAppConstants.WorkVersion.VERSION_NAME_M4_DEMO_HL))
+            {
+                space_Height_m = 14000;
+                space_Width_m = 40000;
+                zoon_Factor = 100;
+                defaultMaxScale = 10;
+                trackBar_scale.SmallChange = 2;
+            }
             else if (BCFUtility.isMatche(mainForm.BCApp.SCApplication.BC_ID, SCAppConstants.WorkVersion.VERSION_NAME_AT_S_OHTC_302))
             {
                 space_Height_m = 40000; //AT&S 302 地圖大小

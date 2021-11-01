@@ -1,0 +1,13 @@
+OBJECT_ID,RETURN_CODE,DESC
+OHS_NODE,1,區間位址設定異常
+OHS_NODE,2,卡匣有指示異常
+OHS_NODE,3,卡匣無指示異常
+OHS_NODE,4,SEQ命令異常
+OHS_NODE,5,指示傳文2重受信異常
+OHS_NODE,6,急停止不可
+OHS_NODE,7,Section數量為0且與當前位址不符
+OHS_NODE,8,Section數量超過999
+OHS_NODE,9,Section開始位址不等於目前位址
+OHS_NODE,10,Section前後位址不一致
+OHS_NODE,11,命令From位址重覆出現
+OHS_NODE,12,命令To位址重覆出現

@@ -18,7 +18,8 @@ namespace com.mirle.ibg3k0.sc
         public void SetSectionList(BLL.SectionBLL sectionBLL)
         {
             var sections_on_segment = sectionBLL.cache.GetSectionBySegmentID(SEG_ID);
-            Sections = getSectionByOrder(sections_on_segment);
+            //Sections = getSectionByOrder(sections_on_segment);
+            Sections = sections_on_segment;
         }
         public void checkNodeAddressesIsEnhance(List<string> enhanceSubAddresses)
         {

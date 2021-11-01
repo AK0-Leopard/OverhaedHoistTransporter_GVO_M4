@@ -422,6 +422,7 @@ namespace com.mirle.ibg3k0.sc.App
             //public const string VERSION_NAME_AT_S_OHTC = "AT_S_OHTC";
             public const string VERSION_NAME_AT_S_OHTC_301 = "AT_S_OHTC_301";
             public const string VERSION_NAME_AT_S_OHTC_302 = "AT_S_OHTC_302";
+            public const string VERSION_NAME_M4_DEMO_HL = "M4_DEMO_HL";
         }
 
         #endregion current work version

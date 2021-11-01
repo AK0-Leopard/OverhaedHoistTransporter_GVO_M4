@@ -242,12 +242,12 @@ namespace com.mirle.ibg3k0.sc.Data.ValueDefMapAction
             receive_process.TranEventReport(bcfApp, eqpt, recive_str, e.iSeqNum);
         }
 
-        //protected void str138_Receive(object sender, TcpIpEventArgs e)
-        //{
-        //    ID_138_GUIDE_INFO_REQUEST recive_str = (ID_138_GUIDE_INFO_REQUEST)e.objPacket;
-        //    dynamic receive_process = scApp.VehicleService.Receive;
-        //    receive_process.GuideInfoRequest(bcfApp, eqpt, recive_str, e.iSeqNum);
-        //}
+        protected void str138_Receive(object sender, TcpIpEventArgs e)
+        {
+            ID_138_GUIDE_INFO_REQUEST recive_str = (ID_138_GUIDE_INFO_REQUEST)e.objPacket;
+            dynamic receive_process = scApp.VehicleService.Receive;
+            receive_process.GuideInfoRequest(bcfApp, eqpt, recive_str, e.iSeqNum);
+        }
 
         object str144_lockObj = new object();
         protected void str144_Receive(object sender, TcpIpEventArgs e)
@@ -800,7 +800,7 @@ namespace com.mirle.ibg3k0.sc.Data.ValueDefMapAction
             ITcpIpControl.addTcpIpReceivedHandler(bcfApp, tcpipAgentName, WrapperMessage.TranCmpRepFieldNumber.ToString(), str132_Receive);
             ITcpIpControl.addTcpIpReceivedHandler(bcfApp, tcpipAgentName, WrapperMessage.TransEventRepFieldNumber.ToString(), str134_Receive);
             ITcpIpControl.addTcpIpReceivedHandler(bcfApp, tcpipAgentName, WrapperMessage.ImpTransEventRepFieldNumber.ToString(), str136_Receive);
-            //ITcpIpControl.addTcpIpReceivedHandler(bcfApp, tcpipAgentName, WrapperMessage.GuideInfoReqFieldNumber.ToString(), str138_Receive);
+            ITcpIpControl.addTcpIpReceivedHandler(bcfApp, tcpipAgentName, WrapperMessage.GuideInfoReqFieldNumber.ToString(), str138_Receive);
             ITcpIpControl.addTcpIpReceivedHandler(bcfApp, tcpipAgentName, WrapperMessage.StatueChangeRepFieldNumber.ToString(), str144_Receive);
         }
         public override void UnRgisteredProcEvent()
