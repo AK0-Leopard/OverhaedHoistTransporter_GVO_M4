@@ -1217,7 +1217,7 @@ namespace com.mirle.ibg3k0.sc.Common
         }
         public List<APORTSTATION> getALLPortStation()
         {
-            return portStationList;
+            return portStationList.ToList();
         }
         public List<APORTSTATION> getALLEQPortStation()
         {

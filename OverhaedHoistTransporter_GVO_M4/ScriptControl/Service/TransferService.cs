@@ -1357,57 +1357,14 @@ namespace com.mirle.ibg3k0.sc.Service
                                                     tr.CMDTYPE != ATRANSFER.CmdType.PortTypeChange.ToString()).
                                                     ToList();
 
-                        List<VTRANSFER> portTypeChangeCmdData = un_finish_trnasfer.
-                                                    Where(tr => tr.CMDTYPE == ATRANSFER.CmdType.PortTypeChange.ToString()).
-                                                    ToList();
-
-
                         try
                         {
-                            if (!is_trigger_by_vh_cmd_finish)
+
+
+                            foreach (VTRANSFER queue_tran in in_queue_transfer)
                             {
-                                foreach (var v in portTypeChangeCmdData)
-                                {
-                                    #region PLC控制命令
-                                    APORTSTATION portStation = scApp.getEQObjCacheManager().getPortStation(v.HOSTSOURCE);
-                                    if (portStation != null)
-                                    {
-                                        if (portStation.IsAutoMode == false || portStation.IsModeChangeable == false)
-                                        {
-                                            //狀態不正確，不進行PortType轉換
-                                        }
-                                        else
-                                        {
-                                            E_PortType portType = (E_PortType)Enum.Parse(typeof(E_PortType), v.HOSTDESTINATION);
-
-                                            if ((portStation.IsInPutMode && portType == E_PortType.In)
-                                             || (portStation.IsOutPutMode && portType == E_PortType.Out)
-                                               )
-                                            {
-                                                ReportPortType(portStation.PORT_ID, portType, "ScanByVTransfer_v3");
-
-                                                cmdBLL.updateCMD_MCS_TranStatus2Complete(v.ID, CompleteStatus.CmpStatusLoadunload);
-                                                //cmdBLL.moveCMD_MCSToHistory(v.ID);//移往history
-                                            }
-                                            else
-                                            {
-                                                PortTypeChange(portStation.PORT_ID, portType, "ScanByVTransfer_v3");
-                                            }
-                                        }
-                                    }
-                                    //PortPLCInfo portInfo = GetPLC_PortData(v.HOSTSOURCE);
-                                    #endregion
-                                }
-                            }
-
-                            var traget_not_agv_st_in_queue_transfer = in_queue_transfer.Where(tran => !(tran.getTragetPortEQ(scApp.EqptBLL) is IAGVStationType))
-                                                                 .OrderByDescending(tran => tran.PORT_PRIORITY)
-                                                                 .ToList();
-
-                            foreach (VTRANSFER first_waitting_excute_mcs_cmd in traget_not_agv_st_in_queue_transfer)
-                            {
-                                string hostsource = first_waitting_excute_mcs_cmd.HOSTSOURCE;
-                                string hostdest = first_waitting_excute_mcs_cmd.HOSTDESTINATION;
+                                string hostsource = queue_tran.HOSTSOURCE;
+                                string hostdest = queue_tran.HOSTDESTINATION;
                                 string from_adr = string.Empty;
                                 string to_adr = string.Empty;
                                 AVEHICLE bestSuitableVh = null;
@@ -1418,67 +1375,27 @@ namespace com.mirle.ibg3k0.sc.Service
                                 if (source_is_a_port)
                                 {
 
-                                    //需確認是否已經有其他車在搬送同SourcePort的CST，且還沒到Transferring
-                                    scApp.MapBLL.getAddressID(hostsource, out from_adr, out vh_type);
+                                    ////需確認是否已經有其他車在搬送同SourcePort的CST，且還沒到Transferring
+                                    //scApp.MapBLL.getAddressID(hostsource, out from_adr, out vh_type);
 
-                                    //如果觸發是由於車子在命令結束時而進入的且他所在的位置與該命令的source相同，
-                                    //就不用再去檢查是否有車子要來的條件
-                                    //因為就有機會去派給該台車
-                                    if (finishCmdVh != null && SCUtility.isMatche(from_adr, finishCmdVh.CUR_ADR_ID))
-                                    {
-                                        //not thing...
-                                    }
-                                    else
-                                    {
-                                        //如果已經有車子在往這個address移動的話，就先pass該筆命令找車子的動作，
-                                        //等到移動結束時就使他可以找到該台車
-                                        bool has_vh_will_go_source = cmdBLL.cache.hasMoveWillGoAdr(from_adr);
-                                        if (has_vh_will_go_source)
-                                        {
-                                            continue;
-                                        }
-                                    }
-
-                                    //var check_has_some_source_vh_excuting = findOtherSameSourcePortCmdExcuteAndVhCanService(hostsource, excuting_transfer); //AT&S OHTC不檢查有沒有順途搬送
-                                    //if (check_has_some_source_vh_excuting.hasFind)
+                                    ////如果觸發是由於車子在命令結束時而進入的且他所在的位置與該命令的source相同，
+                                    ////就不用再去檢查是否有車子要來的條件
+                                    ////因為就有機會去派給該台車
+                                    //if (finishCmdVh != null && SCUtility.isMatche(from_adr, finishCmdVh.CUR_ADR_ID))
                                     //{
-                                    //    bestSuitableVh = check_has_some_source_vh_excuting.vh;
+                                    //    //not thing...
                                     //}
                                     //else
                                     //{
+                                    //    //如果已經有車子在往這個address移動的話，就先pass該筆命令找車子的動作，
+                                    //    //等到移動結束時就使他可以找到該台車
+                                    //    bool has_vh_will_go_source = cmdBLL.cache.hasMoveWillGoAdr(from_adr);
+                                    //    if (has_vh_will_go_source)
+                                    //    {
+                                    //        continue;
+                                    //    }
+                                    //}
                                     bestSuitableVh = scApp.VehicleBLL.cache.findBestSuitableVhStepByStepFromAdr(scApp.GuideBLL, scApp.CMDBLL, from_adr, vh_type);
-                                    if (bestSuitableVh != null)
-                                    {
-                                        var check_has_orther_vhs_in_block_result = HasOtherVhInTargetBlockOrWillGoTo(bestSuitableVh.VEHICLE_ID, from_adr);
-                                        if (check_has_orther_vhs_in_block_result.hasOtherVh)
-                                        {
-                                            LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(CMDBLL), Device: string.Empty,
-                                                          Data: $"Try find the vh:[{bestSuitableVh.VEHICLE_ID}] to block load cst , but has other vh in this block (Finial).",
-                                                          XID: first_waitting_excute_mcs_cmd.ID);
-                                            List<string> other_in_block_vhs = check_has_orther_vhs_in_block_result.vhs;
-                                            foreach (string vh_id in other_in_block_vhs)
-                                            {
-                                                AVEHICLE in_block_vh = scApp.VehicleBLL.cache.getVehicle(vh_id);
-                                                if (scApp.VehicleBLL.cache.canAssignTransferCmd(scApp.CMDBLL, in_block_vh))
-                                                {
-                                                    bool is_success = AssignTransferCommmand(first_waitting_excute_mcs_cmd,
-                                                                                             in_block_vh);
-                                                    if (is_success)
-                                                    {
-                                                        scApp.VehicleService.Command.Scan();
-                                                        return;
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(CMDBLL), Device: string.Empty,
-                                                                  Data: $"In block vh:[{bestSuitableVh.VEHICLE_ID}] not ready to assign transfer command.",
-                                                                  XID: first_waitting_excute_mcs_cmd.ID);
-                                                }
-                                            }
-                                            continue;
-                                        }
-                                    }
                                     //}
                                 }
                                 else
@@ -1490,7 +1407,7 @@ namespace com.mirle.ibg3k0.sc.Service
                                         bestSuitableVh.ACT_STATUS != VHActionStatus.NoCommand)
                                     {
                                         LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(VehicleService), Device: DEVICE_NAME_AGV,
-                                           Data: $"Has transfer command:{SCUtility.Trim(first_waitting_excute_mcs_cmd.ID, true)} for vh:{bestSuitableVh.VEHICLE_ID}" +
+                                           Data: $"Has transfer command:{SCUtility.Trim(queue_tran.ID, true)} for vh:{bestSuitableVh.VEHICLE_ID}" +
                                                  $"but it error happend or not auto remote or not no command.",
                                            VehicleID: bestSuitableVh.VEHICLE_ID);
                                         continue;
@@ -1501,24 +1418,30 @@ namespace com.mirle.ibg3k0.sc.Service
 
                                 if (bestSuitableVh != null)
                                 {
-                                    bool isSourceOK = false;
-                                    bool isDestOK = false;
-                                    if (AreSourceEnable(first_waitting_excute_mcs_cmd.HOSTSOURCE))
+                                    if (AssignTransferCommmand(queue_tran, bestSuitableVh))
                                     {
-                                        isSourceOK = true;
+                                        scApp.VehicleService.Command.Scan();
+                                        return;
                                     }
-                                    if (AreDestEnable(first_waitting_excute_mcs_cmd.HOSTSOURCE, first_waitting_excute_mcs_cmd.HOSTDESTINATION))
-                                    {
-                                        isDestOK = true;
-                                    }
-                                    if (isSourceOK && isDestOK)
-                                    {
-                                        if (AssignTransferCommmand(first_waitting_excute_mcs_cmd, bestSuitableVh))
-                                        {
-                                            scApp.VehicleService.Command.Scan();
-                                            return;
-                                        }
-                                    }
+
+                                    //bool isSourceOK = false;
+                                    //bool isDestOK = false;
+                                    //if (AreSourceEnable(queue_tran.HOSTSOURCE))
+                                    //{
+                                    //    isSourceOK = true;
+                                    //}
+                                    //if (AreDestEnable(queue_tran.HOSTSOURCE, queue_tran.HOSTDESTINATION))
+                                    //{
+                                    //    isDestOK = true;
+                                    //}
+                                    //if (isSourceOK && isDestOK)
+                                    //{
+                                    //    if (AssignTransferCommmand(queue_tran, bestSuitableVh))
+                                    //    {
+                                    //        scApp.VehicleService.Command.Scan();
+                                    //        return;
+                                    //    }
+                                    //}
 
                                 }
                             }
@@ -1526,71 +1449,6 @@ namespace com.mirle.ibg3k0.sc.Service
                         catch (Exception ex)
                         {
                             logger.Error(ex, "Exception");
-                        }
-                        //1.確認是否有要回AGV Station的命令
-                        //2.有的話要確認一下，是否已有預約成功
-                        //3.預約成功後則看該Station是否已經可以讓AGV執行Double Unload。
-                        //4.確認是否有車子已經準備服務或正在過去
-                        //3-1.有，
-                        //3-2.無，則直接下達Move指令先移過去等待
-                        var check_result = checkAndFindReserveSuccessUnloadToAGVStationTransfer(un_finish_trnasfer);
-                        if (check_result.isFind)
-                        {
-                            foreach (var tran_group_by_agvstation in check_result.tranGroupsByAGVStation)
-                            {
-                                AGVStation reserving_unload_agv_station = tran_group_by_agvstation.Key;
-                                LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(VehicleService), Device: DEVICE_NAME_AGV,
-                                   Data: $"agv station:{reserving_unload_agv_station.getAGVStationID()},is reserve success .check can start first assign this group...");
-                                List<VTRANSFER> transfer_group = tran_group_by_agvstation.ToList();
-
-                                List<VTRANSFER> tran_excuting_in_group = transfer_group.
-                                                                Where(tran => tran.TRANSFERSTATE > E_TRAN_STATUS.Queue).
-                                                                ToList();
-                                List<VTRANSFER> tran_queue_in_group = transfer_group.
-                                                              Where(tran => tran.TRANSFERSTATE == E_TRAN_STATUS.Queue).
-                                                              OrderBy(tran => tran.CARRIER_INSER_TIME).
-                                                              ToList();
-
-
-                                var try_find_carrier_on_vh_result = tryFindAssignOnVhCarrier(tran_queue_in_group);
-                                if (try_find_carrier_on_vh_result.hasFind)
-                                {
-                                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(VehicleService), Device: DEVICE_NAME_AGV,
-                                       Data: $"find has carrier of vh:{try_find_carrier_on_vh_result.hasCarrierOfVh.VEHICLE_ID}, start assign command to vh");
-
-                                    bool is_success = AssignTransferCommmand(try_find_carrier_on_vh_result.tran,
-                                                                             try_find_carrier_on_vh_result.hasCarrierOfVh);
-                                    if (is_success)
-                                        return;
-                                }
-
-                                //如果該Group已經有準備被執行/執行中的命令時，則代表該AGV Station已經有到vh去服務了，
-                                //而等待被執行/執行中只有一筆且那一筆已經是Initial的時候(代表已經成功下給車子)
-                                //就可以再以這一筆當出發點找出它鄰近的一筆再下給車子
-                                if (tran_excuting_in_group.Count > 0)
-                                {
-                                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(VehicleService), Device: DEVICE_NAME_AGV,
-                                       Data: $"agv station:{reserving_unload_agv_station.getAGVStationID()} has cmd excute. can't start first assign");
-
-                                }
-                                else
-                                {
-                                    //var find_result = FindNearestVhAndCommand(tran_queue_in_group);
-                                    (bool isFind, AVEHICLE nearestVh, VTRANSFER nearestTransfer) find_result =
-                                        default((bool isFind, AVEHICLE nearestVh, VTRANSFER nearestTransfer));
-
-                                    find_result = FindVhAndCommand(tran_queue_in_group);
-
-                                    if (find_result.isFind)
-                                    {
-                                        bool is_success = AssignTransferCommmand(find_result.nearestTransfer,
-                                                                                 find_result.nearestVh);
-                                        if (is_success)
-                                            return;
-                                        //continue;
-                                    }
-                                }
-                            }
                         }
                     }
                 }

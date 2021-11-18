@@ -947,7 +947,7 @@ namespace com.mirle.ibg3k0.sc.BLL
                     return check_result.IsSuccess;
                 }
 
-                if (vh.ACT_STATUS  != VHActionStatus.NoCommand)
+                if (vh.ACT_STATUS != VHActionStatus.NoCommand)
                 {
                     check_result.Result.AppendLine($" vh:{vh_id} action status is not NoCommnad, ACT_STATUS:{vh.ACT_STATUS}");
                     check_result.Result.AppendLine($" please wait vehicle command status.");
@@ -1179,7 +1179,7 @@ namespace com.mirle.ibg3k0.sc.BLL
                 _source = source;
             }
 
-            if(cmd_type == E_CMD_TYPE.Move)//20210421 mark趕車需求要記錄命令起點為何
+            if (cmd_type == E_CMD_TYPE.Move)//20210421 mark趕車需求要記錄命令起點為何
             {
                 _source = source;
             }
