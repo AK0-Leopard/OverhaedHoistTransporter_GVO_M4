@@ -120,6 +120,23 @@ namespace com.mirle.ibg3k0.sc.Data.DAO
             }
             return rtnList;
         }
+        public List<string> loadHIDDetailSegmentIDByEntrySectionID(DBConnection_EF conn, string entrySecID)
+        {
+            List<string> rtnList = null;
+            try
+            {
+                var query = from detail in conn.AHIDZONEDETAIL
+                            where detail.ENTRY_SEC_ID.Trim() == entrySecID.Trim()
+                            select detail.SEC_ID.Trim();
+                rtnList = query.ToList();
+            }
+            catch (Exception ex)
+            {
+                logger.Warn(ex);
+                throw;
+            }
+            return rtnList;
+        }
 
     }
 }

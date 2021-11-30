@@ -151,11 +151,11 @@ namespace com.mirle.ibg3k0.bc.winform.UI
             agvPortStation = bcApp.SCApplication.PortStationBLL.OperateCatch.loadAllPortStation();
             dgv_cache_object_data_portstation.DataSource = agvPortStation;
             //cmb_mcsReportTestPortID.DataSource = agvPortStation;
-            foreach(APORTSTATION p in agvPortStation)
+            foreach (APORTSTATION p in agvPortStation)
             {
                 cmb_mcsReportTestPortID.Items.Add(p.PORT_ID.Trim());
             }
-            
+
             agvStations = bcApp.SCApplication.EqptBLL.OperateCatch.loadAllAGVStation();
             dgv_AGVStationInfo.DataSource = agvStations;
             string[] agv_station_ids = agvStations.Select(station => station.EQPT_ID).ToArray();
@@ -178,7 +178,7 @@ namespace com.mirle.ibg3k0.bc.winform.UI
             }
             initChargerValue();
             registerEvent();
-            foreach(var  v in agvPortStation)
+            foreach (var v in agvPortStation)
             {
                 cb_PortID.Items.Add(v.PORT_ID);
             }
@@ -745,12 +745,12 @@ namespace com.mirle.ibg3k0.bc.winform.UI
         private void btn_portInServeice_Click(object sender, EventArgs e)
         {
             string port_id = cb_PortID.Text;
-            if(!string.IsNullOrWhiteSpace(port_id))
+            if (!string.IsNullOrWhiteSpace(port_id))
             {
                 Task.Run(() =>
                 {
                     portInServeice(port_id);
-            });
+                });
             }
 
         }
@@ -760,7 +760,7 @@ namespace com.mirle.ibg3k0.bc.winform.UI
             if (aPORTSTATION != null)
             {
                 if (aPORTSTATION.PORT_SERVICE_STATUS == sc.ProtocolFormat.OHTMessage.PortStationServiceStatus.InService) return;
-                bool result =  bcApp.SCApplication.PortStationBLL.OperateDB.updateServiceStatus(port_id, sc.ProtocolFormat.OHTMessage.PortStationServiceStatus.InService);
+                bool result = bcApp.SCApplication.PortStationBLL.OperateDB.updateServiceStatus(port_id, sc.ProtocolFormat.OHTMessage.PortStationServiceStatus.InService);
                 if (result)
                 {
                     bcApp.SCApplication.PortStationBLL.OperateCatch.updateServiceStatus(port_id, sc.ProtocolFormat.OHTMessage.PortStationServiceStatus.InService);
@@ -928,7 +928,7 @@ namespace com.mirle.ibg3k0.bc.winform.UI
                         ReserveSectionID = sec_id_2,
                         DriveDirction = driveDirction
                     });
-                bcApp.SCApplication.ReserveBLL.IsReserveSuccessTest(noticeCar.VEHICLE_ID, reserves);
+                bcApp.SCApplication.ReserveBLL.IsMultiReserveSuccess(bcApp.SCApplication, noticeCar.VEHICLE_ID, reserves);
             });
 
         }
@@ -1531,7 +1531,7 @@ namespace com.mirle.ibg3k0.bc.winform.UI
         {
             await Task.Run(() =>
             {
-                bcApp.SCApplication.LineService.ProcessAlarmReport("","AGVC", "0", sc.ProtocolFormat.OHTMessage.ErrorStatus.ErrReset,
+                bcApp.SCApplication.LineService.ProcessAlarmReport("", "AGVC", "0", sc.ProtocolFormat.OHTMessage.ErrorStatus.ErrReset,
                             $"");
             });
         }
@@ -1764,8 +1764,8 @@ namespace com.mirle.ibg3k0.bc.winform.UI
             ACARRIER cst = new ACARRIER();
             cst.ID = cst_id;
             cst.LOCATION = noticeCar.Real_ID;
-            cst.CSTType ="0";
-            cst.LOT_ID ="LOT01";
+            cst.CSTType = "0";
+            cst.LOT_ID = "LOT01";
             Task.Run(() => bcApp.SCApplication.ReportBLL.ReportCarrierInstallCompleted(cst, null));
 
         }
@@ -1807,17 +1807,17 @@ namespace com.mirle.ibg3k0.bc.winform.UI
             //if (eqpt != null)
             //{
             //    MaintainLift MTL = eqpt as MaintainLift;
-                if (MTL != null)
-                {
-                    MTL.addEventHandler("MTLhandler", BCFUtility.getPropertyName(() => MTL.Eq_Alive_Index),
-                    (s1, e1) => refreshMTLInfo());
-                    MTL.addEventHandler("MTLhandler", BCFUtility.getPropertyName(() => MTL.MTxMode),
-                    (s1, e1) => refreshMTLInfo());
-                    MTL.addEventHandler("MTLhandler", BCFUtility.getPropertyName(() => MTL.StopSignal),
-                    (s1, e1) => refreshMTLInfo());
-                    MTL.addEventHandler("MTLhandler", BCFUtility.getPropertyName(() => MTL.MTLLocation),
-                    (s1, e1) => refreshMTLInfo());
-                }
+            if (MTL != null)
+            {
+                MTL.addEventHandler("MTLhandler", BCFUtility.getPropertyName(() => MTL.Eq_Alive_Index),
+                (s1, e1) => refreshMTLInfo());
+                MTL.addEventHandler("MTLhandler", BCFUtility.getPropertyName(() => MTL.MTxMode),
+                (s1, e1) => refreshMTLInfo());
+                MTL.addEventHandler("MTLhandler", BCFUtility.getPropertyName(() => MTL.StopSignal),
+                (s1, e1) => refreshMTLInfo());
+                MTL.addEventHandler("MTLhandler", BCFUtility.getPropertyName(() => MTL.MTLLocation),
+                (s1, e1) => refreshMTLInfo());
+            }
             //}
         }
 

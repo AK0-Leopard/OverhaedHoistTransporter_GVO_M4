@@ -404,6 +404,7 @@ namespace com.mirle.ibg3k0.sc.Common
                         }
                         unitList.AddRange(unit_lsit_temp);
                         AEQPT eqTemp = getEquipmentInitialObj(eqptType);
+
                         eqTemp.EQPT_ID = eqpt_id;
                         eqTemp.CIM_MODE = "";
                         eqTemp.OPER_MODE = "";
@@ -420,9 +421,14 @@ namespace com.mirle.ibg3k0.sc.Common
                         eqTemp.Type = eqptType;
                         eqTemp.proc_Formaat = procDataFormat;
                         eqTemp.recipe_Parameter_Format = recipeParameterFormat;
-                        if(eqTemp is MaintainLift)
+                        if (eqTemp is MaintainLift)
                         {
                             (eqTemp as MaintainLift).setMTLInfo();
+                        }
+                        else if (eqTemp is HID)
+                        {
+                            var segments = getHIDRelatedSegments(eqpt_id);
+                            (eqTemp as HID).setSegments(segments);
                         }
                         //AEQPT eqTemp = new AEQPT()
                         //{
@@ -532,6 +538,16 @@ namespace com.mirle.ibg3k0.sc.Common
                 }
             }
         }
+        private List<string> getHIDRelatedSegments(string hidID)
+        {
+            var setting = scApp.HIDBLL.loadAllHIDDetailSegmentIDs(hidID);
+            if (setting == null)
+            {
+                return new List<string>();
+            }
+            return setting;
+        }
+
 
         private AEQPT getEquipmentInitialObj(SCAppConstants.EqptType eqptType)
         {
@@ -541,6 +557,8 @@ namespace com.mirle.ibg3k0.sc.Common
                     return new AGVStation();
                 case SCAppConstants.EqptType.MTL:
                     return new MaintainLift();
+                case SCAppConstants.EqptType.HID:
+                    return new HID();
                 default:
                     return new AEQPT();
             }

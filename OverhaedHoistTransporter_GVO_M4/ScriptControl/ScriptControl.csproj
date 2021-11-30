@@ -442,6 +442,7 @@
     <Compile Include="BCSTAT.cs">
       <DependentUpon>OHTCContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="BLL\EquipmentBLL.cs" />
     <Compile Include="BLL\ZoneDefBLL.cs" />
     <Compile Include="BLL\ShelfDefBLL.cs" />
     <Compile Include="BLL\CarrierBLL.cs" />
@@ -555,6 +556,8 @@
     <Compile Include="Data\ValueDefMapAction\PortValueDefMapAction.cs" />
     <Compile Include="Data\ValueDefMapAction\PLCSystemInfoMapAction.cs" />
     <Compile Include="Data\ValueDefMapAction\MCSDefaultMapAction.cs" />
+    <Compile Include="Data\VO\HID.cs" />
+    <Compile Include="Data\VO\PartialVo\AHIDZONEMASTER.cs" />
     <Compile Include="Data\VO\UserOperationLog.cs" />
     <Compile Include="Data\VO\MaintainLift.cs" />
     <Compile Include="Data\VO\E_PortType.cs" />

@@ -441,10 +441,10 @@ namespace com.mirle.ibg3k0.sc.BLL
                                         }
                                     }
                                 }
-                                else 
+                                else
                                 {
                                     ASECTION pre_sec = scApp.SectionBLL.cache.GetSectionsByToAddress(vh.CUR_ADR_ID).FirstOrDefault();
-                                    if(pre_sec!=null&&SCUtility.isMatche( pre_sec.SEC_ID , reserve_section_id))//代表是前一段的section，直接給
+                                    if (pre_sec != null && SCUtility.isMatche(pre_sec.SEC_ID, reserve_section_id))//代表是前一段的section，直接給
                                     {
                                         except = true;
                                         LogHelper.Log(logger: logger, LogLevel: LogLevel.Info, Class: nameof(ReserveBLL), Device: "AGV",
@@ -460,8 +460,17 @@ namespace com.mirle.ibg3k0.sc.BLL
 
 
 
-                    if (result.OK|| except)
+
+                    if (result.OK || except)
                     {
+                        bool check_hid_is_enough = tryCheckHIDBlockIsEnough(scApp, vh, reserve_section_id);
+                        if (!check_hid_is_enough)
+                        {
+                            has_success |= false;
+                            final_blocked_vh_id = "";
+                            reserve_fail_section = reserve_section_id;
+                            break;
+                        }
                         reserve_success_section.Add(reserve_info);
                         has_success |= true;
                     }
@@ -474,7 +483,6 @@ namespace com.mirle.ibg3k0.sc.BLL
                     }
                     isFirst = false;
                 }
-
                 return (has_success, final_blocked_vh_id, reserve_fail_section, reserve_success_section);
             }
             catch (Exception ex)
@@ -485,6 +493,22 @@ namespace com.mirle.ibg3k0.sc.BLL
                 return (false, string.Empty, string.Empty, null);
             }
         }
+
+        private bool tryCheckHIDBlockIsEnough(SCApplication scApp, AVEHICLE vh, string entrySection)
+        {
+            var try_get_result = scApp.HIDBLL.cache.tryGetHIDZoneMaster(entrySection);
+            if (!try_get_result.isExist)
+            {
+                return true;
+            }
+            var check_enough_result = try_get_result.hid_zone_master.IsEnough(scApp.EquipmentBLL, scApp.VehicleBLL);
+            LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(ReserveBLL), Device: "AGV",
+               Data: $"vh:{vh.VEHICLE_ID} try ask entry hid:{entrySection}, is enough:{check_enough_result.isEnough} current vh count:{check_enough_result.currentVhCount} max load vh:{try_get_result.hid_zone_master.MAX_LOAD_COUNT}",
+               VehicleID: vh.VEHICLE_ID,
+               CarrierID: vh.CST_ID);
+            return check_enough_result.isEnough;
+        }
+
 
         private (bool isSuccess, string reservedVhID) IsReserveBlockSuccess(SCApplication scApp, string vhID, string reserveSectionID)
         {

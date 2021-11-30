@@ -719,7 +719,8 @@ namespace com.mirle.ibg3k0.sc.App
             NTB = 2,
             Equipment = 3,
             IOPort = 4,
-            MTL = 5
+            MTL = 5,
+            HID = 6
         }
         #endregion Eqpt Type
 

@@ -352,6 +352,7 @@ namespace com.mirle.ibg3k0.sc.App
         public GroupPortStationBLL GroupPortStationBLL { get; private set; } = null;
         public ZoneDefBLL ZoneDefBLL { get; private set; } = null;
         public ShelfDefBLL ShelfDefBLL { get; private set; } = null;
+        public EquipmentBLL EquipmentBLL { get; private set; } = null;
         //Module
         private AvoidVehicleModule avoidVehicleModule = null;
         public AvoidVehicleModule AvoidVehicleModule { get { return avoidVehicleModule; } }
@@ -1044,7 +1045,7 @@ namespace com.mirle.ibg3k0.sc.App
             PortStationBLL = new PortStationBLL();
             TrafficControlBLL = new TrafficControlBLL();
             UnitBLL = new UnitBLL();
-            ReserveBLL = is_include_reserve_module ? 
+            ReserveBLL = is_include_reserve_module ?
                          new ReserveBLL() as IReserveBLL : new ReserveBLLEmpty() as IReserveBLL;
             CarrierBLL = new CarrierBLL();
             EqptBLL = new EqptBLL();
@@ -1052,6 +1053,7 @@ namespace com.mirle.ibg3k0.sc.App
             GroupPortStationBLL = new GroupPortStationBLL();
             ZoneDefBLL = new ZoneDefBLL();
             ShelfDefBLL = new ShelfDefBLL();
+            EquipmentBLL = new EquipmentBLL();
         }
 
         public void initServer()
@@ -1107,6 +1109,7 @@ namespace com.mirle.ibg3k0.sc.App
             GroupPortStationBLL.start(this);
             ZoneDefBLL.start(this);
             ShelfDefBLL.start(this);
+            EquipmentBLL.start(this);
         }
 
         private void startService()
@@ -1692,7 +1695,7 @@ namespace com.mirle.ibg3k0.sc.App
 
         public static int TransferCommandQueueTimeOut_mSec = 600000;
         public static double PassAxisDistance = 250;
-        
+
         public static int AllowVhIdleTime_ms = 300000;
 
 
@@ -1841,7 +1844,7 @@ namespace com.mirle.ibg3k0.sc.App
         public static Boolean isForcedRejectBlockControl = false;
         public static Boolean isTestCarrierInterfaceError = false;
         public static Boolean isReportEQPortCarrierRemove = false; //20210510 改為預設False
-        public static Boolean isForceBypassMTLPauseCheck= false;
+        public static Boolean isForceBypassMTLPauseCheck = false;
         public static Boolean isForceBypassVehclePauseCheck = false;
 
         //public static Boolean isForcedPassReserve = false;

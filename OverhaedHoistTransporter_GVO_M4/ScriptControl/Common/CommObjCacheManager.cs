@@ -52,7 +52,8 @@ namespace com.mirle.ibg3k0.sc.Common
         private List<PORT_INFO> PortInfos;
         private List<string> EnhanceSubAddresses = new List<string>();
         private CommonInfo CommonInfo;
-        //
+        private List<AHIDZONEMASTER> HIDZoneMasters;
+
 
 
         private CommObjCacheManager() { }
@@ -84,6 +85,7 @@ namespace com.mirle.ibg3k0.sc.Common
 
             ReserveEnhanceInfosSections = scApp.ReserveEnhanceInfoDao.getReserveEnhanceInfoSections(scApp);
             TrafficControlInfos = scApp.TrafficControlInfoDao.getTrafficControlInfos(scApp);
+            HIDZoneMasters = scApp.HIDBLL.loadAllHidZoneMaster();
 
             for (int i = 0; i < Addresses.Count; i++)
             {
@@ -324,6 +326,10 @@ namespace com.mirle.ibg3k0.sc.Common
         }
 
         #endregion
+        public List<AHIDZONEMASTER> getHIDMasterZone()
+        {
+            return HIDZoneMasters;
+        }
 
 
         private void setValueToPropety<T>(ref T sourceObj, ref T destinationObj)

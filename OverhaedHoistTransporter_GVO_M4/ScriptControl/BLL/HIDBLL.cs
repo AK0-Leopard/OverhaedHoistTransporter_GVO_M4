@@ -15,6 +15,10 @@ namespace com.mirle.ibg3k0.sc.BLL
         HIDZoneQueueDao HIDQueueDao = null;
         RedisCacheManager RedisCacheManager = null;
         Dictionary<string, int> AHIDZONEMASTERs = null;
+
+        public Cache cache { get; private set; }
+
+
         private SCApplication scApp = null;
         public HIDBLL()
         {
@@ -28,6 +32,7 @@ namespace com.mirle.ibg3k0.sc.BLL
             HIDQueueDao = scApp.HIDZoneQueueDao;
             RedisCacheManager = scApp.getRedisCacheManager();
             AHIDZONEMASTERs = loadAllHIDZoneMAXLoadCount();
+            cache = new Cache(scApp.getCommObjCacheManager());
         }
 
         public Dictionary<string, int> loadAllHIDZoneMAXLoadCount()
@@ -153,6 +158,27 @@ namespace com.mirle.ibg3k0.sc.BLL
                 }
             }
         }
+        public List<AHIDZONEMASTER> loadAllHidZoneMaster()
+        {
+            List<AHIDZONEMASTER> hid_zone_masters = null;
+            using (DBConnection_EF con = DBConnection_EF.GetUContext())
+            {
+                hid_zone_masters = HIDMasterDao.loadAllHIDZoneMaster(con);
+            }
+            return hid_zone_masters;
+        }
+
+        #region Detail
+        public List<string> loadAllHIDDetailSegmentIDs(string hidID)
+        {
+            List<string> segment_ids = null;
+            using (DBConnection_EF con = DBConnection_EF.GetUContext())
+            {
+                segment_ids = HIDDetailDao.loadHIDDetailSegmentIDByEntrySectionID(con, hidID);
+            }
+            return segment_ids;
+        }
+        #endregion Detail
 
         #endregion Queue
 
@@ -183,6 +209,21 @@ namespace com.mirle.ibg3k0.sc.BLL
         {
             string check_hid_zone_key = string.Format(REDIS_BLOCK_CONTROL_KEY_VHID, hid_zone_id);
             RedisCacheManager.StringDecrementAsync(check_hid_zone_key);
+        }
+
+        public class Cache
+        {
+            CommObjCacheManager commObjCache;
+            public Cache(CommObjCacheManager _commObjCache)
+            {
+                commObjCache = _commObjCache;
+            }
+            public (bool isExist, AHIDZONEMASTER hid_zone_master) tryGetHIDZoneMaster(string entrySection)
+            {
+                var hid_zone_masters = commObjCache.getHIDMasterZone();
+                var hid_zone_master = hid_zone_masters.Where(hid => SCUtility.isMatche(hid.ENTRY_SEC_ID, entrySection)).FirstOrDefault();
+                return (hid_zone_master != null, hid_zone_master);
+            }
         }
 
     }
