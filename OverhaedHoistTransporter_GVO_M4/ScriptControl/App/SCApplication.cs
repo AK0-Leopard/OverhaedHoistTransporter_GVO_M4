@@ -78,6 +78,7 @@ namespace com.mirle.ibg3k0.sc.App
         private CommObjCacheManager commObjCacheManager;
         private RedisCacheManager redisCacheManager;
         private NatsManager natsManager;
+        private string natsPort;
         //private Mirle.Hlts.ReserveSection.Map.MapAPI _reserveSectionAPI { get; set; }
         //private Mirle.Hlts.ReserveSection.Map.ViewModels.HltMapViewModel reserveSectionAPI { get; set; }
 
@@ -454,11 +455,11 @@ namespace com.mirle.ibg3k0.sc.App
         }
 
 
-        private string[] ForceBanSections = new string[]
-        {
-            "20212",
-            "31101"
-        };
+        //private string[] ForceBanSections = new string[]
+        //{
+        //    "20212",
+        //    "31101"
+        //};
         private void init()
         {
             //mqttControl = new MQTTControl();
@@ -504,7 +505,7 @@ namespace com.mirle.ibg3k0.sc.App
             commObjCacheManager = CommObjCacheManager.getInstance();
             redisCacheManager = new RedisCacheManager(this, BC_ID);
             natsManager = new NatsManager(BC_ID, "nats-cluster", SCApplication.ServerName);
-
+            natsPort = getString("NATSPort", "3280");
 
             dataCollectionCss = (DataCollectionConfigSections)ConfigurationManager.GetSection(SCAppConstants.CONFIG_DATA_COLLECTION_SETTING);
             webClientManager = WebClientManager.getInstance();
@@ -552,10 +553,10 @@ namespace com.mirle.ibg3k0.sc.App
                                                                     //因此先將Segment作為Sectiong使用
                 }
             }
-            foreach (string ban_sec in ForceBanSections)
-            {
-                NewRouteGuide.banRouteTwoDirect(ban_sec);
-            }
+            //foreach (string ban_sec in ForceBanSections)
+            //{
+            //    NewRouteGuide.banRouteTwoDirect(ban_sec);
+            //}
 
             //            startBLL();
 
@@ -632,9 +633,10 @@ namespace com.mirle.ibg3k0.sc.App
             {
                 UrlReservations = new UrlReservations() { CreateAutomatically = true }
             };
-            NancyHost = new NancyHost(new Uri("http://localhost:3280"), new DefaultNancyBootstrapper(), hostConfigs);
-            //TODO Hsinyu Chang 2010201 為了多開先拔掉，port應改成config設置
-            //NancyHost = new NancyHost(new Uri("http://localhost:3281"), new DefaultNancyBootstrapper(), hostConfigs);
+            //Hsinyu Chang 20211119 為了多開controller，port改成config設置
+            //NancyHost = new NancyHost(new Uri("http://localhost:3280"), new DefaultNancyBootstrapper(), hostConfigs);
+            string nancyUri = $"http://localhost:" + natsPort;
+            NancyHost = new NancyHost(new Uri(nancyUri), new DefaultNancyBootstrapper(), hostConfigs);
 
             //NancyHost = new NancyHost(new Uri("http://localhost:9527"), hostConfigs);
         }

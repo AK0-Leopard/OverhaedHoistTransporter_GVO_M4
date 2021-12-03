@@ -338,7 +338,7 @@ namespace com.mirle.ibg3k0.sc.Data.TimerAction
             if (port_stations == null)
             {
                 LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(RandomGeneratesCommandTimerActionTiming), Device: string.Empty,
-                   Data: $"No find can port station");
+                   Data: $"No find can load port station");
             }
             else
             {
@@ -346,8 +346,13 @@ namespace com.mirle.ibg3k0.sc.Data.TimerAction
                                                               !SCUtility.isEmpty(station.CST_ID) &&
                                                               !scApp.CMDBLL.hasExcuteCMDBySourcePort(station.PORT_ID)).
                                            ToList();
+                if (port_station.Count == 0)
+                {
+                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(RandomGeneratesCommandTimerActionTiming), Device: string.Empty,
+                        Data: $"No find can load port station");
+                }
             }
-            return (port_station != null, port_station);
+            return (port_station != null && port_station.Count > 0, port_station);
         }
 
         private Task<(bool is_success, object result)> findCanUnloadAGVStation(string zoneID)
@@ -385,7 +390,7 @@ namespace com.mirle.ibg3k0.sc.Data.TimerAction
             if (agv_stations == null)
             {
                 LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(RandomGeneratesCommandTimerActionTiming), Device: string.Empty,
-                   Data: $"No find can unload agv station");
+                   Data: $"No find can unload port station");
             }
             else
             {
@@ -394,8 +399,13 @@ namespace com.mirle.ibg3k0.sc.Data.TimerAction
                                                             !scApp.CMDBLL.hasExcuteCMDByDestinationPort(station.PORT_ID)).
                                            OrderBy(station => station.TestTimes).
                                            ToList();
+                if (agv_stations.Count == 0)
+                {
+                    LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(RandomGeneratesCommandTimerActionTiming), Device: string.Empty,
+                       Data: $"No find can unload port station");
+                }
             }
-            return (agv_station != null, agv_station);
+            return (agv_station != null && agv_station.Count > 0, agv_station);
         }
 
 
@@ -464,6 +474,11 @@ namespace com.mirle.ibg3k0.sc.Data.TimerAction
                             //scApp.CMDBLL.canAssignCmdNew(vh.VEHICLE_ID, E_CMD_TYPE.Move).canAssign).
                             scApp.CMDBLL.canAssignCmdNew(vh, E_CMD_TYPE.Move).canAssign).
                            ToList();
+            if (resultVh == null || resultVh.Count == 0)
+            {
+                LogHelper.Log(logger: logger, LogLevel: LogLevel.Debug, Class: nameof(RandomGeneratesCommandTimerActionTiming), Device: string.Empty,
+                   Data: $"No avaliable vehicle for cycle run");
+            }
             return (vhs != null && vhs.Count > 0, resultVh);
         }
 

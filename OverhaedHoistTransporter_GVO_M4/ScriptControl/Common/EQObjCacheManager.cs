@@ -404,7 +404,6 @@ namespace com.mirle.ibg3k0.sc.Common
                         }
                         unitList.AddRange(unit_lsit_temp);
                         AEQPT eqTemp = getEquipmentInitialObj(eqptType);
-
                         eqTemp.EQPT_ID = eqpt_id;
                         eqTemp.CIM_MODE = "";
                         eqTemp.OPER_MODE = "";

@@ -1343,8 +1343,11 @@ namespace com.mirle.ibg3k0.sc.Service
 
                     Task.Run(() => queueTimeOutCheck(un_finish_trnasfer));
                     if (un_finish_trnasfer == null || un_finish_trnasfer.Count == 0) return;
+                    //2021.11.22 Hsinyu Chang: MCS offline時也允許自己執行命令
                     if (DebugParameter.CanAutoRandomGeneratesCommand ||
-                        (scApp.getEQObjCacheManager().getLine().SCStats == ALINE.TSCState.AUTO && scApp.getEQObjCacheManager().getLine().MCSCommandAutoAssign))
+                        (scApp.getEQObjCacheManager().getLine().SCStats == ALINE.TSCState.AUTO && scApp.getEQObjCacheManager().getLine().MCSCommandAutoAssign) ||
+                        (scApp.getEQObjCacheManager().getLine().Host_Control_State == SCAppConstants.LineHostControlState.HostControlState.EQ_Off_line) ||
+                        (scApp.getEQObjCacheManager().getLine().Host_Control_State == SCAppConstants.LineHostControlState.HostControlState.Host_Offline))
                     {
                         List<VTRANSFER> excuting_transfer = un_finish_trnasfer.
                             Where(tr => tr.TRANSFERSTATE > E_TRAN_STATUS.Queue &&
@@ -1359,8 +1362,6 @@ namespace com.mirle.ibg3k0.sc.Service
 
                         try
                         {
-
-
                             foreach (VTRANSFER queue_tran in in_queue_transfer)
                             {
                                 string hostsource = queue_tran.HOSTSOURCE;
@@ -1413,8 +1414,6 @@ namespace com.mirle.ibg3k0.sc.Service
                                         continue;
                                     }
                                 }
-
-
 
                                 if (bestSuitableVh != null)
                                 {
