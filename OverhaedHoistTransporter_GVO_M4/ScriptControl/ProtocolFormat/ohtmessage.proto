@@ -856,6 +856,10 @@ enum TrackDir{
 	int32 procProgress_Percen = 52;
 	DriveDirction CurrentDriveDirction = 53;
 
+	double X_Axis = 54;
+	double Y_Axis = 55;
+	repeated string ReservedSectionID = 56;
+
   }
 
   message PORT_INFO{

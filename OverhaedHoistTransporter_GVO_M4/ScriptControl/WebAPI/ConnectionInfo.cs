@@ -95,21 +95,7 @@ namespace com.mirle.ibg3k0.sc.WebAPI
 
             Post["ConnectionInfo/ThisExist"] = (p) =>
             {
-                var scApp = SCApplication.getInstance();
-                bool isSuccess = true;
                 string result = "OK";
-
-                //string tsc_state = Request.Query.tscstate.Value ?? Request.Form.tscstate.Value ?? string.Empty;
-                try
-                {
-                    //isSuccess = scApp.ConnectionInfoService.doChangeTSCstate(tsc_state, out result);
-                }
-                catch (Exception ex)
-                {
-                    isSuccess = false;
-                    result = "OK";
-                    logger.Error(ex, "Execption:");
-                }
                 var response = (Response)result;
                 response.ContentType = restfulContentType;
                 return response;

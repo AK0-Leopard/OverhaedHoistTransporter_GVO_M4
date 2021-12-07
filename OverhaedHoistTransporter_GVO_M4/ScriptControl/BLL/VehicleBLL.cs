@@ -510,9 +510,15 @@ namespace com.mirle.ibg3k0.sc.BLL
                 CmdType = (com.mirle.ibg3k0.sc.ProtocolFormat.OHTMessage.CommandType)cmd_tpye,
                 VhCMDStatus = (com.mirle.ibg3k0.sc.ProtocolFormat.OHTMessage.CommandStatus)cmd_status,
                 CurrentDriveDirction = vh.CurrentDriveDirction,
+                XAxis = vh.X_Axis,
+                YAxis = vh.Y_Axis,
             };
             if (vh.PredictSections != null)
                 vh_gpb.PredictPath.AddRange(vh.PredictSections);
+            if (vh.WillPassSectionID != null)
+                vh_gpb.WillPassSectionID.AddRange(vh.WillPassSectionID);
+            if (vh.ReservedSectionID != null)
+                vh_gpb.ReservedSectionID.AddRange(vh.ReservedSectionID);
             LogManager.GetLogger("VehicleHistoricalInfo").Trace(vh_gpb.ToString());
 
             byte[] arrayByte = new byte[vh_gpb.CalculateSize()];

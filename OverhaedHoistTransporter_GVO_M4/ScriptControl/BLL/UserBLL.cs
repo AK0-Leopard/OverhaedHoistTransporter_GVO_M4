@@ -1057,6 +1057,7 @@ namespace com.mirle.ibg3k0.sc.BLL
             {
                 conn = DBConnection_EF.GetContext();
                 conn.BeginTransaction();
+                userFuncDao.deleteUserFuncByUserGrp(conn, user_grp);
                 userGroupDao.deleteUserGroupByID(conn, user_grp);
                 userGroupDao.updateUser_ClearGroupByGroupName(conn, user_grp); //A0.03
                 conn.Commit();

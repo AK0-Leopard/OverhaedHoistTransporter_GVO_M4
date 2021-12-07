@@ -17,6 +17,7 @@ namespace com.mirle.ibg3k0.sc.BLL
         NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private Mirle.Hlts.ReserveSection.Map.MapAPI _reserveSectionAPI { get; set; }
         private Mirle.Hlts.ReserveSection.Map.ViewModels.HltMapViewModel mapAPI { get; set; }
+        private SCApplication SCApp;
 
         private EventHandler reserveStatusChange;
         private object _reserveStatusChangeEventLock = new object();
@@ -41,7 +42,46 @@ namespace com.mirle.ibg3k0.sc.BLL
 
         private void onReserveStatusChange()
         {
+            try
+            {
+                updateVehicleReservedSectionID();
+            }
+            catch
+            {
+
+            }
             reserveStatusChange?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void updateVehicleReservedSectionID()
+        {
+            var vhs = SCApp?.getEQObjCacheManager()?.getAllVehicle();
+            if (vhs?.Count > 0)
+            {
+                foreach (var vh in vhs)
+                {
+                    vh.ReservedSectionID = loadCurrentReserveSections(vh.VEHICLE_ID);
+                    //logger.Error($"ReserveInfoTest- vh_id({vh.VEHICLE_ID?.Trim()}), reserve_sections: {ListStringToString(vh.ReservedSectionID)}");
+                }
+            }
+        }
+        private string ListStringToString(List<string> lst)
+        {
+            string sRtn = "";
+            bool isFirst = true;
+            if (lst?.Count > 0)
+            {
+                foreach (var s in lst)
+                {
+                    if (isFirst)
+                    {
+                        sRtn = s;
+                        isFirst = false;
+                    }
+                    else sRtn += "," + s;
+                }
+            }
+            return sRtn;
         }
 
         public ReserveBLL()
@@ -49,6 +89,7 @@ namespace com.mirle.ibg3k0.sc.BLL
         }
         public void start(SCApplication _app)
         {
+            SCApp = _app;
             //reserveSectionAPI = _app.getReserveSectionAPI();
             initialReserveSectionAPI(_app);
         }

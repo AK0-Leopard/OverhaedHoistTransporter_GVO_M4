@@ -432,6 +432,8 @@ namespace com.mirle.ibg3k0.sc
         [JsonIgnore]
         public virtual AvoidInfo VhAvoidInfo { get; set; }
         [JsonIgnore]
+        public virtual List<string> ReservedSectionID { get; set; }
+        [JsonIgnore]
         public virtual List<string> WillPassSectionID { get; set; }
         public virtual string sWillPassAddressIDs { get; set; }
 
