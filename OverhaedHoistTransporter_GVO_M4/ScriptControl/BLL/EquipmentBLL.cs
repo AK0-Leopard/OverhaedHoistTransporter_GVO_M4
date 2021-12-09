@@ -61,7 +61,13 @@ namespace com.mirle.ibg3k0.sc.BLL
                             FirstOrDefault();
                 return eqpt as HID;
             }
-
+            public List<HID> loadHID()
+            {
+                var eqpts = eqObjCacheManager.getAllEquipment().
+                            Where(eq => eq is HID).Select(eq => eq as HID).
+                            ToList();
+                return eqpts;
+            }
         }
 
     }

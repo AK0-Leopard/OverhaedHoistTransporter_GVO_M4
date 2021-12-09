@@ -1361,6 +1361,12 @@ namespace com.mirle.ibg3k0.sc.BLL
                                        SCUtility.isMatche(vh.CST_ID, cstID)).
                            Count() > 0;
             }
+            public List<AVEHICLE> loadVhsBySegmentIDs(List<string> segmentIDs)
+            {
+                var vhs = eqObjCacheManager.getAllVehicle();
+                vhs = vhs.Where(vh => segmentIDs.Contains(vh.CUR_SEG_ID)).ToList();
+                return vhs;
+            }
 
 
         }

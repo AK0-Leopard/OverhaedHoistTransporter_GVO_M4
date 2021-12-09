@@ -892,6 +892,7 @@
     </Compile>
     <Compile Include="MQTTControl\MQTTControl.cs" />
     <Compile Include="ObjectRelay\ALARMObjToShow.cs" />
+    <Compile Include="ObjectRelay\HIDObjToShow.cs" />
     <Compile Include="ObjectRelay\IDataGridUpdateNotify.cs" />
     <Compile Include="ObjectRelay\CMDObjToShow.cs" />
     <Compile Include="ObjectRelay\TRANSFERObjToShow.cs" />

@@ -406,6 +406,12 @@
     <Compile Include="UI\Maintenance\CarrierMaintenanceForm.designer.cs">
       <DependentUpon>CarrierMaintenanceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Maintenance\HIDMaintenanceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Maintenance\HIDMaintenanceForm.Designer.cs">
+      <DependentUpon>HIDMaintenanceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Maintenance\ReserveSectionInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1165,6 +1171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Maintenance\CarrierMaintenanceForm.resx">
       <DependentUpon>CarrierMaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Maintenance\HIDMaintenanceForm.resx">
+      <DependentUpon>HIDMaintenanceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Maintenance\ReserveSectionInfoForm.resx">
       <DependentUpon>ReserveSectionInfoForm.cs</DependentUpon>

@@ -79,6 +79,7 @@ namespace com.mirle.ibg3k0.bc.winform
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.logInToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.uASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,7 +112,7 @@ namespace com.mirle.ibg3k0.bc.winform
             this.portDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipMessageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.uASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hIDInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.CMS_OnLineMode.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -318,6 +319,12 @@ namespace com.mirle.ibg3k0.bc.winform
             resources.ApplyResources(this.logOutToolStripMenuItem1, "logOutToolStripMenuItem1");
             this.logOutToolStripMenuItem1.Click += new System.EventHandler(this.logOutToolStripMenuItem1_Click);
             // 
+            // uASToolStripMenuItem
+            // 
+            this.uASToolStripMenuItem.Name = "uASToolStripMenuItem";
+            resources.ApplyResources(this.uASToolStripMenuItem, "uASToolStripMenuItem");
+            this.uASToolStripMenuItem.Click += new System.EventHandler(this.uASToolStripMenuItem_Click_1);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -447,7 +454,8 @@ namespace com.mirle.ibg3k0.bc.winform
             // 
             this.mataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.roadControlToolStripMenuItem,
-            this.reserveSectionInfoToolStripMenuItem});
+            this.reserveSectionInfoToolStripMenuItem,
+            this.hIDInfoToolStripMenuItem});
             this.mataToolStripMenuItem.Name = "mataToolStripMenuItem";
             resources.ApplyResources(this.mataToolStripMenuItem, "mataToolStripMenuItem");
             this.mataToolStripMenuItem.Click += new System.EventHandler(this.mataToolStripMenuItem_Click);
@@ -529,11 +537,11 @@ namespace com.mirle.ibg3k0.bc.winform
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // uASToolStripMenuItem
+            // hIDInfoToolStripMenuItem
             // 
-            this.uASToolStripMenuItem.Name = "uASToolStripMenuItem";
-            resources.ApplyResources(this.uASToolStripMenuItem, "uASToolStripMenuItem");
-            this.uASToolStripMenuItem.Click += new System.EventHandler(this.uASToolStripMenuItem_Click_1);
+            this.hIDInfoToolStripMenuItem.Name = "hIDInfoToolStripMenuItem";
+            resources.ApplyResources(this.hIDInfoToolStripMenuItem, "hIDInfoToolStripMenuItem");
+            this.hIDInfoToolStripMenuItem.Click += new System.EventHandler(this.hIDInfoToolStripMenuItem_Click);
             // 
             // BCMainForm
             // 
@@ -698,6 +706,7 @@ namespace com.mirle.ibg3k0.bc.winform
         private System.Windows.Forms.ToolStripMenuItem portDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem maintainDeviceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uASToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hIDInfoToolStripMenuItem;
     }
 
     /// <summary>
