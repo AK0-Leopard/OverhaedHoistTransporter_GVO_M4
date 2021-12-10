@@ -9,6 +9,10 @@ using Google.Protobuf.Collections;
 using com.mirle.ibg3k0.sc.ProtocolFormat.OHTMessage;
 using System.Collections.Generic;
 using Quartz.Impl.Triggers;
+using System.Collections.Specialized;
+using Newtonsoft.Json.Linq;
+using System.Globalization;
+using System.Threading.Tasks;
 
 namespace com.mirle.ibg3k0.sc.BLL
 {
@@ -101,6 +105,8 @@ namespace com.mirle.ibg3k0.sc.BLL
             setHltVehicleInfo(_app);
 
             LoadMapFiles(_app);
+
+            mapAPI.HltReservedSections.CollectionChanged += onReserveSectionsChangedEvent;
         }
 
         private void setHltVehicleInfo(SCApplication _app)
@@ -195,7 +201,7 @@ namespace com.mirle.ibg3k0.sc.BLL
                Data: $"add vh in reserve system: vh:{vhID},x:{vehicleX},y:{vehicleY},angle:{vehicleAngle},speedMmPerSecond:{speedMmPerSecond},sensorDir:{sensorDir},forkDir:{forkDir}",
                VehicleID: vhID);
             //HltResult result = mapAPI.TryAddVehicleOrUpdate(vhID, vehicleX, vehicleY, vehicleAngle, sensorDir, forkDir);
-            var hlt_vh = new HltVehicle(vhID, vehicleX, vehicleY, vehicleAngle, speedMmPerSecond, sensorDirection: sensorDir, forkDirection: forkDir/*, currentSectionID: currentSectionID*/);
+            var hlt_vh = new HltVehicle(vhID, vehicleX, vehicleY, vehicleAngle, speedMmPerSecond, sensorDirection: sensorDir, forkDirection: forkDir, currentSectionID: currentSectionID);
             ReserveCheckResult result = mapAPI.TryAddOrUpdateVehicle(hlt_vh).ToReserveCheckResult();
             //mapAPI.KeepRestSection(hlt_vh);
             onReserveStatusChange();
@@ -604,6 +610,35 @@ namespace com.mirle.ibg3k0.sc.BLL
             var hlt_vh = mapAPI.GetVehicleObjectByID(vhID);
             if (hlt_vh == null) return (0, 0, 0);
             return (hlt_vh.X, hlt_vh.Y, hlt_vh.Angle);
+        }
+
+        protected void onReserveSectionsChangedEvent(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Dictionary<string, List<string>> reservedSections = new Dictionary<string, List<string>>();
+            foreach (var vehicle in mapAPI.HltVehicles)
+            {
+                reservedSections.Add(vehicle.ID, new List<string>());
+            }
+            foreach (var section in mapAPI.HltReservedSections)
+            {
+                reservedSections[section.RSVehicleID].Add(section.RSMapSectionID);
+            }
+
+            Task.Run(() =>
+            {
+                JObject logEntry = new JObject();
+                logEntry.Add("ReportTime", DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz", CultureInfo.InvariantCulture));
+                foreach (var reserveData in reservedSections)
+                {
+                    JObject logData = new JObject();
+                    logData.Add("VehicleID", reserveData.Key);
+                    logData.Add("ReservedSection", new JArray(reserveData.Value.ToArray()));
+                    logEntry.Add($"{reserveData.Key}", logData);
+                }
+                logEntry.Add("Index", "ReserveSectionInfo");
+                var json = logEntry.ToString(Newtonsoft.Json.Formatting.None);
+                LogManager.GetLogger("ReserveSectionInfo").Info(json);
+            });
         }
     }
 }

@@ -1083,6 +1083,9 @@
     <Content Include="DLL\System.Data.SQLite.dll" />
     <Content Include="DLL\System.Data.SQLite.Linq.dll" />
     <Content Include="DLL\System.IO.Abstractions.dll" />
+    <Content Include="opencv_world412.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
